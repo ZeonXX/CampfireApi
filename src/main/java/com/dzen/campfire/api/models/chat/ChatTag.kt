@@ -38,6 +38,17 @@ class ChatTag(
 
     fun setMyAccountId(accountId: Long) {
         this.accountId = accountId
+
+        if (chatType == API.CHAT_TYPE_PRIVATE) {
+            if(targetId != accountId && targetSubId != accountId){
+                targetId = accountId;
+            }
+            if (targetId < targetSubId) {
+                val x = targetId
+                targetId = targetSubId
+                targetSubId = x
+            }
+        }
     }
 
     fun getAnotherId(): Long {
