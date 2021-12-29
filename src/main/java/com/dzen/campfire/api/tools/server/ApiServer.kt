@@ -1,6 +1,5 @@
 package com.dzen.campfire.api.tools.server
 
-import com.dzen.campfire.api.models.account.MAccountEffect
 import com.dzen.campfire.api.tools.ApiAccount
 import com.dzen.campfire.api.tools.ApiException
 import com.sup.dev.java.classes.collections.Cash
@@ -8,8 +7,8 @@ import com.dzen.campfire.api.tools.client.ApiClient
 import com.dzen.campfire.api.tools.client.Request
 import com.sup.dev.java.libs.debug.err
 import com.sup.dev.java.libs.debug.info
-import com.sup.dev.java.libs.debug.log
 import com.sup.dev.java.libs.json.Json
+import com.sup.dev.java.tools.ToolsMath
 import java.io.*
 import java.net.Socket
 import java.util.concurrent.Executors
@@ -177,49 +176,78 @@ class ApiServer(
 
     private val ips = HashMap<String, ArrayList<Long>>()
     private var lastIpsClear = 0L
+    private var ipRuntimeLastClear = 0L
+    private val ipRuntimeWatchTime = 1000L * 60 * 5
+    private val ipRuntimeMaxPercent = 0.30
+    private val ipsRuntime = HashMap<String, Long>()
+    private val ipRuntimeBanTime = 1000L * 60 * 60 * 1
+    private val ipRuntimeBanList = HashMap<String, Long>()
+    private val ipSynchronizedList = HashMap<String, String>()
 
     private fun parseConnection(socket: Socket, json: Json,
                                 onKeyFounded: (String)->Unit,
                                 jsonResponse: (Json)->Unit,
     ) {
-        val request = requestFactory.instanceRequest(json)
-        val key = "[${request.requestProjectKey}] ${request.javaClass.simpleName}"
-        onKeyFounded.invoke(key)
-        request.accessToken = json.get(ApiClient.J_API_ACCESS_TOKEN)
-        request.refreshToken = json.get(ApiClient.J_API_REFRESH_TOKEN)
-        request.loginToken = json.get(ApiClient.J_API_LOGIN_TOKEN)
+        val ip:String = socket.inetAddress.canonicalHostName
 
-
-        val apiAccount = accountProvider.getAccount(request.accessToken, request.refreshToken, request.loginToken)
-        request.apiAccount = apiAccount ?: ApiAccount()
-
-        if(request.apiAccount.id > 0){
-            if(lastIpsClear < System.currentTimeMillis() - 1000L*60*60*24*7){
-                lastIpsClear = System.currentTimeMillis()
-                ips.clear()
-            }
-            val ip:String = socket.inetAddress.canonicalHostName
-            var list = ips[ip]
-            if(list == null){
-                list = ArrayList()
-                ips[ip] = list
-            }
-            if(!list.contains(request.apiAccount.id)) {
-                list.add(request.apiAccount.id)
-            }
-            if(list.size > 5){
-                return
-            }
+        synchronized(this){
+            ipSynchronizedList[ip] = ip
         }
 
+        synchronized(ipSynchronizedList[ip]?:"none"){
 
-        val t = System.currentTimeMillis()
-        if (request.requestType == ApiClient.REQUEST_TYPE_REQUEST) jsonResponse.invoke(parseRequestConnection(socket, request, apiAccount))
-        if (request.requestType == ApiClient.REQUEST_TYPE_DATA_LOAD) writeHttps(socket.getOutputStream(), parseDataOutConnection(request)!!)
+            if(ipRuntimeBanList[ip]?:0L > System.currentTimeMillis()){
+                info("Ip blocked by runtime ip[$ip]")
+                return
+            }
 
-        val tt = System.currentTimeMillis() - t
-        statisticCollector.invoke(key, tt, request.requestApiVersion)
-        info("[${request.requestProjectKey}] ${apiAccount?.name ?: "null"} ${request.javaClass.simpleName} $tt ms")
+            val request = requestFactory.instanceRequest(json)
+            val key = "[${request.requestProjectKey}] ${request.javaClass.simpleName}"
+            onKeyFounded.invoke(key)
+            request.accessToken = json.get(ApiClient.J_API_ACCESS_TOKEN)
+            request.refreshToken = json.get(ApiClient.J_API_REFRESH_TOKEN)
+            request.loginToken = json.get(ApiClient.J_API_LOGIN_TOKEN)
+
+            val apiAccount = accountProvider.getAccount(request.accessToken, request.refreshToken, request.loginToken)
+            request.apiAccount = apiAccount ?: ApiAccount()
+
+
+            if(request.apiAccount.id > 0){
+                if(lastIpsClear < System.currentTimeMillis() - 1000L*60*60*24*7){
+                    lastIpsClear = System.currentTimeMillis()
+                    ips.clear()
+                }
+                var list = ips[ip]
+                if(list == null){
+                    list = ArrayList()
+                    ips[ip] = list
+                }
+                if(!list.contains(request.apiAccount.id)) {
+                    list.add(request.apiAccount.id)
+                }
+                if(list.size > 5){
+                    return
+                }
+            }
+
+
+            val t = System.currentTimeMillis()
+            if (request.requestType == ApiClient.REQUEST_TYPE_REQUEST) jsonResponse.invoke(parseRequestConnection(socket, request, apiAccount))
+            if (request.requestType == ApiClient.REQUEST_TYPE_DATA_LOAD) writeHttps(socket.getOutputStream(), parseDataOutConnection(request)!!)
+
+            val tt = System.currentTimeMillis() - t
+            statisticCollector.invoke(key, tt, request.requestApiVersion)
+            info("[${request.requestProjectKey}] ${apiAccount?.name ?: "null"} [$ip] ${request.javaClass.simpleName} $tt ms runtime[${((ipsRuntime[ip]?:0L).toDouble()/ipRuntimeWatchTime*100).toInt()}%]")
+
+            if(ipRuntimeLastClear < System.currentTimeMillis() - ipRuntimeWatchTime) {
+                ipRuntimeLastClear = System.currentTimeMillis()
+                ipsRuntime.clear()
+            }
+            ipsRuntime[ip] = (ipsRuntime[ip] ?: 0L) + tt
+            if((ipsRuntime[ip]?:0L).toDouble()/ipRuntimeWatchTime > ipRuntimeMaxPercent){
+                ipRuntimeBanList[ip] = System.currentTimeMillis() + ipRuntimeBanTime
+            }
+        }
     }
 
     private fun parseRequestConnection(socket: Socket, request: Request<*>, apiAccount: ApiAccount?): Json {
