@@ -1,5 +1,6 @@
 package com.dzen.campfire.api.tools.server
 
+import com.dzen.campfire.api.models.account.MAccountEffect
 import com.dzen.campfire.api.tools.ApiAccount
 import com.dzen.campfire.api.tools.ApiException
 import com.sup.dev.java.classes.collections.Cash
@@ -174,6 +175,9 @@ class ApiServer(
     //  Parsing
     //
 
+    private val ips = HashMap<String, ArrayList<Long>>()
+    private var lastIpsClear = 0L
+
     private fun parseConnection(socket: Socket, json: Json,
                                 onKeyFounded: (String)->Unit,
                                 jsonResponse: (Json)->Unit,
@@ -188,6 +192,25 @@ class ApiServer(
 
         val apiAccount = accountProvider.getAccount(request.accessToken, request.refreshToken, request.loginToken)
         request.apiAccount = apiAccount ?: ApiAccount()
+
+        if(request.apiAccount.id > 0){
+            if(lastIpsClear < System.currentTimeMillis() - 1000L*60*60*24*7){
+                lastIpsClear = System.currentTimeMillis()
+                ips.clear()
+            }
+            val ip:String = socket.inetAddress.canonicalHostName
+            var list = ips[ip]
+            if(list == null){
+                list = ArrayList()
+                ips[ip] = list
+            }
+            if(!list.contains(request.apiAccount.id)) {
+                list.add(request.apiAccount.id)
+            }
+            if(list.size > 5){
+                return
+            }
+        }
 
 
         val t = System.currentTimeMillis()

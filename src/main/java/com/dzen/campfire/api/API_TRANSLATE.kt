@@ -1302,7 +1302,7 @@ object API_TRANSLATE {
     val post_close_confirm = Translate("Закрыть этот пост?")
     val post_open_confirm = Translate("Открыть этот пост?")
 
-    val activities_new_year_quest = Translate("Новогодний квест")
+    val activities_new_year_quest = Translate("Квесты")
     val activities_support = Translate("Поддержать проект")
     val activities_support_empty_30 = Translate("В этом месяце еще никто не поддержал проект :(")
     val activities_support_empty_total = Translate("Никто не поддержал проект :(")
@@ -2041,7 +2041,7 @@ object API_TRANSLATE {
     val effect_title_hater_comment_gods = Translate("Наказан богами за неподобающее отношение к ним.")
     val effect_title_pig = Translate("Проклятие свиньи")
     val effect_title_pig_description = Translate("Аватар пользователя заменен на свинку.")
-    val effect_title_pig_comment = Translate("Наказан за жестокое обращение с животными.")
+    val effect_title_pig_comment = Translate("Наказан для некультурных человеков.")
     val effect_title_vahter = Translate("Проклятие вахтера")
     val effect_title_vahter_description = Translate("Пользователь не может блокировать публикации.")
     val effect_title_vahter_comment_rejected = Translate("Наказан за необаснованные блокировки.")
