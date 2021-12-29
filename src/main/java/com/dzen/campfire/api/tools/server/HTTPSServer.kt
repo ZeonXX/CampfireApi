@@ -42,6 +42,51 @@ class HTTPSServer(
         stop = true
     }
 
+    private val ips = HashMap<String, ArrayList<Long>>()
+    private val blockList = ArrayList<String>()
+    private var lastIpsClear = 0L
+    private var lastBlockClear = 0L
+
+    private fun checkConnection(socket:Socket):Boolean{
+        val ip:String = socket.inetAddress.canonicalHostName
+        if(ip.isNotEmpty()){
+            if(lastIpsClear < System.currentTimeMillis() - 1000L * 60){
+                lastIpsClear = System.currentTimeMillis()
+                ips.clear()
+            }
+            if(lastBlockClear < System.currentTimeMillis() - 1000L * 60 * 60 * 24 * 30){
+                lastBlockClear = System.currentTimeMillis()
+                blockList.clear()
+            }
+            if(blockList.contains(ip)){
+                info("> Block connection ip[$ip]")
+                try {
+                    socket.close()
+                }catch(e:Exception){
+
+                }
+                return  false
+            }
+            var list = ips[ip]
+            if(list == null){
+                list = ArrayList()
+                ips[ip] = list
+            }
+            if(list.size > 100){
+                info("> Block connection ip[$ip]")
+                blockList.add(ip)
+                try {
+                    socket.close()
+                }catch(e:Exception){
+
+                }
+                return false
+            }
+            list.add(0)
+        }
+        return true
+    }
+
     //
     //  Certificate
     //
@@ -54,6 +99,10 @@ class HTTPSServer(
                 while (!stop) {
                     val socket = serverSocket.accept()
                     if (stop) return@thread
+
+                    if(!checkConnection(socket)){
+                        continue
+                    }
 
                     threadProvider.invoke {
                         if (stop) return@invoke
@@ -86,10 +135,6 @@ class HTTPSServer(
     //  Https
     //
 
-    private val ips = HashMap<String, ArrayList<Long>>()
-    private val blockList = ArrayList<String>()
-    private var lastIpsClear = 0L
-    private var lastBlockClear = 0L
 
     private fun startHTTPS() {
 
@@ -98,35 +143,13 @@ class HTTPSServer(
                 val serverSocket = instanceSocket()
                 while (!stop) {
                     val socket = serverSocket.accept() as SSLSocket
-                    val ip:String = socket.inetAddress.canonicalHostName
-
-                    if(ip.isNotEmpty()){
-                        if(lastIpsClear < System.currentTimeMillis() - 1000L * 60){
-                            lastIpsClear = System.currentTimeMillis()
-                            ips.clear()
-                        }
-                        if(lastBlockClear < System.currentTimeMillis() - 1000L * 60 * 60 * 24 * 30){
-                            lastBlockClear = System.currentTimeMillis()
-                            blockList.clear()
-                        }
-                        if(blockList.contains(ip)){
-                            info("> Block connection ip[$ip]")
-                            continue
-                        }
-                        var list = ips[ip]
-                        if(list == null){
-                            list = ArrayList()
-                            ips[ip] = list
-                        }
-                        if(list.size > 100){
-                            info("> Block connection ip[$ip]")
-                            blockList.add(ip)
-                            continue
-                        }
-                        list.add(0)
-                    }
 
                     if (stop) return@thread
+
+                    if(!checkConnection(socket)){
+                        continue
+                    }
+
                     socket.soTimeout = 3000
 
                     threadProvider.invoke {
