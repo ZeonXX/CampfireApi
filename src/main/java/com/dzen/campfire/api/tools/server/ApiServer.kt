@@ -8,6 +8,7 @@ import com.dzen.campfire.api.tools.client.Request
 import com.sup.dev.java.libs.debug.err
 import com.sup.dev.java.libs.debug.info
 import com.sup.dev.java.libs.json.Json
+import com.sup.dev.java.tools.ToolsBytes
 import java.io.*
 import java.net.Socket
 import java.util.concurrent.Executors
@@ -99,9 +100,11 @@ class ApiServer(
                 Json(bytes)
             }
 
-            parseConnection(socket, json,
-                onKeyFounded = {key = it},
-                jsonResponse = {writeHttps(socket.getOutputStream(), it, isHttpFormat)}
+            parseConnection(
+                    socket, json,
+                    onKeyFounded = { key = it },
+                    jsonResponse = { writeHttps(socket.getOutputStream(), it, isHttpFormat) },
+                    dataResponse = { writeData(socket.getOutputStream(), it, isHttpFormat) },
             )
         } catch (th: Throwable) {
             onError.invoke(key, th)
@@ -151,11 +154,27 @@ class ApiServer(
         }
     }
 
-    fun writeData(os: OutputStream, bytes: ByteArray) {
-        val dos = DataOutputStream(os)
-        dos.writeInt(bytes.size)
-        dos.write(bytes)
-        dos.flush()
+    fun writeData(os: OutputStream, bytes: ByteArray, isHttpFormat: Boolean) {
+        if(isHttpFormat){
+            val out = BufferedWriter(OutputStreamWriter(os))
+
+            out.write("HTTP/1.0 200 OK\r\n")
+            out.write("Access-Control-Allow-Origin: *\r\n")
+            out.write("Access-Control-Allow-Credentials: true\r\n")
+            out.write("Access-Control-Allow-Headers: *\r\n")
+            out.write("Access-Control-Allow-Methods: *\r\n")
+            out.write("Content-Length: ${bytes.size}\r\n")
+            out.write("\r\n")
+            out.flush()
+            os.write(bytes)
+            os.flush()
+
+        } else {
+            val dos = DataOutputStream(os)
+            dos.writeInt(bytes.size)
+            dos.write(bytes)
+            dos.flush()
+        }
     }
 
     //
@@ -175,6 +194,7 @@ class ApiServer(
     private fun parseConnection(socket: Socket, json: Json,
                                 onKeyFounded: (String)->Unit,
                                 jsonResponse: (Json)->Unit,
+                                dataResponse: (ByteArray)->Unit,
     ) {
         val ip:String = socket.inetAddress.hostAddress
 
@@ -226,7 +246,7 @@ class ApiServer(
 
             val t = System.currentTimeMillis()
             if (request.requestType == ApiClient.REQUEST_TYPE_REQUEST) jsonResponse.invoke(parseRequestConnection(socket, request, apiAccount))
-            if (request.requestType == ApiClient.REQUEST_TYPE_DATA_LOAD) writeData(socket.getOutputStream(), parseDataOutConnection(request)!!)
+            if (request.requestType == ApiClient.REQUEST_TYPE_DATA_LOAD) dataResponse.invoke(parseDataOutConnection(request)!!)
 
             val tt = System.currentTimeMillis() - t
             statisticCollector.invoke(key, tt, request.requestApiVersion)
