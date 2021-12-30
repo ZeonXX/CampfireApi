@@ -40,6 +40,7 @@ abstract class ApiClient(
         const val J_API_LOGIN_TOKEN = "J_API_LOGIN_TOKEN"
         const val J_API_ACCESS_TOKEN = "J_API_ACCESS_TOKEN"
         const val J_API_REFRESH_TOKEN = "J_API_REFRESH_TOKEN"
+        const val J_API_BOT_TOKEN = "J_API_BOT_TOKEN"
 
         const val TOKEN_CHARS =
             "1234567890qwertyuiopasdfghjklzxcvbnmйцукенгшщзхъфывапролджэячсмитьбюQWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ"

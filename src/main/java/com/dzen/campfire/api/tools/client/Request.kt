@@ -40,6 +40,7 @@ abstract class Request<K : Request.Response> : Subscription(){
     var accessToken: String? = null
     var refreshToken: String? = null
     var loginToken: String? = null
+    var botToken: String? = null
 
     //
     //  Subscription

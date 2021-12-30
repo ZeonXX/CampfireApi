@@ -23,7 +23,8 @@ class ApiServer(
         private val keyPassword: String,
         private val portHttps: Int,
         private val portHttp: Int,
-        private val portCertificate: Int
+        private val portCertificate: Int,
+        private val botTokensList: ArrayList<String>,
 ) {
 
     private val cash: Cash<Long, Json> = Cash(10000)
@@ -190,43 +191,48 @@ class ApiServer(
     ) {
         val ip:String = socket.inetAddress.canonicalHostName
 
-        synchronized(this){
-            ipSynchronizedList[ip] = ip
-        }
-
-        synchronized(ipSynchronizedList[ip]?:"none"){
-
+        synchronized(ipRuntimeBanList){
             if(ipRuntimeBanList[ip]?:0L > System.currentTimeMillis()){
                 info("Ip blocked by runtime ip[$ip]")
                 return
             }
+        }
+        synchronized(ipSynchronizedList){
+            ipSynchronizedList[ip] = ip
+        }
 
+        synchronized(ipSynchronizedList[ip]?:"none"){
             val request = requestFactory.instanceRequest(json)
             val key = "[${request.requestProjectKey}] ${request.javaClass.simpleName}"
             onKeyFounded.invoke(key)
             request.accessToken = json.get(ApiClient.J_API_ACCESS_TOKEN)
             request.refreshToken = json.get(ApiClient.J_API_REFRESH_TOKEN)
             request.loginToken = json.get(ApiClient.J_API_LOGIN_TOKEN)
+            request.botToken = json.get(ApiClient.J_API_BOT_TOKEN)
 
             val apiAccount = accountProvider.getAccount(request.accessToken, request.refreshToken, request.loginToken)
             request.apiAccount = apiAccount ?: ApiAccount()
 
 
-            if(request.apiAccount.id > 0){
-                if(lastIpsClear < System.currentTimeMillis() - 1000L*60*60*24*7){
-                    lastIpsClear = System.currentTimeMillis()
-                    ips.clear()
-                }
-                var list = ips[ip]
-                if(list == null){
-                    list = ArrayList()
-                    ips[ip] = list
-                }
-                if(!list.contains(request.apiAccount.id)) {
-                    list.add(request.apiAccount.id)
-                }
-                if(list.size > 5){
-                    return
+            if(!botTokensList.contains(request.botToken)) {
+                synchronized(ips) {
+                    if (request.apiAccount.id > 0) {
+                        if (lastIpsClear < System.currentTimeMillis() - 1000L * 60 * 60 * 24 * 7) {
+                            lastIpsClear = System.currentTimeMillis()
+                            ips.clear()
+                        }
+                        var list = ips[ip]
+                        if (list == null) {
+                            list = ArrayList()
+                            ips[ip] = list
+                        }
+                        if (!list.contains(request.apiAccount.id)) {
+                            list.add(request.apiAccount.id)
+                        }
+                        if (list.size > 5) {
+                            return
+                        }
+                    }
                 }
             }
 
@@ -237,15 +243,20 @@ class ApiServer(
 
             val tt = System.currentTimeMillis() - t
             statisticCollector.invoke(key, tt, request.requestApiVersion)
-            info("[${request.requestProjectKey}] ${apiAccount?.name ?: "null"} [$ip] ${request.javaClass.simpleName} $tt ms runtime[${((ipsRuntime[ip]?:0L).toDouble()/ipRuntimeWatchTime*100).toInt()}%]")
+            info("[${request.requestProjectKey}] ${apiAccount?.name ?: "null"} [$ip]${if(request.botToken != null)" BOT[${request.botToken}]" else ""} ${request.javaClass.simpleName} $tt ms runtime[${((ipsRuntime[ip]?:0L).toDouble()/ipRuntimeWatchTime*100).toInt()}%]")
 
-            if(ipRuntimeLastClear < System.currentTimeMillis() - ipRuntimeWatchTime) {
-                ipRuntimeLastClear = System.currentTimeMillis()
-                ipsRuntime.clear()
-            }
-            ipsRuntime[ip] = (ipsRuntime[ip] ?: 0L) + tt
-            if((ipsRuntime[ip]?:0L).toDouble()/ipRuntimeWatchTime > ipRuntimeMaxPercent){
-                ipRuntimeBanList[ip] = System.currentTimeMillis() + ipRuntimeBanTime
+
+            synchronized(ipsRuntime) {
+                if (ipRuntimeLastClear < System.currentTimeMillis() - ipRuntimeWatchTime) {
+                    ipRuntimeLastClear = System.currentTimeMillis()
+                    ipsRuntime.clear()
+                }
+                ipsRuntime[ip] = (ipsRuntime[ip] ?: 0L) + tt
+                if ((ipsRuntime[ip] ?: 0L).toDouble() / ipRuntimeWatchTime > ipRuntimeMaxPercent) {
+                    synchronized(ipRuntimeBanList){
+                        ipRuntimeBanList[ip] = System.currentTimeMillis() + ipRuntimeBanTime
+                    }
+                }
             }
         }
     }
