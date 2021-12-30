@@ -192,3 +192,70 @@ class HTTPSServer(
 
 
 }
+/*
+
+
+.base/java.security.cert.CertPathBuilder.build(CertPathBuilder.java:297)
+        at java.base/sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:434)
+        ... 35 more
+DEE, javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+XInfo, DII, [Campfire] null [185.113.38.239] EPostGet 0 ms runtime[0%]
+DII, Google ID is null
+XInfo, DII, [Campfire] null [185.113.38.239] EPostGet 1 ms runtime[0%]
+javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+        at java.base/sun.security.ssl.Alert.createSSLException(Alert.java:131)
+        at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:370)
+        at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:313)
+        at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:308)
+        at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.checkServerCerts(CertificateMessage.java:1357)
+        at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.onConsumeCertificate(CertificateMessage.java:1232)
+        at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.consume(CertificateMessage.java:1175)
+        at java.base/sun.security.ssl.SSLHandshake.consume(SSLHandshake.java:396)
+        at java.base/sun.security.ssl.HandshakeContext.dispatch(HandshakeContext.java:480)
+        at java.base/sun.security.ssl.HandshakeContext.dispatch(HandshakeContext.java:458)
+        at java.base/sun.security.ssl.TransportContext.dispatch(TransportContext.java:200)
+        at java.base/sun.security.ssl.SSLTransport.decode(SSLTransport.java:172)
+        at java.base/sun.security.ssl.SSLSocketImpl.decode(SSLSocketImpl.java:1500)
+        at java.base/sun.security.ssl.SSLSocketImpl.readHandshakeRecord(SSLSocketImpl.java:1415)
+        at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:450)
+        at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:421)
+        at java.base/sun.net.www.protocol.https.HttpsClient.afterConnect(HttpsClient.java:580)
+        at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:183)
+        at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1665)
+        at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1589)
+        at java.base/sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:224)
+        at com.sup.dev.java_pc.google.GoogleAuth.requestByIdToken(GoogleAuth.kt:66)
+        at com.sup.dev.java_pc.google.GoogleAuth.getGoogleId(GoogleAuth.kt:30)
+        at com.dzen.campfire.server.app.AccountProviderImpl.getByLoginToken(AccountProviderImpl.kt:55)
+        at com.dzen.campfire.api.tools.server.AccountProvider.loginByLogin(AccountProvider.kt:52)
+        at com.dzen.campfire.api.tools.server.AccountProvider.getAccount(AccountProvider.kt:16)
+        at com.dzen.campfire.api.tools.server.ApiServer.parseConnection(ApiServer.kt:200)
+        at com.dzen.campfire.api.tools.server.ApiServer.parseConnectionHttp(ApiServer.kt:102)
+        at com.dzen.campfire.api.tools.server.ApiServer.access$parseConnectionHttp(ApiServer.kt:17)
+        at com.dzen.campfire.api.tools.server.ApiServer$startServerHTTPS$server$1$1.run(ApiServer.kt:59)
+        at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+        at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+        at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+        at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+        at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+        at java.base/sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:439)
+        at java.base/sun.security.validator.PKIXValidator.engineValidate(PKIXValidator.java:306)
+        at java.base/sun.security.validator.Validator.validate(Validator.java:264)
+        at java.base/sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:231)
+        at java.base/sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:132)
+        at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.checkServerCerts(CertificateMessage.java:1341)
+        ... 30 more
+Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+        at java.base/sun.security.provider.certpath.SunCertPathBuilder.build(SunCertPathBuilder.java:141)
+        at java.base/sun.security.provider.certpath.SunCertPathBuilder.engineBuild(SunCertPathBuilder.java:126)
+        at java.base/java.security.cert.CertPathBuilder.build(CertPathBuilder.java:297)
+        at java.base/sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:434)
+        ... 35 more
+DEE, javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+DII, Google ID is null
+XInfo, DII, [Campfire] null [185.113.38.239] EPostGet 0 ms runtime[0%]
+
+
+
+ */
