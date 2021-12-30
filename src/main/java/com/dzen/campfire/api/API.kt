@@ -29,7 +29,7 @@ class API(
         val PORT_HTTP = 4028
         val PORT_CERTIFICATE = 4027
         val IP = "46.254.16.245"
-        val DOMEN = "http://sayzen.ru/r/r.php?a="
+        val DOMEN = "http://campfiresayzen.net/r/r.php?a="
         val VERSION = "1.261"
         val SUPPORTED_VERSION = "0.82b"
 

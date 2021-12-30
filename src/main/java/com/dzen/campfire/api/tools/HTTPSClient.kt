@@ -43,7 +43,7 @@ class HTTPSClient(
     fun connectCertificate() {
         if(certificate == null) {
             val socket = Socket(host, portCertificate)
-            socket.soTimeout = 2000
+            socket.soTimeout = 10000
             val dis = DataInputStream(socket.getInputStream())
             val certificateL = dis.readInt()
             val passwordL = dis.readInt()

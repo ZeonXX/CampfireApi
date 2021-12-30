@@ -35,7 +35,7 @@ class HTTPServer(
     private var lastBlockClear = 0L
 
     private fun checkConnection(socket:Socket):Boolean{
-        val ip:String = socket.inetAddress.canonicalHostName
+        val ip:String = socket.inetAddress.hostAddress
         if(ip.isNotEmpty()){
             if(lastIpsClear < System.currentTimeMillis() - 1000L * 60){
                 lastIpsClear = System.currentTimeMillis()
