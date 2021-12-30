@@ -47,10 +47,14 @@ class RequestFactory(
     }
 
     protected fun add(e: Class<out Request<*>>) {
+        if(e.superclass.simpleName == "Request"){
+            //  Это класс запроса (R), а не исполнитель (E)
+            return
+        }
         try {
             requests[e.superclass.simpleName] = e.getConstructor()
-        } catch (e: Throwable) {
-            err(e)
+        } catch (ex: Throwable) {
+            err(ex)
         }
 
     }
