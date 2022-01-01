@@ -65,6 +65,7 @@ object API_TRANSLATE {
     val app_about = Translate("О приложении")
     val app_update = Translate("Обновить")
     val app_remove = Translate("Удалить")
+    val app_duplicate = Translate("Дублировать")
     val app_to_drafts = Translate("В черновики")
     val app_move = Translate("Перенести")
     val app_display_above = Translate("Отображать над…")
