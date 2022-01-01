@@ -1092,6 +1092,7 @@ object API_TRANSLATE {
     val settings_voice_messages_auto_lock = Translate("Автоматически блокировать запись звука")
     val settings_voice_messages_auto_send = Translate("Автоматически отправлять сообщение после записи")
     val settings_voice_messages_dont_receive = Translate("Не получать голосовые сообщения в личных чатах")
+    val settings_allow_adding_to_conferences = Translate("Разрешить добавление в конференции")
     val settings_notifications_none = Translate("Получать уведомления")
     val settings_notifications_enabled = Translate("Приложение получает уведомления")
     val settings_notifications_disabled = Translate("Уведомления отключены до %s")
@@ -1580,6 +1581,7 @@ object API_TRANSLATE {
     val error_chat_access = Translate("У вас нет доступа к этому чату")
     val error_field_is_empty = Translate("Поле не может быть пустым")
     val error_account_is_anonymous = Translate("Вы не можете посмотреть прфоиль ананима")
+    val error_blocked_adding_to_conferences = Translate("Эти пользователи запретили добавлять себя в конференции:")
 
     val profile_error_gone = Translate("Пользователь не найден")
     val profile_loading_in_profess = Translate("Профиль еще не загружен")
