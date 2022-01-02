@@ -1680,6 +1680,7 @@ object API_TRANSLATE {
     val fandoms_loading = Translate("Загрузка списка фэндомов")
     val fandoms_global = Translate("Глобальный поиск")
     val fandoms_suggest = Translate("Предложить фэндом")
+    val fandoms_suggest_notes = Translate("Заметки для администрации")
     val fandoms_suggest_suggested = Translate("Фэндом предложен")
     val fandoms_suggest_accept_text = Translate("Принять этот фэндом?")
     val fandoms_suggest_accept_error_self = Translate("Нельзя принять собсвенный фэндом.")

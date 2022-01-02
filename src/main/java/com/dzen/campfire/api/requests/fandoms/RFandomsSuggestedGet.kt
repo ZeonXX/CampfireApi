@@ -28,6 +28,7 @@ open class RFandomsSuggestedGet(var fandomId: Long) : Request<RFandomsSuggestedG
         var params2: Array<Long> = emptyArray()
         var params3: Array<Long> = emptyArray()
         var params4: Array<Long> = emptyArray()
+        var notes: String = ""
 
         constructor(json: Json) {
             json(false, json)
@@ -38,7 +39,8 @@ open class RFandomsSuggestedGet(var fandomId: Long) : Request<RFandomsSuggestedG
                     params1: Array<Long>,
                     params2: Array<Long>,
                     params3: Array<Long>,
-                    params4: Array<Long>
+                    params4: Array<Long>,
+                    notes: String
         ) {
             this.fandom = fandom
             this.creator = creator
@@ -46,6 +48,7 @@ open class RFandomsSuggestedGet(var fandomId: Long) : Request<RFandomsSuggestedG
             this.params2 = params2
             this.params3 = params3
             this.params4 = params4
+            this.notes = notes
         }
 
         override fun json(inp: Boolean, json: Json) {
@@ -55,6 +58,7 @@ open class RFandomsSuggestedGet(var fandomId: Long) : Request<RFandomsSuggestedG
             params2 = json.m(inp, "params2", params2)
             params3 = json.m(inp, "params3", params3)
             params4 = json.m(inp, "params4", params4)
+            notes = json.m(inp, "notes", notes)
         }
 
     }

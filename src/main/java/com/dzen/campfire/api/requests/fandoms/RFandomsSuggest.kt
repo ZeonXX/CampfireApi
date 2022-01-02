@@ -13,7 +13,8 @@ open class RFandomsSuggest(
         var params1: Array<Long>,
         var params2: Array<Long>,
         var params3: Array<Long>,
-        var params4: Array<Long>
+        var params4: Array<Long>,
+        var notes: String
 ) : Request<RFandomsSuggest.Response>() {
 
     companion object {
@@ -22,6 +23,7 @@ open class RFandomsSuggest(
         val E_BAD_IMG_SIZE = "E_BAD_IMG_SIZE"
         val E_BAD_IMG_MINI_SIZE = "E_BAD_IMG_MINI_SIZE"
         val E_BAD_NAME_L = "E_BAD_NAME_L"
+        val E_BAD_NOTES_L = "E_BAD_NOTES_L"
     }
 
     init {
@@ -42,6 +44,7 @@ open class RFandomsSuggest(
         params2 = json.m(inp, "params2", params2)
         params3 = json.m(inp, "params3", params3)
         params4 = json.m(inp, "params4", params4)
+        notes = json.m(inp, "notes", notes)
     }
 
     override fun instanceResponse(json: Json): Response {
