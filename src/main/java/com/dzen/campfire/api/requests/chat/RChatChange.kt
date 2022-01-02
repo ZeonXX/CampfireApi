@@ -15,6 +15,9 @@ open class RChatChange(
         var changeAccountsLevels:Array<Long>,
         var chatParams: ChatParamsConf
 ) : Request<RChatChange.Response>() {
+    companion object {
+        const val E_CONFERENCE_BLOCK = "E_CONFERENCE_BLOCK"
+    }
 
     init {
         addDataOutput(image)

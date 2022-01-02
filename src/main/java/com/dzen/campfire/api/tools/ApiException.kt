@@ -3,7 +3,7 @@ package com.dzen.campfire.api.tools
 import com.sup.dev.java.libs.debug.Debug
 import com.sup.dev.java.libs.json.Json
 
-class ApiException private constructor(
+class ApiException constructor(
         var code: String,
         var messageError: String,
         var params: Array<String>

@@ -96,6 +96,8 @@ class AccountSettings() : JsonParsable {
     var adminReportsLanguages: Array<Long> = emptyArray()
     //  Bookmarks
     var bookmarksFolders: Array<BookmarksFolder> = emptyArray()
+    //  Chats
+    var allowAddingToConferences = true
 
     var isStub = false
 
@@ -194,6 +196,8 @@ class AccountSettings() : JsonParsable {
         adminReportsLanguages = json.m(inp, "adminReportsLanguages", adminReportsLanguages)
 
         bookmarksFolders = json.m(inp, "bookmarksFolders", bookmarksFolders)
+
+        allowAddingToConferences = json.m(inp, "allowAddingToConferences", allowAddingToConferences)
 
         isStub = json.m(inp, "isStub", isStub)
 
