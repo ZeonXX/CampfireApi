@@ -519,6 +519,7 @@ class API(
         val PAGE_TYPE_USER_ACTIVITY = 13L
         val PAGE_TYPE_LINK_IMAGE = 14L
         val PAGE_TYPE_UNKNOWN = 15L
+        val PAGE_TYPE_CODE = 16L
 
         val MODERATION_TYPE_BLOCK = 1L
         val MODERATION_TYPE_TAG_CREATE = 2L
