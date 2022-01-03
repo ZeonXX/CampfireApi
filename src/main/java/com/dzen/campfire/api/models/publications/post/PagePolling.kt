@@ -1,6 +1,7 @@
 package com.dzen.campfire.api.models.publications.post
 
 import com.dzen.campfire.api.API
+import com.dzen.campfire.api.models.account.Account
 import com.sup.dev.java.libs.json.Json
 import com.sup.dev.java.libs.json.JsonParsable
 
@@ -11,6 +12,8 @@ class PagePolling : Page() {
     var options: Array<String> = emptyArray()
     var minLevel = 0L
     var minKarma = 0L
+    var minDays = 0L
+    var blacklist = emptyArray<Account>()
 
     override fun getType() = API.PAGE_TYPE_POLLING
 
@@ -19,7 +22,9 @@ class PagePolling : Page() {
         title = json.m(inp, "title", title)
         minLevel = json.m(inp, "minLevel", minLevel)
         minKarma = json.m(inp, "minKarma", minKarma)
+        minDays = json.m(inp, "minDays", minDays)
         options = json.m(inp, "options", options, Array<String>::class)
+        blacklist = json.m(inp, "blacklist", blacklist, Array<Account>::class)
         return super.json(inp, json)
     }
 
