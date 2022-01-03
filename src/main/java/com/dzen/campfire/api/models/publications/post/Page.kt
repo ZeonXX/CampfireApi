@@ -63,6 +63,7 @@ abstract class Page : JsonPolimorf {
                 API.PAGE_TYPE_CAMPFIRE_OBJECT -> page = PageCampfireObject()
                 API.PAGE_TYPE_USER_ACTIVITY -> page = PageUserActivity()
                 API.PAGE_TYPE_LINK_IMAGE -> page = PageLinkImage()
+                API.PAGE_TYPE_CODE -> page = PageCode()
                 else -> {
                     page = PageText()
                     isNull = true
