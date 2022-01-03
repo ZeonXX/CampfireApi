@@ -15,6 +15,8 @@ open class RPostPagePollingVote(
         val E_ALREADY = "E_ALREADY"
         val E_LOW_LEVEL = "E_LOW_LEVEL"
         val E_LOW_KARMA = "E_LOW_KARMA"
+        val E_LOW_DAYS = "E_LOW_DAYS"
+        val E_BLACKLISTED = "E_BLACKLISTED"
     }
 
     override fun jsonSub(inp: Boolean, json: Json) {
