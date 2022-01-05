@@ -26,19 +26,23 @@ open class RTranslateGetMap(
 
         var translate_language_id = 0L
         var translate_map: HashMap<String, Translate> = HashMap()
+        var translateMapHash: Int = 0
 
         constructor(json: Json) {
             json(false, json)
         }
 
         constructor(translate_language_id: Long,
-                translate_map: HashMap<String, Translate>) {
+                translate_map: HashMap<String, Translate>,
+                translateMapHash: Int) {
             this.translate_language_id = translate_language_id
             this.translate_map = translate_map
+            this.translateMapHash = translateMapHash
         }
 
         override fun json(inp: Boolean, json: Json) {
             translate_language_id = json.m(inp, "translate_language_id", translate_language_id)
+            translateMapHash = json.m(inp, "translateMapHash", translateMapHash)
             if (inp) {
                 json.m(inp, "translate_map_k", translate_map.keys.toTypedArray())
                 json.m(inp, "translate_map_v", translate_map.values.toTypedArray())
