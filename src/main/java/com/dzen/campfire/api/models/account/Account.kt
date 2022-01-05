@@ -18,11 +18,9 @@ class Account : JsonParsable {
 
     var dateCreate = 0L
 
-    constructor() {
+    constructor()
 
-    }
-
-    constructor(id: Long, lvl: Long, lastOnlineDate: Long, name: String, imageId: Long, sex: Long, karma30: Long, sponsor: Long, sponsorTimes: Long, accountEffects: Array<MAccountEffect>) {
+    constructor(id: Long, lvl: Long, lastOnlineDate: Long, name: String, imageId: Long, sex: Long, karma30: Long, sponsor: Long, sponsorTimes: Long, accountEffects: Array<MAccountEffect>, dateCreate: Long = 0) {
         this.id = id
         this.lvl = lvl
         this.lastOnlineDate = lastOnlineDate
@@ -33,6 +31,7 @@ class Account : JsonParsable {
         this.sponsor = sponsor
         this.sponsorTimes = sponsorTimes
         this.accountEffects = accountEffects
+        this.dateCreate = dateCreate
     }
 
     override fun json(inp: Boolean, json: Json): Json {

@@ -12,6 +12,7 @@ class ApiAccount(
         var refreshToken: String? = null,
         var refreshTokenDateCreate: Long? = null,
         var lastOnlineTime: Long=0,
+        var dateCreate: Long = 0,
 ){
 
     var tag_s_1 = ""

@@ -1262,7 +1262,11 @@ object API_TRANSLATE {
     val post_page_polling_options = Translate("Варианты:")
     val post_page_polling_lvl_title = Translate("Минимальный уровень")
     val post_page_polling_karma_title = Translate("Минимальная карма")
+    val post_page_polling_days_title = Translate("Минимальное кол-во дней в приложении")
+    val post_page_polling_blacklist = Translate("Чёрный список")
+    val post_page_polling_limit_days = Translate("Дней")
     val post_page_table = Translate("Таблица")
+    val post_page_code = Translate("Код")
     val post_page_campfire_object = Translate("Объект Campfire")
     val post_page_polling_change_alert = Translate("При изменении опроса все ответы будут потеряны.")
     val post_change_alert = Translate("Любые изменения в опубликованном посте сразу видны пользователям. Для серьезных изменений верните пост в черновики через меню.")
@@ -2071,6 +2075,20 @@ object API_TRANSLATE {
     val effect_error_time = Translate("Нельзя наложить эффект в прошлое")
     val effect_toast_cant_change_animation = Translate("Вы не можете этого сделать")
     val effect_remove = Translate("Снять эффект")
+
+    val post_page_code_languages = hashMapOf(
+            "c" to "C", "cs" to "C#", "java" to "Java", "bash" to "Bash", "python" to "Python",
+            "perl" to "Perl", "ruby" to "Ruby", "js" to "JavaScript", "coffee" to "CoffeeScript",
+            "rust" to "Rust", "basic" to "Basic", "clj" to "Clojure", "css" to "CSS",
+            "dart" to "Dart", "erlang" to "Erlang", "go" to "Go", "hs" to "Haskell",
+            "lisp" to "Lisp", "llvm" to "LLVM", "lua" to "Lua", "matlab" to "Matlab",
+            "fs" to "ML (OCaml, SML, F#)", "mumps" to "Mumps", "n" to "Nemerle",
+            "pascal" to "Pascal", "r" to "R", "rd" to "Rd", "scala" to "Scala", "sql" to "SQL",
+            "tex" to "Tex", "vb" to "Visual Basic", "vhdl" to "VHDL", "apollo" to "Apollo",
+            "tcl" to "Tcl", "wiki.meta" to "Wiki", "xq" to "XQuery", "yaml" to "YAML",
+            "md" to "Markdown", "json" to "JSON", "xml" to "XML/HTML", "proto" to "Protobuf",
+            "regex" to "Regex",
+    )
 
 
 
