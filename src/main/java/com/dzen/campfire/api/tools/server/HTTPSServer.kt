@@ -50,11 +50,11 @@ class HTTPSServer(
     private fun checkConnection(socket:Socket):Boolean{
         val ip:String = socket.inetAddress.hostAddress
         if(ip.isNotEmpty()){
-            if(lastIpsClear < System.currentTimeMillis() - 1000L * 60){
+            if(lastIpsClear < System.currentTimeMillis() - 1000L * 60 * 2){
                 lastIpsClear = System.currentTimeMillis()
                 ips.clear()
             }
-            if(lastBlockClear < System.currentTimeMillis() - 1000L * 60 * 60 * 24 * 30){
+            if(lastBlockClear < System.currentTimeMillis() - 1000L * 60 * 60 * 1){
                 lastBlockClear = System.currentTimeMillis()
                 blockList.clear()
             }
@@ -72,7 +72,7 @@ class HTTPSServer(
                 list = ArrayList()
                 ips[ip] = list
             }
-            if(list.size > 100){
+            if(list.size > 300){
                 info("> Block connection ip[$ip]")
                 blockList.add(ip)
                 try {
