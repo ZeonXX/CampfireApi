@@ -8,7 +8,9 @@ import com.sup.dev.java.libs.json.Json
 
 open class RAccountsLogin(
         var tokenNotification: String,
-        var languageId: Long
+        var languageId: Long,
+        var translateMapHash: Int,
+        var translateMapHashEng: Int
 ) : Request<RAccountsLogin.Response>() {
 
     init {
@@ -19,6 +21,8 @@ open class RAccountsLogin(
     override fun jsonSub(inp: Boolean, json: Json) {
         tokenNotification = json.m(inp, "tokenNotification", tokenNotification)
         languageId = json.m(inp, "languageId", languageId)
+        translateMapHash = json.m(inp, "translateMapHash", translateMapHash)
+        translateMapHashEng = json.m(inp, "translateMapHashEng", translateMapHashEng)
     }
 
     override fun instanceResponse(json: Json): Response {
@@ -37,6 +41,8 @@ open class RAccountsLogin(
         var translate_language_id = 0L
         var translate_map: HashMap<String, Translate> = HashMap()
         var translate_map_eng: HashMap<String, Translate> = HashMap()
+        var translateMapHash: Int = 0
+        var translateMapHashEng: Int = 0
 
         var serverTime = 0L
         var settings = AccountSettings()
@@ -54,7 +60,9 @@ open class RAccountsLogin(
                     hasSubscribes: Boolean,
                     translate_language_id: Long,
                     translate_map: HashMap<String, Translate>,
-                    translate_map_eng: HashMap<String, Translate>) {
+                    translate_map_eng: HashMap<String, Translate>,
+                    translateMapHash: Int,
+                    translateMapHashEng: Int) {
             this.version = version
             this.supported = supported
             this.supportedVersion = supportedVersion
@@ -66,6 +74,8 @@ open class RAccountsLogin(
             this.translate_language_id = translate_language_id
             this.translate_map = translate_map
             this.translate_map_eng = translate_map_eng
+            this.translateMapHash = translateMapHash
+            this.translateMapHashEng = translateMapHashEng
         }
 
         override fun json(inp: Boolean, json: Json) {
@@ -78,6 +88,8 @@ open class RAccountsLogin(
             hasSubscribes = json.m(inp, "hasSubscribes", hasSubscribes)
             settings = json.m(inp, "settings", settings, AccountSettings::class)
             translate_language_id = json.m(inp, "translate_language_id", translate_language_id)
+            translateMapHash = json.m(inp, "translateMapHash", translateMapHash)
+            translateMapHashEng = json.m(inp, "translateMapHashEng", translateMapHashEng)
 
             if (inp) {
                 json.m(inp, "translate_map_k", translate_map.keys.toTypedArray())
