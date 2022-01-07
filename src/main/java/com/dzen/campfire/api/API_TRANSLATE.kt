@@ -278,6 +278,7 @@ object API_TRANSLATE {
     val app_system = Translate("Система")
     val app_apply_effect = Translate("Наложить")
     val app_remove_effect = Translate("Снять")
+    val app_do_reply = Translate("Ответить")
 
     val he = Translate("Он")
     val she = Translate("Она")
@@ -1757,6 +1758,7 @@ object API_TRANSLATE {
     val chat_leave = Translate("Покинуть чат")
     val chat_enter = Translate("Вернуться в чат")
     val chat_read = Translate("Пометить как прочитанный")
+    val chat_read_passive = Translate("Прочитано")
     val chat_remove_confirm = Translate("Удалить это сообщение?")
     val chat_report_confirm = Translate("Пожаловаться на это сообщение?")
     val chat_clear_reports_confirm = Translate("Удалить жалобы на это сообщение?")
