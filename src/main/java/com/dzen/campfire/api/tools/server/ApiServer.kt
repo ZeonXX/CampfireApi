@@ -24,7 +24,7 @@ class ApiServer(
         private val portHttps: Int,
         private val portHttp: Int,
         private val portCertificate: Int,
-        private val botTokensList: ArrayList<String>,
+        private val botTokensList: Array<String>,
 ) {
 
     private val cash: Cash<Long, Json> = Cash(10000)

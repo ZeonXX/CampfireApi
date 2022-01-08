@@ -142,7 +142,7 @@ class API(
         val ENGLISH = ToolsText.LATIS_S + ToolsText.LATIS_S.toUpperCase() + ToolsText.NUMBERS_S + ToolsText.TEXT_CHARS_s + ToolsText.SPEC
 
         val LOGIN_SPLITTER= " - "
-        val LOGIN_EMAIL_SHA_PREFIX = "EmailSha512"
+        val LOGIN_EMAIL_PREFIX = "Email"
 
         val ACCOUNT_IMG_SIDE = 256
         val ACCOUNT_IMG_SIDE_GIF = 64
