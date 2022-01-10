@@ -16,8 +16,14 @@ class LinkParsed(
             link = s1[0] + "_"
             params = if (s1.size > 1) s1.subList(1, s1.size) else emptyList()
         } else {
-            if (linkRaw.length > API.DOMEN.length) {
+            if (linkRaw.contains(API.DOMEN)) {
                 val t = linkRaw.substring(API.DOMEN.length)
+                val s1 = t.split("-")
+                link = s1[0]
+                params = if (s1.size > 1) s1[1].split("_") else emptyList()
+            }
+            if (linkRaw.contains(API.DOMEN_OLD)) {
+                val t = linkRaw.substring(API.DOMEN_OLD.length)
                 val s1 = t.split("-")
                 link = s1[0]
                 params = if (s1.size > 1) s1[1].split("_") else emptyList()
