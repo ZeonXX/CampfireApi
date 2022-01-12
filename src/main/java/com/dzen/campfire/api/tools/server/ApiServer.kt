@@ -273,7 +273,6 @@ class ApiServer(
         if (request.dataOutput.isNotEmpty()) {
             val inputStream = DataInputStream(socket.getInputStream())
             for (i in request.dataOutput.indices) if (request.dataOutput[i] != null) inputStream.readFully(request.dataOutput[i], 0, request.dataOutput[i]!!.size)
-            request.updateDataOutput()
         }
         if(request.dataOutputBase64.isNotEmpty()){
             request.dataOutput = arrayOfNulls(request.dataOutputBase64.size)
@@ -281,6 +280,7 @@ class ApiServer(
                 request.dataOutput[index] = ToolsBytes.fromBase64(request.dataOutputBase64[index]?:"")
             }
         }
+        request.updateDataOutput()
 
         var responseJson: Json?
         val responseJsonContent: Json
