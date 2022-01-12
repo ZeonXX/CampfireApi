@@ -31,6 +31,7 @@ abstract class Request<K : Request.Response> : Subscription(){
     //
 
     var dataOutput = arrayOfNulls<ByteArray>(0)
+    var dataOutputBase64 = arrayOfNulls<String>(0)
 
     //
     //  Server part
@@ -115,6 +116,7 @@ abstract class Request<K : Request.Response> : Subscription(){
         this.dateCreated = json.m(inp, "J_REQUEST_DATE", dateCreated)
         this.requestApiVersion = json.m(inp, "requestApiVersion", requestApiVersion)
         this.requestProjectKey = json.m(inp, "requestProjectKey", requestProjectKey)
+        this.dataOutputBase64 = json.m(inp, "dataOutputBase64", dataOutputBase64)
         jsonDataOutput(inp, json)
         if (inp) {
             json.put(J_REQUEST_NAME, javaClass.simpleName)

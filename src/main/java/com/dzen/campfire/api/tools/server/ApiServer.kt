@@ -275,6 +275,12 @@ class ApiServer(
             for (i in request.dataOutput.indices) if (request.dataOutput[i] != null) inputStream.readFully(request.dataOutput[i], 0, request.dataOutput[i]!!.size)
             request.updateDataOutput()
         }
+        if(request.dataOutputBase64.isNotEmpty()){
+            request.dataOutput = arrayOfNulls(request.dataOutputBase64.size)
+            for(index in request.dataOutputBase64.indices){
+                request.dataOutput[index] = ToolsBytes.fromBase64(request.dataOutputBase64[index]?:"")
+            }
+        }
 
         var responseJson: Json?
         val responseJsonContent: Json
