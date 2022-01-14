@@ -4,18 +4,15 @@ import com.dzen.campfire.api.API
 import com.dzen.campfire.api.models.publications.moderations.activities.ModerationActivitiesChange
 import com.dzen.campfire.api.models.publications.moderations.activities.ModerationActivitiesCreate
 import com.dzen.campfire.api.models.publications.moderations.activities.ModerationActivitiesRemove
-import com.dzen.campfire.api.models.publications.moderations.fandom.*
 import com.dzen.campfire.api.models.publications.moderations.chat.ModerationChatChange
 import com.dzen.campfire.api.models.publications.moderations.chat.ModerationChatCreate
 import com.dzen.campfire.api.models.publications.moderations.chat.ModerationChatRemove
+import com.dzen.campfire.api.models.publications.moderations.fandom.*
 import com.dzen.campfire.api.models.publications.moderations.posts.*
-import com.dzen.campfire.api.models.publications.moderations.rubrics.ModerationRubricChangeName
-import com.dzen.campfire.api.models.publications.moderations.rubrics.ModerationRubricChangeOwner
-import com.dzen.campfire.api.models.publications.moderations.rubrics.ModerationRubricCreate
-import com.dzen.campfire.api.models.publications.moderations.rubrics.ModerationRubricRemove
-import com.dzen.campfire.api.models.publications.moderations.tags.*
 import com.dzen.campfire.api.models.publications.moderations.publications.ModerationBlock
 import com.dzen.campfire.api.models.publications.moderations.publications.ModerationForgive
+import com.dzen.campfire.api.models.publications.moderations.rubrics.*
+import com.dzen.campfire.api.models.publications.moderations.tags.*
 import com.sup.dev.java.libs.json.Json
 import com.sup.dev.java.libs.json.JsonPolimorf
 
@@ -82,6 +79,7 @@ abstract class Moderation : JsonPolimorf {
                 API.MODERATION_TYPE_RUBRIC_CHANGE_OWNER -> ModerationRubricChangeOwner()
                 API.MODERATION_TYPE_RUBRIC_CREATE -> ModerationRubricCreate()
                 API.MODERATION_TYPE_RUBRIC_REMOVE -> ModerationRubricRemove()
+                API.MODERATION_TYPE_RUBRIC_MOVE_FANDOM -> ModerationRubricFandomMove()
                 API.MODERATION_TYPE_BACKGROUND_IMAGE_SUB -> ModerationBackgroundImageSub()
                 API.MODERATION_TYPE_ACTIVITIES_CREATE -> ModerationActivitiesCreate()
                 API.MODERATION_TYPE_ACTIVITIES_CHANGE -> ModerationActivitiesChange()

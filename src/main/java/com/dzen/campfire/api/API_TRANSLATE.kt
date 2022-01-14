@@ -1521,6 +1521,7 @@ object API_TRANSLATE {
     val lvl_admin_fandom_category = Translate("Возможность изменять категорию фэндома")
     val lvl_ads_ban = Translate("Банхаммер. Возможность банить других пользователей")
     val lvl_post_fandom_change = Translate("Доступ к перемещению любых постов между фэндомами")
+    val lvl_rubric_move = Translate("Возможность перемещать рубрики между фэндомами")
     val lvl_fandom_admin = Translate("Возможность отменить модераторские действия")
     val lvl_accounts_effects = Translate("Возможность накладывать эффекты на пользователей")
     val lvl_fandom_set_cof = Translate("Возможность устанавливать коэффициент кармы в фэндоме")
@@ -1781,6 +1782,7 @@ object API_TRANSLATE {
     val rubric_loading = Translate("Загрузка списка рубрик")
     val rubric_creation = Translate("Создание рубрики")
     val rubric_change_owner = Translate("Изменить владельца")
+    val rubric_move_fandom = Translate("Изменить фэндом")
     val rubric_posts_empty = Translate("В этой рубрики еще нет постов")
     val rubric_notification_on = Translate("Включить напоминания")
     val rubric_notification_off = Translate("Выключить напоминания")
@@ -1900,6 +1902,7 @@ object API_TRANSLATE {
     val notification_rubric_remove = Translate("%s %s рубрику %s")
     val notification_rubric_cof_title = Translate("Коэффициент рубрики %s обновлён")
     val notification_rubric_cof_text = Translate("Коэффициент изменился на %s, теперь он равен %s.")
+    val notification_rubric_move_fandom = Translate("%s %s рубрику %s из фэндома %s в %s")
     val notification_donate = Translate("Мы получили ваше пожертвование %s ₽. Спасибо! :)")
 
     val message_close_app = Translate("Закрыть приложение?")
@@ -2000,6 +2003,7 @@ object API_TRANSLATE {
     val moderation_rubric_change_owner = Translate("%s владельца рубрики %s с %s на %s")
     val moderation_rubric_crete = Translate("%s рубрику %s и %s владельца %s")
     val moderation_rubric_remove = Translate("%s рубрику %s")
+    val moderation_rubric_move_fandom = Translate("%s рубрику %s из фэндома %s в %s")
 
     val administration_fandoms_empty = Translate("Никто не предлагал новые фэндомы")
     val administration_fandoms_remove_empty = Translate("Никто не удаляет фэндомы")
