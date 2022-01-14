@@ -75,6 +75,7 @@ abstract class Notification : JsonPolimorf {
                 API.NOTIF_RUBRICS_MAKE_OWNER -> notification = NotificationRubricsMakeOwner()
                 API.NOTIF_RUBRICS_REMOVE -> notification = NotificationRubricsRemove()
                 API.NOTIF_RUBRICS_KARMA_COF_CHANGED -> notification = NotificationRubricsKarmaCofChanged()
+                API.NOTIF_RUBRICS_MOVE_FANDOM -> notification = NotificationRubricsMoveFandom()
                 API.NOTIF_PUBLICATION_REACTION -> notification = NotificationPublicationReaction()
                 API.NOTIF_ACTIVITIES_RELAY_RACE_TURN -> notification = NotificationActivitiesRelayRaceTurn()
                 API.NOTIF_ACTIVITIES_RELAY_RACE_LOST -> notification = NotificationActivitiesRelayRaceLost()
