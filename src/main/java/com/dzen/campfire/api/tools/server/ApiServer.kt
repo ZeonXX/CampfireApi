@@ -277,7 +277,10 @@ class ApiServer(
         if(request.dataOutputBase64.isNotEmpty()){
             request.dataOutput = arrayOfNulls(request.dataOutputBase64.size)
             for(index in request.dataOutputBase64.indices){
-                request.dataOutput[index] = ToolsBytes.fromBase64(request.dataOutputBase64[index]?:"")
+                val database64 = request.dataOutputBase64[index]?:""
+                if(database64.isNotEmpty() && database64.toLowerCase() != "none" && database64.toLowerCase() != "null") {
+                    request.dataOutput[index] = ToolsBytes.fromBase64(database64)
+                }
             }
         }
         request.updateDataOutput()
