@@ -6,12 +6,12 @@ import com.sup.dev.java.libs.json.Json
 open class RAccountsRegistrationEmail(
         var email:String,
         var password:String,
-        var languageId:Long
+        var languageId:Long,
+        var captchaResp: String,
 ) : Request<RAccountsRegistrationEmail.Response>() {
-
     companion object {
-
-        val E_EMAIL_EXIST = "E_EMAIL_EXIST"
+        const val E_EMAIL_EXIST = "E_EMAIL_EXIST"
+        const val E_CAPTCHA_FAILED = "E_CAPTCHA_FAILED"
     }
 
     init {
@@ -23,6 +23,7 @@ open class RAccountsRegistrationEmail(
         email = json.m(inp, "email", email)
         password = json.m(inp, "password", password)
         languageId = json.m(inp, "languageId", languageId)
+        captchaResp = json.m(inp, "captchaResp", captchaResp)
     }
 
     override fun instanceResponse(json: Json): Response {
