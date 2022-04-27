@@ -22,6 +22,7 @@ class WikiTitle : JsonParsable{
     var imageBigId = 0L
     var name = ""
     var translates: Array<Translate> = emptyArray()
+    var priority = 0L
 
     override fun json(inp: Boolean, json: Json): Json {
         itemId = json.m(inp, "itemId", itemId)
@@ -40,6 +41,7 @@ class WikiTitle : JsonParsable{
         imageBigId = json.m(inp, "imageBigId", imageBigId)
         name = json.m(inp, "name", name)
         translates = json.m(inp, "translates", translates)
+        priority = json.m(inp, "priority", priority)
 
         return json
     }
@@ -47,7 +49,7 @@ class WikiTitle : JsonParsable{
     fun getName(code: String):String {
         if (code.toLowerCase() == "en") return name
         for(i in translates) if(i.languageCode == code) return i.name
-        return ""
+        return name // fallback
     }
 
     class Translate : JsonParsable {
