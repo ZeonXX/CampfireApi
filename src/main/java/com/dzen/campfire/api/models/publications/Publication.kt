@@ -3,16 +3,17 @@ package com.dzen.campfire.api.models.publications
 import com.dzen.campfire.api.API
 import com.dzen.campfire.api.models.account.Account
 import com.dzen.campfire.api.models.fandoms.Fandom
-import com.dzen.campfire.api.models.publications.post.PublicationPost
 import com.dzen.campfire.api.models.publications.chat.PublicationChatMessage
 import com.dzen.campfire.api.models.publications.events_admins.PublicationEventAdmin
 import com.dzen.campfire.api.models.publications.events_fandoms.PublicationEventFandom
 import com.dzen.campfire.api.models.publications.events_moderators.PublicationEventModer
 import com.dzen.campfire.api.models.publications.events_user.PublicationEventUser
 import com.dzen.campfire.api.models.publications.moderations.PublicationModeration
+import com.dzen.campfire.api.models.publications.post.PublicationPost
 import com.dzen.campfire.api.models.publications.stickers.PublicationSticker
 import com.dzen.campfire.api.models.publications.stickers.PublicationStickersPack
 import com.dzen.campfire.api.models.publications.tags.PublicationTag
+import com.dzen.campfire.api.models.quests.QuestDetails
 import com.sup.dev.java.libs.eventBus.EventBus
 import com.sup.dev.java.libs.json.Json
 import com.sup.dev.java.libs.json.JsonParsable
@@ -170,6 +171,7 @@ abstract class Publication : JsonPolimorf {
                 API.PUBLICATION_TYPE_EVENT_FANDOM -> PublicationEventFandom()
                 API.PUBLICATION_TYPE_STICKERS_PACK -> PublicationStickersPack()
                 API.PUBLICATION_TYPE_STICKER -> PublicationSticker()
+                API.PUBLICATION_TYPE_QUEST -> QuestDetails()
                 else -> PublicationUnknown()
             }
         }

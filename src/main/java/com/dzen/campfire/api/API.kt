@@ -11,7 +11,6 @@ import com.dzen.campfire.api.models.project.StoryQuest
 import com.dzen.campfire.api.tools.client.ApiClient
 import com.dzen.campfire.api.tools.client.TokenProvider
 import com.sup.dev.java.tools.ToolsText
-import java.util.*
 
 class API(
         projectKey: String,
@@ -28,7 +27,8 @@ class API(
         val PORT_HTTPS = 4026
         val PORT_HTTP = 4028
         val PORT_CERTIFICATE = 4027
-        val IP = "46.254.16.245"
+//        val IP = "46.254.16.245"
+        val IP = "192.168.1.104"
         val DOMEN = "http://campfiresayzen.net/r/r.php?a="
         val DOMEN_OLD = "http://sayzen.ru/r/r.php?a="
         val VERSION = "1.281"
@@ -249,6 +249,7 @@ class API(
         val LVL_CAN_CHANGE_PROFILE_IMAGE = LvlInfoUser(150L, 0L)
         val LVL_CAN_CHANGE_STATUS = LvlInfoUser(175L, 0L)
         val LVL_CAN_MENTION = LvlInfoUser(200L, 0L)
+        val LVL_CREATE_QUESTS = LvlInfoUser(220L, 0L)
         val LVL_CAN_CHANGE_AVATAR_GIF = LvlInfoUser(250L, 0L)
         val LVL_CAN_PIN_POST = LvlInfoUser(260L, 0L)
         val LVL_CREATE_STICKERS = LvlInfoUser(300L, 0L)
@@ -501,6 +502,7 @@ class API(
         val PUBLICATION_TYPE_EVENT_MODER = 17L
         val PUBLICATION_TYPE_EVENT_ADMIN = 18L
         val PUBLICATION_TYPE_EVENT_FANDOM = 19L
+        val PUBLICATION_TYPE_QUEST = 21L
         val PUBLICATION_TYPE_UNKNOWN = 20L
 
         val PUBLICATION_IMPORTANT_IMPORTANT = -1L
@@ -933,6 +935,87 @@ class API(
         val NOTIF_ACCOUNT_ADMIN_VOTE_CANCELED_FOR_ADMIN = 63L
         val NOTIF_ACCOUNT_ADMIN_VOTE_CANCELED_FOR_USER = 64L
 
+        //
+        //  Quests
+        //
+
+        const val QUEST_TITLE_MIN_L = 2
+        const val QUEST_TITLE_MAX_L = 100
+        const val QUEST_DESCRIPTION_MAX_L = 10000
+        const val QUEST_VARIABLES_MAX = 100
+        const val QUEST_VARIABLE_MAX_NAME_L = 200
+        const val QUEST_VARIABLES_MAX_VALUE_L = 200
+        const val QUEST_PARTS_MAX = 500
+
+        const val QUEST_TEXT_TITLE_MAX_L = 200
+        const val QUEST_TEXT_TEXT_MAX_L = 50000
+        const val QUEST_TEXT_INPUTS_MAX = 5
+        const val QUEST_TEXT_BUTTONS_MAX = 10
+
+        const val QUEST_INPUT_LABEL_MAX_L = 100L
+        const val QUEST_INPUT_HINT_MAX_L = 100L
+
+        const val QUEST_BUTTON_LABEL_MAX_L = 50
+
+        const val QUEST_TYPE_TEXT = 1L
+        const val QUEST_TYPE_NUMBER = 2L
+        const val QUEST_TYPE_BOOL = 3L
+
+        const val QUEST_BUTTON_COLOR_DEFAULT = 1L
+        const val QUEST_BUTTON_COLOR_RED = 2L
+        const val QUEST_BUTTON_COLOR_ORANGE = 3L
+        const val QUEST_BUTTON_COLOR_YELLOW = 4L
+        const val QUEST_BUTTON_COLOR_GREEN = 5L
+        const val QUEST_BUTTON_COLOR_AQUA = 6L
+        const val QUEST_BUTTON_COLOR_BLUE = 7L
+        const val QUEST_BUTTON_COLOR_PURPLE = 8L
+        const val QUEST_BUTTON_COLOR_PINK = 9L
+        const val QUEST_BUTTON_COLOR_WHITE = 10L
+        val QUEST_BUTTON_COLORS = arrayOf(
+            QUEST_BUTTON_COLOR_DEFAULT, QUEST_BUTTON_COLOR_RED, QUEST_BUTTON_COLOR_ORANGE,
+            QUEST_BUTTON_COLOR_YELLOW, QUEST_BUTTON_COLOR_GREEN, QUEST_BUTTON_COLOR_AQUA,
+            QUEST_BUTTON_COLOR_BLUE, QUEST_BUTTON_COLOR_PURPLE, QUEST_BUTTON_COLOR_PINK,
+            QUEST_BUTTON_COLOR_WHITE
+        )
+
+        const val QUEST_EFFECT_TYPE_BOX = 1L
+        const val QUEST_EFFECT_TYPE_RESET_BOX = 2L
+        const val QUEST_EFFECT_TYPE_VIBRATE = 3L
+        const val QUEST_EFFECT_TYPE_UNKNOWN = 100L
+
+        const val QUEST_EFFECT_VIBRATE_COUNT_MAX = 5L
+        const val QUEST_EFFECT_VIBRATE_LENGTH_MAX = 1000L
+        const val QUEST_EFFECT_VIBRATE_DELAY_START_MAX = 5000L
+        const val QUEST_EFFECT_VIBRATE_DELAY_BETWEEN_MAX = 2000L
+
+        const val QUEST_CONDITION_VALUE_LITERAL_LONG = 1L
+        const val QUEST_CONDITION_VALUE_LITERAL_TEXT = 2L
+        const val QUEST_CONDITION_VALUE_LITERAL_BOOL = 3L
+        const val QUEST_CONDITION_VALUE_VAR = 4L
+
+        const val QUEST_CONDITION_LESS = 1L
+        const val QUEST_CONDITION_LEQ = 2L
+        const val QUEST_CONDITION_EQ = 3L
+        const val QUEST_CONDITION_GEQ = 4L
+        const val QUEST_CONDITION_GREATER = 5L
+        const val QUEST_CONDITION_NEQ = 6L
+
+        const val QUEST_ACTION_SET_LITERAL = 1L
+        const val QUEST_ACTION_SET_RANDOM  = 2L
+        const val QUEST_ACTION_SET_ANOTHER = 3L
+        const val QUEST_ACTION_ADD_LITERAL = 4L
+        const val QUEST_ACTION_ADD_ANOTHER = 5L
+        const val QUEST_ACTION_SET_ARANDOM = 6L
+
+        const val QUEST_PART_TYPE_TEXT = 1L
+        const val QUEST_PART_TYPE_CONDITION = 2L
+        const val QUEST_PART_TYPE_ACTION = 3L
+        const val QUEST_PART_TYPE_UNKNOWN = 100L
+
+        //
+        //  Reactions
+        //
+
         val REACTIONS = arrayOf(
                 API_RESOURCES.EMOJI_1,
                 API_RESOURCES.EMOJI_2,
@@ -942,6 +1025,7 @@ class API(
                 API_RESOURCES.EMOJI_6,
                 API_RESOURCES.EMOJI_7
         )
+
         //
         //  Language
         //
