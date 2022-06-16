@@ -1,5 +1,9 @@
 package com.dzen.campfire.api
 
+import com.dzen.campfire.api.models.quests.QuestPart
+import com.dzen.campfire.api.models.quests.QuestPartAction
+import com.dzen.campfire.api.models.quests.QuestPartCondition
+import com.dzen.campfire.api.models.quests.QuestPartText
 import com.dzen.campfire.api.models.translate.Translate
 
 object API_TRANSLATE {
@@ -2102,6 +2106,7 @@ object API_TRANSLATE {
     val quests_edit_error_description = Translate("Слишком длинное описание")
     val quests_edit_error_not_draft = Translate("Этот квест уже опубликован")
     val quests_variables = Translate("Переменные")
+    val quests_variable = Translate("Переменная")
     val quests_variable_new = Translate("Новая переменная")
     val quests_variable_name = Translate("Название переменной")
     val quests_variable_type = Translate("Тип переменной")
@@ -2114,9 +2119,15 @@ object API_TRANSLATE {
     val quests_variable_remove_q = Translate("Удалить переменную?")
     val quests_contents = Translate("Содержание")
     val quests_part_text = Translate("Экран")
-    val quests_part_condition = Translate("Условие")
-    val quests_part_action = Translate("Действие")
+    val quests_part_condition = Translate("Ответвление")
+    val quests_part_action = Translate("Присвоение переменной")
     val quests_part_unknown = Translate("Неизвестный тип")
+    fun fromQuestPart(part: QuestPart): Translate = when (part) {
+        is QuestPartText -> quests_part_text
+        is QuestPartCondition -> quests_part_condition
+        is QuestPartAction -> quests_part_action
+        else -> quests_part_unknown
+    }
     val quests_part_title = Translate("%s: %s")
     val quests_part_unknown_desc = Translate("Эта часть квеста из новой версии Campfire. Пора обновиться!")
     val quests_part_text_input = Translate("Поле")
@@ -2124,6 +2135,58 @@ object API_TRANSLATE {
     val quests_effect_box_reset = Translate("Сброс коробок")
     val quests_effect_vibrate = Translate("Вибрация")
     val quests_effect_unknown = Translate("Неизвестный эффект")
+    val quests_placeholder_error = Translate("<ошибка>")
+    val quests_edit_dev_name = Translate("Пометка в редакторе")
+    val quests_edit_text_title = Translate("Заголовок")
+    val quests_edit_text_content = Translate("Содержание")
+    val quests_edit_text_inputs = Translate("Поля для ввода")
+    val quests_edit_text_buttons = Translate("Кнопки")
+    val quests_edit_text_effects = Translate("Эффекты")
+    val quests_edit_text_input_subtitle = Translate("Тип: %s  Переменная: %s")
+    val quests_edit_text_input_hint = Translate("Название поля")
+    val quests_edit_text_input_type = Translate("Тип поля")
+    val quests_edit_text_input_default = Translate("Значение по умолчанию")
+    val quests_edit_text_input_error_1 = Translate("Неизвестный тип поля")
+    val quests_edit_text_input_error_2 = Translate("Слишком длинное название")
+    val quests_edit_text_input_error_3 = Translate("Значение по умолчанию не число")
+    val quests_edit_text_input_error_4 = Translate("Переменная не выбрана")
+    val quests_edit_text_input_error_5 = Translate("Тип поля и переменной не совпадают")
+    val quests_edit_text_input_remove_q = Translate("Удалить поле?")
+    val quests_edit_text_content_hint = Translate("Введите текст")
+    val quests_edit_text_button = Translate("Кнопка") // https://instead-games.ru/game.php?ID=271
+    val quests_edit_text_button_text = Translate("Текст кнопки")
+    val quests_edit_text_button_color = Translate("Цвет кнопки")
+    val quests_edit_text_button_color_default = Translate("Стандартный")
+    val quests_edit_text_button_color_red = Translate("Красный")
+    val quests_edit_text_button_color_orange = Translate("Оранжевый")
+    val quests_edit_text_button_color_yellow = Translate("Жёлтый")
+    val quests_edit_text_button_color_green = Translate("Зелёный")
+    val quests_edit_text_button_color_aqua = Translate("Голубой")
+    val quests_edit_text_button_color_blue = Translate("Синий")
+    val quests_edit_text_button_color_purple = Translate("Фиолетовый")
+    val quests_edit_text_button_color_pink = Translate("Розовый")
+    val quests_edit_text_button_color_white = Translate("Белый")
+    fun fromQuestColor(idx: Long): Translate = when (idx) {
+        API.QUEST_BUTTON_COLOR_DEFAULT -> quests_edit_text_button_color_default
+        API.QUEST_BUTTON_COLOR_RED -> quests_edit_text_button_color_red
+        API.QUEST_BUTTON_COLOR_ORANGE -> quests_edit_text_button_color_orange
+        API.QUEST_BUTTON_COLOR_YELLOW -> quests_edit_text_button_color_yellow
+        API.QUEST_BUTTON_COLOR_GREEN -> quests_edit_text_button_color_green
+        API.QUEST_BUTTON_COLOR_AQUA -> quests_edit_text_button_color_aqua
+        API.QUEST_BUTTON_COLOR_BLUE -> quests_edit_text_button_color_blue
+        API.QUEST_BUTTON_COLOR_PURPLE -> quests_edit_text_button_color_purple
+        API.QUEST_BUTTON_COLOR_PINK -> quests_edit_text_button_color_pink
+        API.QUEST_BUTTON_COLOR_WHITE -> quests_edit_text_button_color_white
+        else -> quests_edit_text_button_color_default
+    }
+    val quests_no_dev_name = Translate("Без названия")
+    val quests_destination = Translate("Место назначения")
+    val quests_edit_text_button_finish_quest = Translate("Закончить квест")
+    val quests_edit_text_button_next_part = Translate("Следующая часть квеста")
+    val quests_edit_text_button_error_1 = Translate("Слишком короткий или длинный текст кнопки")
+    val quests_edit_text_button_error_2 = Translate("Неверное место назначания")
+    val quests_edit_text_button_jump_to = Translate("Переход в %s")
+    val quests_edit_text_button_remove_q = Translate("Удалить кнопку?")
 
     val post_page_code_languages = hashMapOf(
             "c" to "C", "cs" to "C#", "java" to "Java", "bash" to "Bash", "python" to "Python",

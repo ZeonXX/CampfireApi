@@ -19,9 +19,9 @@ abstract class QuestPart : JsonPolimorf {
 
         @JvmStatic
         fun instance(json: Json): QuestPart {
-            val effect = instance(json.getLong("type"))
-            effect.json(false, json)
-            return effect
+            val part = instance(json.getLong("type"))
+            part.json(false, json)
+            return part
         }
     }
 

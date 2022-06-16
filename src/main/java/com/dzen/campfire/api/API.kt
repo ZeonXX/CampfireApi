@@ -941,20 +941,21 @@ class API(
 
         const val QUEST_TITLE_MIN_L = 2
         const val QUEST_TITLE_MAX_L = 100
-        const val QUEST_DESCRIPTION_MAX_L = 10000
+        const val QUEST_DESCRIPTION_MAX_L = 2000
         const val QUEST_VARIABLES_MAX = 100
         const val QUEST_VARIABLE_MAX_NAME_L = 200
-        const val QUEST_VARIABLES_MAX_VALUE_L = 200
-        const val QUEST_PARTS_MAX = 500
+        const val QUEST_VARIABLE_MAX_VALUE_L = 200
+        const val QUEST_PARTS_MAX = 250
+        const val QUEST_DEV_LABEL_MAX_L = 100
 
         const val QUEST_TEXT_TITLE_MAX_L = 200
-        const val QUEST_TEXT_TEXT_MAX_L = 50000
+        const val QUEST_TEXT_TEXT_MAX_L = 20000
         const val QUEST_TEXT_INPUTS_MAX = 5
         const val QUEST_TEXT_BUTTONS_MAX = 10
 
-        const val QUEST_INPUT_LABEL_MAX_L = 100L
-        const val QUEST_INPUT_HINT_MAX_L = 100L
+        const val QUEST_INPUT_HINT_MAX_L = 100
 
+        const val QUEST_BUTTON_LABEL_MIN_L = 1
         const val QUEST_BUTTON_LABEL_MAX_L = 50
 
         const val QUEST_TYPE_TEXT = 1L
@@ -971,6 +972,8 @@ class API(
         const val QUEST_BUTTON_COLOR_PURPLE = 8L
         const val QUEST_BUTTON_COLOR_PINK = 9L
         const val QUEST_BUTTON_COLOR_WHITE = 10L
+        // put new colors into the array **in the same order**
+        // and do not skip numbers for const values
         val QUEST_BUTTON_COLORS = arrayOf(
             QUEST_BUTTON_COLOR_DEFAULT, QUEST_BUTTON_COLOR_RED, QUEST_BUTTON_COLOR_ORANGE,
             QUEST_BUTTON_COLOR_YELLOW, QUEST_BUTTON_COLOR_GREEN, QUEST_BUTTON_COLOR_AQUA,
