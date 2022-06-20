@@ -50,6 +50,16 @@ class PageTable : Page() {
         return null
     }
 
+    override fun isRemoveOnChange(): Boolean = false
+
+    override fun prepareForServer(page: Page) {
+        page as PageTable
+        columnsCount = page.columnsCount
+        rowsCount = page.rowsCount
+        title = page.title
+        cells = page.cells
+    }
+
     class Cell : JsonParsable {
 
         var rowIndex = 0
