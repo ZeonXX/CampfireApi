@@ -31,7 +31,7 @@ class API(
         val IP = "46.254.16.245"
         val DOMEN = "http://campfiresayzen.net/r/r.php?a="
         val DOMEN_OLD = "http://sayzen.ru/r/r.php?a="
-        val VERSION = "1.283"
+        val VERSION = "1.284"
         val SUPPORTED_VERSION = "0.82b"
 
         val PROJECT_KEY_CAMPFIRE = "Campfire"
