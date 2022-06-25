@@ -865,7 +865,7 @@ class API(
         val PAGES_SOURCE_TYPE_POST = 1L
         val PAGES_SOURCE_TYPE_WIKI = 2L
 
-        val POST_MAX_PAGES_COUNT = 50
+        val POST_MAX_PAGES_COUNT = 100
 
         //
         //  Notifications
