@@ -11,7 +11,6 @@ import com.dzen.campfire.api.models.project.StoryQuest
 import com.dzen.campfire.api.tools.client.ApiClient
 import com.dzen.campfire.api.tools.client.TokenProvider
 import com.sup.dev.java.tools.ToolsText
-import java.util.*
 
 class API(
         projectKey: String,
@@ -28,6 +27,7 @@ class API(
         val PORT_HTTPS = 4026
         val PORT_HTTP = 4028
         val PORT_CERTIFICATE = 4027
+        val PORT_STREAM = 4200
         val IP = "46.254.16.245"
         val DOMEN = "http://campfiresayzen.net/r/r.php?a="
         val DOMEN_OLD = "http://sayzen.ru/r/r.php?a="
@@ -932,6 +932,8 @@ class API(
         val NOTIF_FANDOM_REMOVE_CANCEL = 62L
         val NOTIF_ACCOUNT_ADMIN_VOTE_CANCELED_FOR_ADMIN = 63L
         val NOTIF_ACCOUNT_ADMIN_VOTE_CANCELED_FOR_USER = 64L
+
+        val SUBSCRIPTION_NOTIF = 1L
 
         val REACTIONS = arrayOf(
                 API_RESOURCES.EMOJI_1,

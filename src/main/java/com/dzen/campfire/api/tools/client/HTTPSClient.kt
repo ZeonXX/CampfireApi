@@ -1,4 +1,4 @@
-package com.dzen.campfire.api.tools
+package com.dzen.campfire.api.tools.client
 
 import com.sup.dev.java.classes.items.Connections
 import com.sup.dev.java.libs.debug.err
@@ -7,10 +7,13 @@ import java.io.ByteArrayInputStream
 import java.io.DataInputStream
 import java.net.Socket
 import java.security.KeyStore
-import javax.net.ssl.*
+import javax.net.ssl.KeyManagerFactory
+import javax.net.ssl.SSLContext
+import javax.net.ssl.SSLSocket
+import javax.net.ssl.TrustManagerFactory
 
 
-class HTTPSClient(
+open class HTTPSClient(
         private val host: String,
         private val portHttps: Int,
         private val portCertificate: Int
