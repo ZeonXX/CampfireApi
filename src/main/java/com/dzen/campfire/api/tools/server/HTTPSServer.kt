@@ -2,27 +2,21 @@ package com.dzen.campfire.api.tools.server
 
 import com.sup.dev.java.libs.debug.Debug
 import com.sup.dev.java.libs.debug.info
-import com.sup.dev.java.libs.debug.log
 import com.sup.dev.java.tools.ToolsThreads
-import java.io.*
-import java.lang.Exception
+import java.io.ByteArrayInputStream
+import java.io.DataOutputStream
 import java.net.ServerSocket
 import java.net.Socket
 import java.security.KeyStore
+import javax.net.ssl.*
 
-import javax.net.ssl.KeyManagerFactory
-import javax.net.ssl.SSLContext
-import javax.net.ssl.SSLServerSocket
-import javax.net.ssl.SSLSocket
-import javax.net.ssl.TrustManagerFactory
-
-class HTTPSServer(
+open class HTTPSServer(
         private val keyBytesJKS: ByteArray,
         private val keyBytesBKS: ByteArray,
         private val keyPassword: String,
         private val portHTTPS: Int,
         private val portCertificate: Int,
-        private val onNextConnection: (Socket) -> Unit
+        protected var onNextConnection: (Socket) -> Unit
 ) {
 
     var threadProvider: (() -> Unit) -> Unit = { ToolsThreads.thread { it.invoke() } }
@@ -34,7 +28,7 @@ class HTTPSServer(
     fun startServer() {
         stop = false
 
-        startCertificate()
+        if (portCertificate > 0) startCertificate()
         startHTTPS()
     }
 

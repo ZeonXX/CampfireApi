@@ -1,17 +1,15 @@
 package com.dzen.campfire.api.tools.client
 
 import com.dzen.campfire.api.tools.ApiException
-import com.dzen.campfire.api.tools.HTTPSClient
 import com.sup.dev.java.classes.items.Connections
 import com.sup.dev.java.classes.items.Item
 import com.sup.dev.java.libs.debug.Debug
 import com.sup.dev.java.libs.debug.err
-import com.sup.dev.java.libs.debug.log
 import com.sup.dev.java.libs.json.Json
-import com.sup.dev.java.tools.ToolsNetwork
 import com.sup.dev.java.tools.ToolsThreads
-import java.io.*
-import java.lang.IllegalStateException
+import java.io.DataInputStream
+import java.io.DataOutputStream
+import java.io.IOException
 import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
@@ -20,7 +18,7 @@ import javax.net.ssl.SSLProtocolException
 abstract class ApiClient(
         val projectKey: String,
     private val tokenProvider: TokenProvider,
-    private val host: String,
+    val host: String,
     private val portHttps: Int,
     private val portCertificate: Int,
     private val saver: (String, String?) -> Unit,
