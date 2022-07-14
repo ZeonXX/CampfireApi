@@ -36,6 +36,7 @@ class PublicationChatMessage : Publication {
     var quoteId = 0L
     var quoteText = ""
     var quoteImages:Array<Long> = emptyArray()
+    var quoteImagesPwd: Array<String> = emptyArray()
     var quoteStickerId = 0L
     var quoteStickerImageId = 0L
     var quoteCreatorName = ""
@@ -51,6 +52,7 @@ class PublicationChatMessage : Publication {
     var gifId = 0L
     var imageW = 0
     var imageH = 0
+    var imagePwd = ""
     //  TYPE_SYSTEM
     var systemType = 0L
     var systemOwnerId = 0L
@@ -66,6 +68,7 @@ class PublicationChatMessage : Publication {
     var imageIdArray: Array<Long> = emptyArray()
     var imageWArray: Array<Int> = emptyArray()
     var imageHArray: Array<Int> = emptyArray()
+    var imagePwdArray: Array<String> = emptyArray()
     //  TYPE_VOICE
     var voiceResourceId = 0L
     var voiceMs = 0L
@@ -104,10 +107,12 @@ class PublicationChatMessage : Publication {
         gifId = json.m(inp, "gifId", gifId)
         imageW = json.m(inp, "J_IMAGE_W", imageW)
         imageH = json.m(inp, "J_IMAGE_H", imageH)
+        imagePwd = json.m(inp, "imagePwd", imagePwd)
         chatType = json.m(inp, "chatType", chatType)
         quoteId = json.m(inp, "quoteId", quoteId)
         quoteText = json.m(inp, "quoteText", quoteText)
         quoteImages = json.m(inp, "quoteImages", quoteImages)
+        quoteImagesPwd = json.m(inp, "quoteImagesPwd", quoteImagesPwd)
         changed = json.m(inp, "changed", changed)
         randomTag = json.m(inp, "randomTag", randomTag)
         answerName = json.m(inp, "answerName", answerName)
@@ -129,6 +134,7 @@ class PublicationChatMessage : Publication {
         imageIdArray = json.m(inp, "imageIdArray", imageIdArray)
         imageWArray = json.m(inp, "imageWArray", imageWArray)
         imageHArray = json.m(inp, "imageHArray", imageHArray)
+        imagePwdArray = json.m(inp, "imagePwdArray", imagePwdArray)
 
         voiceResourceId = json.m(inp, "voiceResourceId", voiceResourceId)
         voiceMs = json.m(inp, "voiceMs", voiceMs)
