@@ -1,5 +1,6 @@
 package com.dzen.campfire.api
 
+import com.dzen.campfire.api.models.Link
 import com.dzen.campfire.api.models.quests.QuestPart
 import com.dzen.campfire.api.models.quests.QuestPartAction
 import com.dzen.campfire.api.models.quests.QuestPartCondition
@@ -2090,6 +2091,35 @@ object API_TRANSLATE {
     val effect_toast_cant_change_animation = Translate("Вы не можете этого сделать")
     val effect_remove = Translate("Снять эффект")
 
+    val box_with_fireworks = Translate("Коробка с фейерверками")
+    val box_with_summer = Translate("Коробка с летом")
+    val box_with_autumn = Translate("Коробка с осенью")
+    val box_with_winter = Translate("Коробка с зимой")
+    val box_with_crash = Translate("Коробка с крашем")
+    val box_with_bomb = Translate("Коробка с бомбой")
+    val box_with_snow = Translate("Коробка со снегом")
+    val box_with_box = Translate("Коробка с коробкой")
+    val box_with_magic = Translate("Коробка с магией")
+    val box_with_magic_x2 = Translate("Коробка с двойной магией")
+    val box_with_goose = Translate("Коробка с гусем")
+    val box_with_confetti = Translate("Коробка с конфетти")
+    val box_unknown = Translate("Неизвестная коробка")
+    fun fromBox(link: Link): Translate = when (link) {
+        API.LINK_BOX_WITH_FIREWORKS -> box_with_fireworks
+        API.LINK_BOX_WITH_SUMMER -> box_with_summer
+        API.LINK_BOX_WITH_AUTUMN -> box_with_autumn
+        API.LINK_BOX_WITH_WINTER -> box_with_winter
+        API.LINK_BOX_WITH_CRASH -> box_with_crash
+        API.LINK_BOX_WITH_BOMB -> box_with_bomb
+        API.LINK_BOX_WITH_SNOW -> box_with_snow
+        API.LINK_BOX_WITH_BOX -> box_with_box
+        API.LINK_BOX_WITH_MAGIC -> box_with_magic
+        API.LINK_BOX_WITH_MAGIC_X2 -> box_with_magic_x2
+        API.LINK_BOX_WITH_GOOSE -> box_with_goose
+        API.LINK_BOX_WITH_CONFETTI -> box_with_confetti
+        else -> box_unknown
+    }
+
     val quest = Translate("Квест")
     val quests = Translate("Квесты")
     val quests_cat_subs = Translate("Подпикси")
@@ -2131,7 +2161,8 @@ object API_TRANSLATE {
     val quests_part_title = Translate("%s: %s")
     val quests_part_unknown_desc = Translate("Эта часть квеста из новой версии Campfire. Пора обновиться!")
     val quests_part_text_input = Translate("Поле")
-    val quests_effect_box = Translate("Коробка %s")
+    val quests_effect = Translate("Эффект")
+    val quests_effect_box = Translate("Коробка")
     val quests_effect_box_reset = Translate("Сброс коробок")
     val quests_effect_vibrate = Translate("Вибрация")
     val quests_effect_unknown = Translate("Неизвестный эффект")
@@ -2187,6 +2218,7 @@ object API_TRANSLATE {
     val quests_edit_text_button_error_2 = Translate("Неверное место назначания")
     val quests_edit_text_button_jump_to = Translate("Переход в %s")
     val quests_edit_text_button_remove_q = Translate("Удалить кнопку?")
+    val quests_edit_text_effect_title = Translate("Тип спец. эффекта")
 
     val post_page_code_languages = hashMapOf(
             "c" to "C", "cs" to "C#", "java" to "Java", "bash" to "Bash", "python" to "Python",
