@@ -410,6 +410,8 @@ object API_TRANSLATE {
     val translates_notification_rejected = Translate("%s %s ваш перевод")
     val translates_notification_accepted = Translate("Ваш перевод принят")
     val translates_notification_translate_key = Translate("Ключ: %s", true)
+    val translates_empty = Translate("Нечего переводить", true)
+    val translates_mod_empty = Translate("Нет предложенных переводов", true)
 
     val wiki_edit_title = Translate("Редактировать заголовок")
     val wiki_list_empty = Translate("В этой вики еще нет элементов")
@@ -1154,6 +1156,9 @@ object API_TRANSLATE {
     val settings_email_google_account_added = Translate("К вашему аккаунту прекреплен Google аккаунт")
     val settings_email_google_account_not_added = Translate("У вас нет Google аккаунта")
     val settings_email_google_account_used = Translate("Этот Google аккаунт уже занят")
+    val settings_email_not_verified = Translate("Адрес ещё не подтверждён", true)
+    val settings_email_migrated = Translate("%s (мигрирован)", true)
+    val settings_email_change_password_error = Translate("Не удалось войти, проверьте старый пароль", true)
 
     val review_remove_confirm = Translate("Удалить этот отзыв?")
     val review_error_gone = Translate("Похоже кто-то удалил этот отзыв")
@@ -2084,6 +2089,8 @@ object API_TRANSLATE {
     val effect_error_time = Translate("Нельзя наложить эффект в прошлое")
     val effect_toast_cant_change_animation = Translate("Вы не можете этого сделать")
     val effect_remove = Translate("Снять эффект")
+
+    val administration_blocks_vahter = Translate("Наложить проклятие вахтёра на модератора")
 
     val post_page_code_languages = hashMapOf(
             "c" to "C", "cs" to "C#", "java" to "Java", "bash" to "Bash", "python" to "Python",

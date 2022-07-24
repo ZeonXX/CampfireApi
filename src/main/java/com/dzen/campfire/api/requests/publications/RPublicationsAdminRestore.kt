@@ -5,7 +5,8 @@ import com.sup.dev.java.libs.json.Json
 
 open class RPublicationsAdminRestore(
         var moderationId: Long,
-        var comment: String
+        var comment: String,
+        var vahter: Boolean,
 ) : Request<RPublicationsAdminRestore.Response>() {
 
     companion object {
@@ -17,6 +18,7 @@ open class RPublicationsAdminRestore(
     override fun jsonSub(inp: Boolean, json: Json) {
         moderationId = json.m(inp, "moderationId", moderationId)
         comment = json.m(inp, "comment", comment)
+        vahter = json.m(inp, "vahter", vahter)
     }
 
     override fun instanceResponse(json: Json): Response {
