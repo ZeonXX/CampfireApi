@@ -2,6 +2,7 @@ package com.dzen.campfire.api.models.publications.post
 
 import com.dzen.campfire.api.API
 import com.dzen.campfire.api.tools.client.Request
+import com.dzen.campfire.api.tools.server.IControllerResources
 import com.sup.dev.java.libs.json.Json
 
 class PageDownload : Page() {
@@ -22,6 +23,10 @@ class PageDownload : Page() {
 
     override fun addInsertData(request: Request<*>) {
         request.addDataOutput(insertBytes)
+    }
+
+    override fun duplicateResources(res: IControllerResources, unitId: Long) {
+        if (resourceId > 0) resourceId = res.put(res.get(resourceId), unitId)
     }
 
     override fun restoreInsertData(request: Request<*>, offset:Int):Int {
