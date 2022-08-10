@@ -11,6 +11,10 @@ open class RQuestsChangePart(var partId: Long, var part: QuestPart) : Request<RQ
         part = json.m(inp, "part", part)
     }
 
+    override fun instanceResponse(json: Json): Response {
+        return Response(json)
+    }
+
     class Response : Request.Response {
         var part: QuestPart = QuestPartUnknown()
 

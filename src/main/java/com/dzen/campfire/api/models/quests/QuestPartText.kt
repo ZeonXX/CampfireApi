@@ -12,7 +12,6 @@ class QuestPartText : QuestPart() {
     var w = 0
     var h = 0
     var insertBytes: ByteArray? = null
-    var insertGifBytes: ByteArray? = null
 
     var title = ""
     var text = ""
@@ -22,7 +21,6 @@ class QuestPartText : QuestPart() {
 
     override fun json(inp: Boolean, json: Json): Json {
         imageId = json.m(inp, "imageId", imageId)
-        gifId = json.m(inp, "gifId", gifId)
         w = json.m(inp, "w", w)
         h = json.m(inp, "h", h)
         title = json.m(inp, "title", title)
@@ -35,11 +33,9 @@ class QuestPartText : QuestPart() {
 
     override fun addInsertData(request: Request<*>) {
         request.addDataOutput(insertBytes)
-        request.addDataOutput(insertGifBytes)
     }
 
     override fun restoreInsertData(dataOutput: Iterator<ByteArray?>) {
         insertBytes = dataOutput.next()
-        insertGifBytes = dataOutput.next()
     }
 }

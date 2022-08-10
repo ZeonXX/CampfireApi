@@ -16,9 +16,13 @@ class QuestPartAction : QuestPart() {
     // QUEST_ACTION_SET_LITERAL  ->  %varId = $sArg
     // QUEST_ACTION_SET_RANDOM   ->  %varId = random(from = $lArg1, to = $lArg2)
     // QUEST_ACTION_SET_ANOTHER  ->  %varId = %lArg1
-    // QUEST_ACTION_ADD_LITERAL  ->  %varId += $lArg1
+    // QUEST_ACTION_ADD_LITERAL  ->  %varId += $sArg
     // QUEST_ACTION_ADD_ANOTHER  ->  %varId += %lArg1
     // QUEST_ACTION_SET_ARANDOM  ->  %varId = random(from = %lArg1, to = %lArg2)
+    // QUEST_ACTION_MULTIPLY     ->  %varId *= %lArg1
+    // QUEST_ACTION_DIVIDE       ->  %varId /= %lArg1
+    // QUEST_ACTION_BIT_AND      ->  %varId &= %lArg1
+    // QUEST_ACTION_BIT_OR       ->  %varId |= %lArg1
 
     override fun json(inp: Boolean, json: Json): Json {
         varId = json.m(inp, "varId", varId)

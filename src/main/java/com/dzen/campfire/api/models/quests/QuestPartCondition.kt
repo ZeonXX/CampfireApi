@@ -15,6 +15,12 @@ class QuestConditionValue : JsonParsable {
         sValue = json.m(inp, "sValue", sValue)
         return json
     }
+
+    fun getVariableOrNull(details: QuestDetails): QuestVariable? {
+        return if (type == API.QUEST_CONDITION_VALUE_VAR)
+            details.variables.find { it.id == value }
+        else null
+    }
 }
 
 class QuestPartCondition : QuestPart() {
@@ -24,8 +30,8 @@ class QuestPartCondition : QuestPart() {
     var cond = API.QUEST_CONDITION_EQ
     var rightValue = QuestConditionValue()
 
-    var trueJumpId = 0
-    var falseJumpId = 0
+    var trueJumpId = 0L
+    var falseJumpId = 0L
 
     override fun json(inp: Boolean, json: Json): Json {
         leftValue = json.m(inp, "leftValue", leftValue)

@@ -953,6 +953,10 @@ class API(
         const val QUEST_TEXT_INPUTS_MAX = 5
         const val QUEST_TEXT_BUTTONS_MAX = 10
 
+        const val QUEST_IMAGE_W = 800
+        const val QUEST_IMAGE_H = 400
+        const val QUEST_IMAGE_WEIGHT = 1024 * 256
+
         const val QUEST_INPUT_HINT_MAX_L = 100
 
         const val QUEST_BUTTON_LABEL_MIN_L = 1
@@ -989,19 +993,21 @@ class API(
         const val QUEST_EFFECT_VIBRATE_COUNT_MAX = 5L
         const val QUEST_EFFECT_VIBRATE_LENGTH_MAX = 1000L
         const val QUEST_EFFECT_VIBRATE_DELAY_START_MAX = 5000L
-        const val QUEST_EFFECT_VIBRATE_DELAY_BETWEEN_MAX = 2000L
+        const val QUEST_EFFECT_VIBRATE_DELAY_BETWEEN_MIN = 50L
+        const val QUEST_EFFECT_VIBRATE_DELAY_BETWEEN_INF_MIN = 200L
+        const val QUEST_EFFECT_VIBRATE_DELAY_BETWEEN_MAX = 5000L
 
         const val QUEST_CONDITION_VALUE_LITERAL_LONG = 1L
         const val QUEST_CONDITION_VALUE_LITERAL_TEXT = 2L
         const val QUEST_CONDITION_VALUE_LITERAL_BOOL = 3L
         const val QUEST_CONDITION_VALUE_VAR = 4L
 
-        const val QUEST_CONDITION_LESS = 1L
-        const val QUEST_CONDITION_LEQ = 2L
-        const val QUEST_CONDITION_EQ = 3L
-        const val QUEST_CONDITION_GEQ = 4L
-        const val QUEST_CONDITION_GREATER = 5L
-        const val QUEST_CONDITION_NEQ = 6L
+        const val QUEST_CONDITION_LESS = 1L     // <
+        const val QUEST_CONDITION_LEQ = 2L      // <=
+        const val QUEST_CONDITION_EQ = 3L       // ==
+        const val QUEST_CONDITION_NEQ = 4L      // !=
+        const val QUEST_CONDITION_GEQ = 5L      // >=
+        const val QUEST_CONDITION_GREATER = 6L  // >
 
         const val QUEST_ACTION_SET_LITERAL = 1L
         const val QUEST_ACTION_SET_RANDOM  = 2L
@@ -1009,6 +1015,10 @@ class API(
         const val QUEST_ACTION_ADD_LITERAL = 4L
         const val QUEST_ACTION_ADD_ANOTHER = 5L
         const val QUEST_ACTION_SET_ARANDOM = 6L
+        const val QUEST_ACTION_MULTIPLY    = 7L
+        const val QUEST_ACTION_DIVIDE      = 8L
+        const val QUEST_ACTION_BIT_AND     = 9L
+        const val QUEST_ACTION_BIT_OR      = 10L
 
         const val QUEST_PART_TYPE_TEXT = 1L
         const val QUEST_PART_TYPE_CONDITION = 2L
