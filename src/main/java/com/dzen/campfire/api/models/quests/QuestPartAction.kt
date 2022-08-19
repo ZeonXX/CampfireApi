@@ -15,9 +15,13 @@ class QuestPartAction : QuestPart() {
     // % - as variable, $ - as literal
     // QUEST_ACTION_SET_LITERAL  ->  %varId = $sArg
     // QUEST_ACTION_SET_RANDOM   ->  %varId = random(from = $lArg1, to = $lArg2)
+    //  | typeof %varId == bool    -> %varId = randomBool()
     // QUEST_ACTION_SET_ANOTHER  ->  %varId = %lArg1
     // QUEST_ACTION_ADD_LITERAL  ->  %varId += $sArg
+    //  | typeof %varId == bool    -> %varId = !%varId
+    //  | typeof %varId == text    -> %varId = concat(%varId, $sArg)
     // QUEST_ACTION_ADD_ANOTHER  ->  %varId += %lArg1
+    //  | typeof %varId == text    -> %varId = concat(%varId, %lArg1)
     // QUEST_ACTION_SET_ARANDOM  ->  %varId = random(from = %lArg1, to = %lArg2)
     // QUEST_ACTION_MULTIPLY     ->  %varId *= %lArg1
     // QUEST_ACTION_DIVIDE       ->  %varId /= %lArg1
