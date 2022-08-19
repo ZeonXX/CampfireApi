@@ -1160,6 +1160,8 @@ object API_TRANSLATE {
     val settings_email_migrated = Translate("%s (мигрирован)", true)
     val settings_email_change_password_error = Translate("Не удалось войти, проверьте старый пароль", true)
 
+    val publication_blacklisted = Translate("Публикация от %s скрыта", true)
+
     val review_remove_confirm = Translate("Удалить этот отзыв?")
     val review_error_gone = Translate("Похоже кто-то удалил этот отзыв")
     val review_report_confirm = Translate("Пожаловаться на этот отзыв?")

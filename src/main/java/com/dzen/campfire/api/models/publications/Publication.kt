@@ -3,13 +3,13 @@ package com.dzen.campfire.api.models.publications
 import com.dzen.campfire.api.API
 import com.dzen.campfire.api.models.account.Account
 import com.dzen.campfire.api.models.fandoms.Fandom
-import com.dzen.campfire.api.models.publications.post.PublicationPost
 import com.dzen.campfire.api.models.publications.chat.PublicationChatMessage
 import com.dzen.campfire.api.models.publications.events_admins.PublicationEventAdmin
 import com.dzen.campfire.api.models.publications.events_fandoms.PublicationEventFandom
 import com.dzen.campfire.api.models.publications.events_moderators.PublicationEventModer
 import com.dzen.campfire.api.models.publications.events_user.PublicationEventUser
 import com.dzen.campfire.api.models.publications.moderations.PublicationModeration
+import com.dzen.campfire.api.models.publications.post.PublicationPost
 import com.dzen.campfire.api.models.publications.stickers.PublicationSticker
 import com.dzen.campfire.api.models.publications.stickers.PublicationStickersPack
 import com.dzen.campfire.api.models.publications.tags.PublicationTag
@@ -47,6 +47,7 @@ abstract class Publication : JsonPolimorf {
     var tag_7 = 0L
     var tag_s_1 = ""
     var reactions:Array<Reaction> = emptyArray()
+    var blacklisted = false
 
     //
     //  Getters
@@ -95,6 +96,7 @@ abstract class Publication : JsonPolimorf {
         tag_6 = json.m(inp, "tag_6", tag_6)
         tag_7 = json.m(inp, "tag_7", tag_7)
         tag_s_1 = json.m(inp, "tag_s_1", tag_s_1)
+        blacklisted = json.m(inp, "blacklisted", blacklisted)
         jsonDB = json.mNull(inp, "jsonDB", jsonDB, Json::class)
 
         //  Обратная совместимость

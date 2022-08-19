@@ -2,6 +2,7 @@ package com.dzen.campfire.api.models.publications.post
 
 import com.dzen.campfire.api.API
 import com.dzen.campfire.api.models.account.Account
+import com.dzen.campfire.api.tools.server.IControllerResources
 import com.sup.dev.java.libs.json.Json
 import com.sup.dev.java.libs.json.JsonParsable
 
@@ -44,6 +45,10 @@ class PagePolling : Page() {
     }
     override fun fillResourcesList(list: ArrayList<Long>) {
 
+    }
+
+    override fun duplicateResources(res: IControllerResources, unitId: Long) {
+        this.pollingId = System.nanoTime()
     }
 
 }

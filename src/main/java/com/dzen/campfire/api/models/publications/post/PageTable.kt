@@ -2,6 +2,7 @@ package com.dzen.campfire.api.models.publications.post
 
 import com.dzen.campfire.api.API
 import com.dzen.campfire.api.tools.client.Request
+import com.dzen.campfire.api.tools.server.IControllerResources
 import com.sup.dev.java.libs.json.Json
 import com.sup.dev.java.libs.json.JsonParsable
 
@@ -41,8 +42,14 @@ class PageTable : Page() {
         return count
     }
 
-    override fun fillResourcesList(list: ArrayList<Long>) {
+    override fun duplicateResources(res: IControllerResources, unitId: Long) {
+        for (c in cells) if (c.imageId > 0) {
+            c.imageId = res.put(res.get(c.imageId), unitId)
+        }
+    }
 
+    override fun fillResourcesList(list: ArrayList<Long>) {
+        for (c in cells) if (c.imageId > 0) list.add(c.imageId)
     }
 
     fun getCell(rowIndex:Int, columnIndex:Int):Cell?{

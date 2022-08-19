@@ -2,6 +2,7 @@ package com.dzen.campfire.api.models.publications.post
 
 import com.dzen.campfire.api.API
 import com.dzen.campfire.api.tools.client.Request
+import com.dzen.campfire.api.tools.server.IControllerResources
 import com.sup.dev.java.libs.json.Json
 
 class PageImage : Page() {
@@ -29,6 +30,11 @@ class PageImage : Page() {
         insertBytes = request.dataOutput[offset]
         insertGifBytes = request.dataOutput[offset + 1]
         return 2
+    }
+
+    override fun duplicateResources(res: IControllerResources, unitId: Long) {
+        if (imageId > 0) imageId = res.put(res.get(imageId), unitId)
+        if (gifId > 0) gifId = res.put(res.get(gifId), unitId)
     }
 
     override fun json(inp: Boolean, json: Json): Json {
