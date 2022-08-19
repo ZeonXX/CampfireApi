@@ -104,7 +104,7 @@ object API_RESOURCES {
     val IMAGE_BACKGROUND_27 = 836244L    //  Судья
     val IMAGE_BACKGROUND_28 = 836245L    //  Доска с мелом
     val IMAGE_BACKGROUND_29 = 836246L    //  Библиотекорь
-    val IMAGE_BACKGROUND_30 = 836246L    //  Даёт перо (нет переводов)
+    val IMAGE_BACKGROUND_30 = 1410848L    //  Даёт перо (нет переводов)
 
     //  Background Level
     val IMAGE_BACKGROUND_LEVEL_1 = 419905L
