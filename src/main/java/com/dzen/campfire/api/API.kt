@@ -145,6 +145,7 @@ class API(
         val LOGIN_SPLITTER = " - "
         val LOGIN_EMAIL_PREFIX = "Email"
         val LOGIN_EMAIL2_PREFIX = "Email2"
+        val LOGIN_GOOGLE_PREFIX = "GoogleAlt"
 
         val ACCOUNT_IMG_SIDE = 256
         val ACCOUNT_IMG_SIDE_GIF = 64
