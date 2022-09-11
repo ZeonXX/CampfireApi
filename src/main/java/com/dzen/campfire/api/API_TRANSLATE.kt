@@ -1318,6 +1318,7 @@ object API_TRANSLATE {
     val post_pending_publish = Translate("Опубликовать пост сейчас?")
     val post_close_confirm = Translate("Закрыть этот пост?")
     val post_open_confirm = Translate("Открыть этот пост?")
+    val post_change_rubric = Translate("Изменить рубрику")
 
     val activities_new_year_quest = Translate("Квесты")
     val activities_support = Translate("Поддержать проект")
