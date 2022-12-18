@@ -19,6 +19,20 @@ class QuestDetails : Publication {
     var description = ""
     var showSource = true
     var variables: Array<QuestVariable> = emptyArray()
+        set(value) {
+            field = value
+            variablesMap = null // invalidate
+        }
+
+    var variablesMap: Map<Long, QuestVariable>? = null
+        get() {
+            if (field != null) return field
+            else {
+                field = variables.associateBy { it.id }
+            }
+            return field
+        }
+        private set
 
     override fun jsonDBLocal(inp: Boolean, json: Json): Json {
         title = json.m(inp, "title", title)

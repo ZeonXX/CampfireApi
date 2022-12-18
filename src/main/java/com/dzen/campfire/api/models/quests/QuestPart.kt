@@ -44,4 +44,15 @@ abstract class QuestPart : JsonPolimorf {
 
     open fun addInsertData(request: Request<*>) {}
     open fun restoreInsertData(dataOutput: Iterator<ByteArray?>) {}
+
+    open fun checkValid(details: QuestDetails, parts: List<QuestPart>, errors: MutableList<QuestException>) {
+    }
+
+    protected fun assert(errors: MutableList<QuestException>, b: Boolean, error: () -> QuestException) {
+        if (!b) {
+            errors.add(error().also {
+                it.partId = id
+            })
+        }
+    }
 }

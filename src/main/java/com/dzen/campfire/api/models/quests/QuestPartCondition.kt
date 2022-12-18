@@ -1,6 +1,7 @@
 package com.dzen.campfire.api.models.quests
 
 import com.dzen.campfire.api.API
+import com.dzen.campfire.api.API_TRANSLATE
 import com.sup.dev.java.libs.json.Json
 import com.sup.dev.java.libs.json.JsonParsable
 
@@ -18,7 +19,7 @@ class QuestConditionValue : JsonParsable {
 
     fun getVariableOrNull(details: QuestDetails): QuestVariable? {
         return if (type == API.QUEST_CONDITION_VALUE_VAR)
-            details.variables.find { it.id == value }
+            details.variablesMap!![value]
         else null
     }
 }
@@ -40,5 +41,25 @@ class QuestPartCondition : QuestPart() {
         trueJumpId = json.m(inp, "trueJumpId", trueJumpId)
         falseJumpId = json.m(inp, "falseJumpId", falseJumpId)
         return super.json(inp, json)
+    }
+
+    override fun checkValid(details: QuestDetails, parts: List<QuestPart>, errors: MutableList<QuestException>) {
+        if (leftValue.type == API.QUEST_CONDITION_VALUE_VAR) {
+            assert(errors, details.variablesMap!![leftValue.value] != null) {
+                QuestException(API_TRANSLATE.quests_edit_error_3)
+            }
+        }
+        if (rightValue.type == API.QUEST_CONDITION_VALUE_VAR) {
+            assert(errors, details.variablesMap!![rightValue.value] != null) {
+                QuestException(API_TRANSLATE.quests_edit_error_4)
+            }
+        }
+
+        assert(errors, trueJumpId < 0 || parts.any { it.id == trueJumpId }) {
+            QuestException(API_TRANSLATE.quests_edit_error_5)
+        }
+        assert(errors, trueJumpId < 0 || parts.any { it.id == falseJumpId }) {
+            QuestException(API_TRANSLATE.quests_edit_error_6)
+        }
     }
 }

@@ -13,13 +13,13 @@ import com.dzen.campfire.api.tools.client.TokenProvider
 import com.sup.dev.java.tools.ToolsText
 
 class API(
-        projectKey: String,
-        tokenProvider: TokenProvider,
-        host: String,
-        portHttps: Int,
-        portCertificate: Int,
-        saver: (String, String?) -> Unit,
-        loader: (String) -> String?
+    projectKey: String,
+    tokenProvider: TokenProvider,
+    host: String,
+    portHttps: Int,
+    portCertificate: Int,
+    saver: (String, String?) -> Unit,
+    loader: (String) -> String?
 ) : ApiClient(projectKey, tokenProvider, host, portHttps, portCertificate, saver, loader) {
 
     companion object {
@@ -947,6 +947,7 @@ class API(
         const val QUEST_VARIABLE_MAX_VALUE_L = 200
         const val QUEST_PARTS_MAX = 250
         const val QUEST_DEV_LABEL_MAX_L = 100
+		const val QUEST_MAX_DEPTH = 200
 
         const val QUEST_TEXT_TITLE_MAX_L = 200
         const val QUEST_TEXT_TEXT_MAX_L = 20000
@@ -1009,6 +1010,7 @@ class API(
         const val QUEST_CONDITION_GEQ = 5L      // >=
         const val QUEST_CONDITION_GREATER = 6L  // >
 
+        // explanations are in QuestPartAction.kt
         const val QUEST_ACTION_SET_LITERAL = 1L
         const val QUEST_ACTION_SET_RANDOM  = 2L
         const val QUEST_ACTION_SET_ANOTHER = 3L

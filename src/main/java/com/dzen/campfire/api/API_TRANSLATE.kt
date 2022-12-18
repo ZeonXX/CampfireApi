@@ -2283,6 +2283,18 @@ object API_TRANSLATE {
     val quests_edit_action_error_1 = Translate("Первое значение должно быть меньше второго")
     val quests_edit_action_error_2 = Translate("Типы переменных не совпадают")
     val quests_edit_action_error_3 = Translate("Все переменные должны быть числами")
+    val quests_edit_error_1 = Translate("Переменной для поля \"%s\" не существует")
+    val quests_edit_error_2 = Translate("Кнопка \"%s\" ведёт в несуществующую часть квеста")
+    val quests_edit_error_3 = Translate("Переменной в значении слева не существует")
+    val quests_edit_error_4 = Translate("Переменной в значении справа не существует")
+    val quests_edit_error_5 = Translate("Истинного пути не существует")
+    val quests_edit_error_6 = Translate("Ложного пути не существует")
+    val quests_edit_error_7 = Translate("Одной из переменных не существует")
+    val quests_edit_error_8 = Translate("Первой частью квеста должен быть экран")
+    val quests_edit_error_9 = Translate("Дорога поломана")
+    val quests_edit_checking = Translate("Проверяем отсутствующие переменные и проводим инспекцию дорог...")
+    val quests_edit_errors = Translate("Ошибки")
+	val quests_error_depth = Translate("Похоже, этот квест ушёл в бесконечный цикл.")
 
     val post_page_code_languages = hashMapOf(
             "c" to "C", "cs" to "C#", "java" to "Java", "bash" to "Bash", "python" to "Python",
