@@ -1275,6 +1275,8 @@ object API_TRANSLATE {
     val post_page_polling_karma_title = Translate("Минимальная карма")
     val post_page_polling_days_title = Translate("Минимальное кол-во дней в приложении")
     val post_page_polling_blacklist = Translate("Чёрный список")
+    val post_page_polling_results = Translate("Результаты")
+    val post_page_polling_results_full = Translate("Результаты опроса")
     val post_page_polling_limit_days = Translate("Дней")
     val post_page_table = Translate("Таблица")
     val post_page_code = Translate("Код")
