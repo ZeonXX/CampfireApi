@@ -1749,6 +1749,7 @@ object API_TRANSLATE {
     val fandom_viceroy_remove_text = Translate("Убрать наместника этого фэндома?")
     val fandom_loading_in_profess = Translate("Фэндом еще не загружен")
     val fandom_remove_error_already = Translate("Фэндом уже удаляется другим пользователем")
+    val fandom_language_choose = Translate("Выбрать язык фэндома")
 
     val chats_empty = Translate("У вас пока нет чатов")
     val chats_loading = Translate("Загрузка ваших чатов")
