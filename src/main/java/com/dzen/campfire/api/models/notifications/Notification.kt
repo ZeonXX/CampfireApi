@@ -37,6 +37,7 @@ abstract class Notification : JsonPolimorf {
                 API.NOTIF_COMMENT_ANSWER -> notification = NotificationCommentAnswer()
                 API.NOTIF_KARMA_ADD -> notification = NotificationKarmaAdd()
                 API.NOTIF_ACCOUNT_FOLLOWS_ADD -> notification = NotificationAccountsFollowsAdd()
+                API.NOTIF_ACCOUNT_FOLLOWS_REMOVE -> notification = NotificationAccountsFollowsRemove()
                 API.NOTIF_ACHI -> notification = NotificationAchievement()
                 API.NOTIF_CHAT_MESSAGE -> notification = NotificationChatMessage()
                 API.NOTIF_FOLLOWS_PUBLICATION -> notification = NotificationFollowsPublication()
