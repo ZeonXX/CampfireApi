@@ -1628,6 +1628,8 @@ object API_TRANSLATE {
     val profile_change_name_error = Translate("Используйте символы: A-z 0-9")
     val profile_empty_my = Translate("Вы еще ничего не публиковали")
     val profile_empty_other = Translate("Пользователь пока ничего не публиковал")
+    val profile_follows_empty_male = Translate("Подписан на вас")
+    val profile_follows_empty_female = Translate("Подписана на вас")
     val profile_follows_empty = Translate("У вас пока нет подписок")
     val profile_followers_empty = Translate("У вас пока нет подписчиков")
     val profile_punishments_empty = Translate("У вас нет наказаний")
