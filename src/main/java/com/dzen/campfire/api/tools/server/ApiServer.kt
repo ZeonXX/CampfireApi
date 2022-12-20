@@ -2,15 +2,16 @@ package com.dzen.campfire.api.tools.server
 
 import com.dzen.campfire.api.tools.ApiAccount
 import com.dzen.campfire.api.tools.ApiException
-import com.sup.dev.java.classes.collections.Cash
 import com.dzen.campfire.api.tools.client.ApiClient
 import com.dzen.campfire.api.tools.client.Request
+import com.sup.dev.java.classes.collections.Cash
 import com.sup.dev.java.libs.debug.err
 import com.sup.dev.java.libs.debug.info
 import com.sup.dev.java.libs.json.Json
 import com.sup.dev.java.tools.ToolsBytes
 import java.io.*
 import java.net.Socket
+import java.util.*
 import java.util.concurrent.Executors
 import java.util.concurrent.ThreadPoolExecutor
 
@@ -78,8 +79,9 @@ class ApiServer(
                 val inp = BufferedReader(InputStreamReader(socket.getInputStream()))
                 do {
                     val s = inp.readLine()
-                    var index = s.toLowerCase().indexOf("Content-Length: ".toLowerCase())
-                    if(index > -1) {
+                    var index = s.lowercase(Locale.getDefault())
+                        .indexOf("Content-Length: ".lowercase(Locale.getDefault()))
+                    if (index > -1) {
                         index += "Content-Length: ".length
                         l = s.substring(index).toInt()
                     }
@@ -278,7 +280,9 @@ class ApiServer(
             request.dataOutput = arrayOfNulls(request.dataOutputBase64.size)
             for(index in request.dataOutputBase64.indices){
                 val database64 = request.dataOutputBase64[index]?:""
-                if(database64.isNotEmpty() && database64.toLowerCase() != "none" && database64.toLowerCase() != "null") {
+                if(database64.isNotEmpty() && database64.lowercase(Locale.getDefault()) != "none" && database64.lowercase(
+                        Locale.getDefault()
+                    ) != "null") {
                     request.dataOutput[index] = ToolsBytes.fromBase64(database64)
                 }
             }

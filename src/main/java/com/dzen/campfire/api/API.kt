@@ -11,6 +11,7 @@ import com.dzen.campfire.api.models.project.StoryQuest
 import com.dzen.campfire.api.tools.client.ApiClient
 import com.dzen.campfire.api.tools.client.TokenProvider
 import com.sup.dev.java.tools.ToolsText
+import java.util.*
 
 class API(
         projectKey: String,
@@ -140,7 +141,8 @@ class API(
         val ERROR_RELAY_NEXT_REJECTED = "ERROR_RELAY_NEXT_REJECTED"
         val ERROR_RELAY_NEXT_NOT_ALLOWED = "ERROR_RELAY_NEXT_NOT_ALLOWED"
 
-        val ENGLISH = ToolsText.LATIS_S + ToolsText.LATIS_S.toUpperCase() + ToolsText.NUMBERS_S + ToolsText.TEXT_CHARS_s + ToolsText.SPEC
+        val ENGLISH =
+            ToolsText.LATIS_S + ToolsText.LATIS_S.uppercase(Locale.getDefault()) + ToolsText.NUMBERS_S + ToolsText.TEXT_CHARS_s + ToolsText.SPEC
 
         val LOGIN_SPLITTER = " - "
         val LOGIN_EMAIL_PREFIX = "Email"
@@ -934,7 +936,7 @@ class API(
         val NOTIF_FANDOM_REMOVE_CANCEL = 62L
         val NOTIF_ACCOUNT_ADMIN_VOTE_CANCELED_FOR_ADMIN = 63L
         val NOTIF_ACCOUNT_ADMIN_VOTE_CANCELED_FOR_USER = 64L
-        val NOTIF_ACCOUNT_FOLLOWS_REMOVE = 65L
+        val NOTIF_ACCOUNT_FOLLOWS_REMOVE = 66L
 
         val REACTIONS = arrayOf(
                 API_RESOURCES.EMOJI_1,
@@ -978,7 +980,7 @@ class API(
         fun selector(p: Language): String = p.name
 
         fun getLanguage(code: String): Language {
-            for (i in LANGUAGES) if (i.code == code.toLowerCase()) return i
+            for (i in LANGUAGES) if (i.code == code.lowercase(Locale.getDefault())) return i
             return LANGUAGES[0]
         }
 

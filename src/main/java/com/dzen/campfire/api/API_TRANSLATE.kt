@@ -1,6 +1,7 @@
 package com.dzen.campfire.api
 
 import com.dzen.campfire.api.models.translate.Translate
+import java.util.*
 
 object API_TRANSLATE {
 
@@ -8,10 +9,10 @@ object API_TRANSLATE {
     val list = ArrayList<Translate>()
     val map = HashMap<String, Translate>()
 
-    fun getAllSame(key:String):Array<Translate>{
+    fun getAllSame(key: String): Array<Translate> {
         val ret = ArrayList<Translate>()
-        val k = key.toLowerCase()
-        for(t in list) if(t.key.toLowerCase().contains(k)) ret.add(t)
+        val k = key.lowercase(Locale.getDefault())
+        for (t in list) if (t.key.lowercase(Locale.getDefault()).contains(k)) ret.add(t)
         return ret.toTypedArray()
     }
 
