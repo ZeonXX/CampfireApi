@@ -1,6 +1,7 @@
 package com.dzen.campfire.api
 
 import com.dzen.campfire.api.models.translate.Translate
+import java.util.*
 
 object API_TRANSLATE {
 
@@ -8,10 +9,10 @@ object API_TRANSLATE {
     val list = ArrayList<Translate>()
     val map = HashMap<String, Translate>()
 
-    fun getAllSame(key:String):Array<Translate>{
+    fun getAllSame(key: String): Array<Translate> {
         val ret = ArrayList<Translate>()
-        val k = key.toLowerCase()
-        for(t in list) if(t.key.toLowerCase().contains(k)) ret.add(t)
+        val k = key.lowercase(Locale.getDefault())
+        for (t in list) if (t.key.lowercase(Locale.getDefault()).contains(k)) ret.add(t)
         return ret.toTypedArray()
     }
 
@@ -314,6 +315,8 @@ object API_TRANSLATE {
     val she_rate = Translate("оценила")
     val he_subscribed = Translate("подписался")
     val she_subscribed = Translate("подписалась")
+    val he_unsubscribed = Translate("отписался")
+    val she_unsubscribed = Translate("отписалась")
     val he_replied = Translate("ответил")
     val she_replied = Translate("ответила")
     val he_make = Translate("сделал")
@@ -1275,6 +1278,8 @@ object API_TRANSLATE {
     val post_page_polling_karma_title = Translate("Минимальная карма")
     val post_page_polling_days_title = Translate("Минимальное кол-во дней в приложении")
     val post_page_polling_blacklist = Translate("Чёрный список")
+    val post_page_polling_results = Translate("Результаты")
+    val post_page_polling_results_full = Translate("Результаты опроса")
     val post_page_polling_limit_days = Translate("Дней")
     val post_page_table = Translate("Таблица")
     val post_page_code = Translate("Код")
@@ -1626,6 +1631,8 @@ object API_TRANSLATE {
     val profile_change_name_error = Translate("Используйте символы: A-z 0-9")
     val profile_empty_my = Translate("Вы еще ничего не публиковали")
     val profile_empty_other = Translate("Пользователь пока ничего не публиковал")
+    val profile_follows_empty_male = Translate("Подписан на вас")
+    val profile_follows_empty_female = Translate("Подписана на вас")
     val profile_follows_empty = Translate("У вас пока нет подписок")
     val profile_followers_empty = Translate("У вас пока нет подписчиков")
     val profile_punishments_empty = Translate("У вас нет наказаний")
@@ -1743,6 +1750,7 @@ object API_TRANSLATE {
     val fandom_viceroy_remove_text = Translate("Убрать наместника этого фэндома?")
     val fandom_loading_in_profess = Translate("Фэндом еще не загружен")
     val fandom_remove_error_already = Translate("Фэндом уже удаляется другим пользователем")
+    val fandom_language_choose = Translate("Выбрать язык фэндома")
 
     val chats_empty = Translate("У вас пока нет чатов")
     val chats_loading = Translate("Загрузка ваших чатов")
@@ -1882,6 +1890,7 @@ object API_TRANSLATE {
     val notification_karma_review = Translate("%s %s ваш отзыв на %s")
     val notification_karma_stickers_pack = Translate("%s %s ваш набор стикеров на %s")
     val notification_profile_follows_add = Translate("%s %s на вас")
+    val notification_profile_follows_remove = Translate("%s %s на вас")
     val notification_comments_answer = Translate("%s %s на ваш комментарий%s")
     val notification_reaction_comment = Translate("%s %s на ваш комментарий%s")
     val notification_reaction_message = Translate("%s %s на ваше сообщение%s")

@@ -2,6 +2,7 @@ package com.dzen.campfire.api.models.wiki
 
 import com.sup.dev.java.libs.json.Json
 import com.sup.dev.java.libs.json.JsonParsable
+import java.util.*
 
 class WikiTitle : JsonParsable{
 
@@ -47,7 +48,7 @@ class WikiTitle : JsonParsable{
     }
 
     fun getName(code: String):String {
-        if (code.toLowerCase() == "en") return name
+        if (code.lowercase(Locale.getDefault()) == "en") return name
         for(i in translates) if(i.languageCode == code) return i.name
         return name // fallback
     }
