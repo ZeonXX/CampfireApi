@@ -81,47 +81,49 @@ class API(
         val LINK_RUBRIC = Link("rubric")
         val LINK_FANDOM_CHAT = Link("fandomchat")
         val LINK_ACTIVITY = Link("activity")
+        val LINK_QUEST = Link("quest")
 
         val LINKS_ARRAY = arrayOf(
-                LINK_POST,
-                LINK_CHAT,
-                LINK_CONF,
-                LINK_FANDOM,
-                LINK_PROFILE_ID,
-                LINK_MODERATION,
-                LINK_STICKER,
-                LINK_STICKERS_PACK,
-                LINK_EVENT,
-                LINK_TAG,
-                LINK_WIKI_FANDOM,
-                LINK_WIKI_SECTION,
-                LINK_WIKI_ARTICLE,
-                LINK_RUBRIC,
-                LINK_FANDOM_CHAT,
-                LINK_ACTIVITY,
-                LINK_BOX_WITH_FIREWORKS,
-                LINK_BOX_WITH_SUMMER,
-                LINK_BOX_WITH_AUTUMN,
-                LINK_BOX_WITH_WINTER,
-                LINK_BOX_WITH_CRASH,
-                LINK_BOX_WITH_BOMB,
-                LINK_BOX_WITH_SNOW,
-                LINK_BOX_WITH_MINIGAME,
-                LINK_BOX_WITH_BOX,
-                LINK_BOX_WITH_MAGIC,
-                LINK_BOX_WITH_MAGIC_SCREEN,
-                LINK_BOX_WITH_MAGIC_X2,
-                LINK_BOX_WITH_MAGIC_SCREEN_X2,
-                LINK_BOX_WITH_GOOSE,
-                LINK_BOX_WITH_CONFETTI,
-                LINK_RULES_USER,
-                LINK_TRANSLATES,
-                LINK_RULES_MODER,
-                LINK_RULES_GALLERY,
-                LINK_CREATORS,
-                LINK_ABOUT,
-                LINK_DONATE,
-                LINK_DONATE_MAKE
+            LINK_POST,
+            LINK_CHAT,
+            LINK_CONF,
+            LINK_FANDOM,
+            LINK_PROFILE_ID,
+            LINK_MODERATION,
+            LINK_STICKER,
+            LINK_STICKERS_PACK,
+            LINK_EVENT,
+            LINK_TAG,
+            LINK_WIKI_FANDOM,
+            LINK_WIKI_SECTION,
+            LINK_WIKI_ARTICLE,
+            LINK_RUBRIC,
+            LINK_FANDOM_CHAT,
+            LINK_ACTIVITY,
+            LINK_BOX_WITH_FIREWORKS,
+            LINK_BOX_WITH_SUMMER,
+            LINK_BOX_WITH_AUTUMN,
+            LINK_BOX_WITH_WINTER,
+            LINK_BOX_WITH_CRASH,
+            LINK_BOX_WITH_BOMB,
+            LINK_BOX_WITH_SNOW,
+            LINK_BOX_WITH_MINIGAME,
+            LINK_BOX_WITH_BOX,
+            LINK_BOX_WITH_MAGIC,
+            LINK_BOX_WITH_MAGIC_SCREEN,
+            LINK_BOX_WITH_MAGIC_X2,
+            LINK_BOX_WITH_MAGIC_SCREEN_X2,
+            LINK_BOX_WITH_GOOSE,
+            LINK_BOX_WITH_CONFETTI,
+            LINK_RULES_USER,
+            LINK_TRANSLATES,
+            LINK_RULES_MODER,
+            LINK_RULES_GALLERY,
+            LINK_CREATORS,
+            LINK_ABOUT,
+            LINK_DONATE,
+            LINK_DONATE_MAKE,
+            LINK_QUEST,
         )
 
         val LINK_TAG_PROFILE_NAME = "profile"
@@ -249,10 +251,10 @@ class API(
         val LVL_CAN_CHANGE_PROFILE_IMAGE = LvlInfoUser(150L, 0L)
         val LVL_CAN_CHANGE_STATUS = LvlInfoUser(175L, 0L)
         val LVL_CAN_MENTION = LvlInfoUser(200L, 0L)
-        val LVL_CREATE_QUESTS = LvlInfoUser(220L, 0L)
         val LVL_CAN_CHANGE_AVATAR_GIF = LvlInfoUser(250L, 0L)
         val LVL_CAN_PIN_POST = LvlInfoUser(260L, 0L)
         val LVL_CREATE_STICKERS = LvlInfoUser(300L, 0L)
+        val LVL_CREATE_QUESTS = LvlInfoUser(340L, 0L)
         //  Moderator
         val LVL_MODERATOR_BLOCK = LvlInfoModeration(400L, 300)
         val LVL_MODERATOR_TO_DRAFTS = LvlInfoModeration(410L, 320)
@@ -279,6 +281,7 @@ class API(
         val LVL_ADMIN_FANDOM_NAME = LvlInfoAdmin(725L, 900)
         val LVL_ADMIN_FANDOM_AVATAR = LvlInfoAdmin(730L, 950)
         val LVL_ADMIN_FANDOM_PARAMS = LvlInfoAdmin(750L, 1000)
+        val LVL_QUEST_MODERATOR = LvlInfoAdmin(770L, 1050)
         val LVL_ADMIN_FANDOM_CATEGORY = LvlInfoAdmin(790L, 1080)
         val LVL_ADMIN_BAN = LvlInfoAdmin(800L, 1100)
         val LVL_ADMIN_POST_CHANGE_FANDOM = LvlInfoAdmin(820L, 1150)
@@ -625,6 +628,7 @@ class API(
         val PUBLICATION_EVENT_ADMIN_TRANSLATE_REJECTED = 207L
         val PUBLICATION_EVENT_ADMIN_POST_REMOVE_MEDIA = 208L
         val PUBLICATION_EVENT_ADMIN_ADMIN_VOTE_CANCELED = 209L
+        val PUBLICATION_EVENT_ADMIN_QUEST_TO_DRAFTS = 210L
 
         val ADMIN_VOTE_UNKNOWN = 1L
         val ADMIN_VOTE_ACCOUNT_RECOUNT_ACHI = 2L
@@ -1016,6 +1020,7 @@ class API(
         const val QUEST_ACTION_SET_ANOTHER = 3L
         const val QUEST_ACTION_ADD_LITERAL = 4L
         const val QUEST_ACTION_ADD_ANOTHER = 5L
+        const val QUEST_ACTION_SUB_ANOTHER = 11L
         const val QUEST_ACTION_SET_ARANDOM = 6L
         const val QUEST_ACTION_MULTIPLY    = 7L
         const val QUEST_ACTION_DIVIDE      = 8L

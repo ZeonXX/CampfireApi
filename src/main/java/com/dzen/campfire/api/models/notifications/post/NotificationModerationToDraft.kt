@@ -13,6 +13,7 @@ class NotificationModerationToDraft : Notification {
     var moderatorName = ""
     var maskText = ""
     var maskPageType = 0L
+    var publicationTyoe = 0L
 
     constructor()
 
@@ -28,7 +29,8 @@ class NotificationModerationToDraft : Notification {
                 moderatorSex: Long,
                 moderatorName: String,
                 maskText: String,
-                maskPageType: Long
+                maskPageType: Long,
+                publicationType: Long = API.PUBLICATION_TYPE_POST,
     ) : super(0) {
         this.comment = comment
         this.fandomImageId = fandomImageId
@@ -37,6 +39,7 @@ class NotificationModerationToDraft : Notification {
         this.moderatorName = moderatorName
         this.maskText = maskText
         this.maskPageType = maskPageType
+        this.publicationTyoe = publicationType
     }
 
     override fun json(inp: Boolean, json: Json): Json {
@@ -47,6 +50,7 @@ class NotificationModerationToDraft : Notification {
         moderatorName = json.m(inp, "moderatorName", moderatorName)
         maskText = json.m(inp, "maskText", maskText)
         maskPageType = json.m(inp, "maskPageType", maskPageType)
+        publicationTyoe = json.m(inp, "publicationTyoe", publicationTyoe)
         return super.json(inp, json)
     }
 

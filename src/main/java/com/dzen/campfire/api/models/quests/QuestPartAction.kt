@@ -24,6 +24,7 @@ class QuestPartAction : QuestPart() {
     //  | typeof %varId == text    -> %varId = concat(%varId, $sArg)
     // QUEST_ACTION_ADD_ANOTHER  ->  %varId += %lArg1
     //  | typeof %varId == text    -> %varId = concat(%varId, %lArg1)
+    // QUEST_ACTION_SUB_ANOTHER  ->  %varId -= %lArg1
     // QUEST_ACTION_SET_ARANDOM  ->  %varId = random(from = %lArg1, to = %lArg2)
     // QUEST_ACTION_MULTIPLY     ->  %varId *= %lArg1
     // QUEST_ACTION_DIVIDE       ->  %varId /= %lArg1
@@ -50,6 +51,7 @@ class QuestPartAction : QuestPart() {
         when (actionType) {
             API.QUEST_ACTION_SET_ANOTHER -> { l1 = true }
             API.QUEST_ACTION_ADD_ANOTHER -> { l1 = true }
+            API.QUEST_ACTION_SUB_ANOTHER -> { l1 = true }
             API.QUEST_ACTION_SET_ARANDOM -> { l1 = true; l2 = true }
             API.QUEST_ACTION_MULTIPLY    -> { l1 = true }
             API.QUEST_ACTION_DIVIDE      -> { l1 = true }

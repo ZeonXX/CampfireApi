@@ -16,7 +16,9 @@ open class RQuestsGetParts(
     }
 
     class Response(
-        var parts: Array<QuestPart> = arrayOf()
+        var parts: Array<QuestPart> = arrayOf(),
+        var stateVariables: Json = Json(),
+        var stateIndex: Int = 0,
     ) : Request.Response() {
         constructor(json: Json) : this() {
             this.json(false, json)
@@ -24,6 +26,8 @@ open class RQuestsGetParts(
 
         override fun json(inp: Boolean, json: Json) {
             parts = json.m(inp, "parts", parts)
+            stateVariables = json.m(inp, "stateVariables", stateVariables)
+            stateIndex = json.m(inp, "stateIndex", stateIndex)
         }
     }
 }

@@ -26,11 +26,11 @@ class QuestDetails : Publication {
 
     var variablesMap: Map<Long, QuestVariable>? = null
         get() {
-            if (field != null) return field
+            return if (field != null) field
             else {
                 field = variables.associateBy { it.id }
+                field
             }
-            return field
         }
         private set
 
