@@ -531,6 +531,7 @@ object API_TRANSLATE {
     val achi_74 = Translate("Добавьте ссылку в ваш фэндом.")
     val achi_75 = Translate("Добавьте изображения в галерею вашего фэндома.")
     val achi_76 = Translate("Добавьте описание к вашему фэндому.")
+    val achi_77 = Translate("Заработайте карму на квесте.")
 
     val profile_subtitle_text_1 = Translate("Пользователь Campfire")
     val profile_subtitle_text_2 = Translate("Лучший пользователь Campfire")
@@ -2147,6 +2148,7 @@ object API_TRANSLATE {
     val quests_debug = Translate("Отладка")
     val quests_debug_change_value = Translate("Изменить значение %s")
     val quests_debug_secret = Translate("Секретные числа")
+    val quests_debug_index = Translate("Положение в квесте")
     val quests_remove_q = Translate("Удалить этот квест? Его нельзя будет вернуть обратно.")
     val quests_loading = Translate("Загрузка ваших квестов...")
     val quests_new = Translate("Новый квест")
@@ -2256,6 +2258,8 @@ object API_TRANSLATE {
     val quests_edit_text_effect_vibrate_delay_start = Translate("Задержка в начале: %d мс")
     val quests_edit_text_effect_vibrate_delay_between = Translate("Задержка между каждой вибрацией: %d мс")
     val quests_edit_text_effect_error_1 = Translate("Слишком маленькая задержка между вибрациями. Минимум %d мс")
+    val quests_edit_text_effect_error_2 = Translate("Нельзя добавить два эффекта вибрации сразу")
+    val quests_edit_text_effect_error_3 = Translate("Слишком много эффектов")
     val quests_edit_text_effect_remove_q = Translate("Удалить эффект?")
     val quests_edit_text_pic = Translate("Картника")
     val quests_edit_text_error_1 = Translate("Тупик. Добавьте кнопку.")
@@ -2335,6 +2339,10 @@ object API_TRANSLATE {
     val quests_edit_checking = Translate("Проверяем отсутствующие переменные и проводим инспекцию дорог...")
     val quests_edit_errors = Translate("Ошибки")
 	val quests_error_depth = Translate("Похоже, этот квест ушёл в бесконечный цикл.")
+    val quests_error_uninit = Translate(
+        "Произошла ошибка во время выполнения квеста. Скорее всего, " +
+        "где-то используется неинициализированная переменная"
+    )
     val quests_no_drafts = Translate("Вы ещё не сохраняли черновиков")
     val quests_draft_name = Translate("Название черновика")
     val quests_draft_enter = Translate("Другое название")

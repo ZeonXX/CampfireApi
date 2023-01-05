@@ -58,7 +58,7 @@ class QuestPartCondition : QuestPart() {
         assert(errors, trueJumpId < 0 || parts.any { it.id == trueJumpId }) {
             QuestException(API_TRANSLATE.quests_edit_error_5)
         }
-        assert(errors, trueJumpId < 0 || parts.any { it.id == falseJumpId }) {
+        assert(errors, falseJumpId < 0 || parts.any { it.id == falseJumpId }) {
             QuestException(API_TRANSLATE.quests_edit_error_6)
         }
     }
