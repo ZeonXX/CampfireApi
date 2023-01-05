@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
@@ -7,7 +9,7 @@ dependencies {
 
 jar {
     from {
-        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+//        configurations.implementation.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
 
@@ -15,7 +17,7 @@ repositories {
     mavenCentral()
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+tasks.withType(KotlinCompile).configureEach {
     kotlinOptions {
         jvmTarget = "1.8"
     }

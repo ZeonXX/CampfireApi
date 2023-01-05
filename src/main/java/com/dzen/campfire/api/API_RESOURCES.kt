@@ -104,7 +104,8 @@ object API_RESOURCES {
     val IMAGE_BACKGROUND_27 = 836244L    //  Судья
     val IMAGE_BACKGROUND_28 = 836245L    //  Доска с мелом
     val IMAGE_BACKGROUND_29 = 836246L    //  Библиотекорь
-    val IMAGE_BACKGROUND_30 = 1455339L   //  В доспехах с бицухой
+    val IMAGE_BACKGROUND_30 = 1410848L    //  Даёт перо (нет переводов)
+    val IMAGE_BACKGROUND_31 = 1455339L   //  В доспехах с бицухой
 
     //  Background Level
     val IMAGE_BACKGROUND_LEVEL_1 = 419905L
@@ -122,6 +123,11 @@ object API_RESOURCES {
     val IMAGE_BACKGROUND_LEVEL_13 = 489207L
     val IMAGE_BACKGROUND_LEVEL_14 = 489208L
     val IMAGE_BACKGROUND_LEVEL_15 = 489209L
+    val IMAGE_BACKGROUND_LEVEL_16 = 1395154L
+    val IMAGE_BACKGROUND_LEVEL_17 = 1395155L
+    val IMAGE_BACKGROUND_LEVEL_18 = 1395156L
+    val IMAGE_BACKGROUND_LEVEL_19 = 1395157L
+    val IMAGE_BACKGROUND_LEVEL_20 = 1395158L
 
     //  Emoji
     val EMOJI_1 = 433392L
@@ -313,6 +319,7 @@ object API_RESOURCES {
             IMAGE_BACKGROUND_28,
             IMAGE_BACKGROUND_29,
             IMAGE_BACKGROUND_30,
+            IMAGE_BACKGROUND_31,
     )
 
     val ARRAY_BACKGROUND_LEVEL = arrayOf(
@@ -330,7 +337,12 @@ object API_RESOURCES {
             IMAGE_BACKGROUND_LEVEL_12,
             IMAGE_BACKGROUND_LEVEL_13,
             IMAGE_BACKGROUND_LEVEL_14,
-            IMAGE_BACKGROUND_LEVEL_15
+            IMAGE_BACKGROUND_LEVEL_15,
+            IMAGE_BACKGROUND_LEVEL_16,
+            IMAGE_BACKGROUND_LEVEL_17,
+            IMAGE_BACKGROUND_LEVEL_18,
+            IMAGE_BACKGROUND_LEVEL_19,
+            IMAGE_BACKGROUND_LEVEL_20,
     )
 
     val ARRAY_EMOJI = arrayOf(

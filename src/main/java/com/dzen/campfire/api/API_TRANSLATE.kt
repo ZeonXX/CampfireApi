@@ -6,6 +6,7 @@ import com.dzen.campfire.api.models.quests.QuestPartAction
 import com.dzen.campfire.api.models.quests.QuestPartCondition
 import com.dzen.campfire.api.models.quests.QuestPartText
 import com.dzen.campfire.api.models.translate.Translate
+import java.util.*
 
 object API_TRANSLATE {
 
@@ -13,10 +14,10 @@ object API_TRANSLATE {
     val list = ArrayList<Translate>()
     val map = HashMap<String, Translate>()
 
-    fun getAllSame(key:String):Array<Translate>{
+    fun getAllSame(key: String): Array<Translate> {
         val ret = ArrayList<Translate>()
-        val k = key.toLowerCase()
-        for(t in list) if(t.key.toLowerCase().contains(k)) ret.add(t)
+        val k = key.lowercase(Locale.getDefault())
+        for (t in list) if (t.key.lowercase(Locale.getDefault()).contains(k)) ret.add(t)
         return ret.toTypedArray()
     }
 
@@ -320,6 +321,8 @@ object API_TRANSLATE {
     val she_rate = Translate("оценила")
     val he_subscribed = Translate("подписался")
     val she_subscribed = Translate("подписалась")
+    val he_unsubscribed = Translate("отписался")
+    val she_unsubscribed = Translate("отписалась")
     val he_replied = Translate("ответил")
     val she_replied = Translate("ответила")
     val he_make = Translate("сделал")
@@ -416,6 +419,8 @@ object API_TRANSLATE {
     val translates_notification_rejected = Translate("%s %s ваш перевод")
     val translates_notification_accepted = Translate("Ваш перевод принят")
     val translates_notification_translate_key = Translate("Ключ: %s", true)
+    val translates_empty = Translate("Нечего переводить", true)
+    val translates_mod_empty = Translate("Нет предложенных переводов", true)
 
     val wiki_edit_title = Translate("Редактировать заголовок")
     val wiki_list_empty = Translate("В этой вики еще нет элементов")
@@ -772,16 +777,19 @@ object API_TRANSLATE {
     val games_genres_32 = Translate("Один игрок")
     val games_genres_33 = Translate("Анимэ")
     val games_platform_1 = Translate("Другие")
-    val games_platform_2 = Translate("Pc")
+    val games_platform_2 = Translate("PC")
     val games_platform_3 = Translate("Android")
-    val games_platform_4 = Translate("IOS")
-    val games_platform_5 = Translate("XBox 360")
-    val games_platform_6 = Translate("XBox one")
+    val games_platform_4 = Translate("iOS")
+    val games_platform_5 = Translate("Xbox 360")
+    val games_platform_6 = Translate("Xbox One")
     val games_platform_7 = Translate("Playstation 1")
     val games_platform_8 = Translate("Playstation 2")
     val games_platform_9 = Translate("Playstation 3")
     val games_platform_10 = Translate("Playstation 4")
-    val games_platform_11 = Translate("Nintendo")
+    val games_platform_11 = Translate("Nintendo (старые)")
+    val games_platform_12 = Translate("Nintendo Switch")
+    val games_platform_13 = Translate("Playstation 5")
+    val games_platform_14 = Translate("Xbox Series X/S")
     val games_control_1 = Translate("Мышь")
     val games_control_2 = Translate("Клавиатура")
     val games_control_3 = Translate("Геймпад")
@@ -1166,6 +1174,11 @@ object API_TRANSLATE {
     val settings_email_google_account_added = Translate("К вашему аккаунту прекреплен Google аккаунт")
     val settings_email_google_account_not_added = Translate("У вас нет Google аккаунта")
     val settings_email_google_account_used = Translate("Этот Google аккаунт уже занят")
+    val settings_email_not_verified = Translate("Адрес ещё не подтверждён", true)
+    val settings_email_migrated = Translate("%s (мигрирован)", true)
+    val settings_email_change_password_error = Translate("Не удалось войти, проверьте старый пароль", true)
+
+    val publication_blacklisted = Translate("Публикация от %s скрыта", true)
 
     val review_remove_confirm = Translate("Удалить этот отзыв?")
     val review_error_gone = Translate("Похоже кто-то удалил этот отзыв")
@@ -1280,6 +1293,8 @@ object API_TRANSLATE {
     val post_page_polling_karma_title = Translate("Минимальная карма")
     val post_page_polling_days_title = Translate("Минимальное кол-во дней в приложении")
     val post_page_polling_blacklist = Translate("Чёрный список")
+    val post_page_polling_results = Translate("Результаты")
+    val post_page_polling_results_full = Translate("Результаты опроса")
     val post_page_polling_limit_days = Translate("Дней")
     val post_page_table = Translate("Таблица")
     val post_page_code = Translate("Код")
@@ -1323,6 +1338,7 @@ object API_TRANSLATE {
     val post_pending_publish = Translate("Опубликовать пост сейчас?")
     val post_close_confirm = Translate("Закрыть этот пост?")
     val post_open_confirm = Translate("Открыть этот пост?")
+    val post_change_rubric = Translate("Изменить рубрику")
 
     val activities_new_year_quest = Translate("Квесты")
     val activities_support = Translate("Поддержать проект")
@@ -1632,6 +1648,8 @@ object API_TRANSLATE {
     val profile_change_name_error = Translate("Используйте символы: A-z 0-9")
     val profile_empty_my = Translate("Вы еще ничего не публиковали")
     val profile_empty_other = Translate("Пользователь пока ничего не публиковал")
+    val profile_follows_empty_male = Translate("Подписан на вас")
+    val profile_follows_empty_female = Translate("Подписана на вас")
     val profile_follows_empty = Translate("У вас пока нет подписок")
     val profile_followers_empty = Translate("У вас пока нет подписчиков")
     val profile_punishments_empty = Translate("У вас нет наказаний")
@@ -1749,6 +1767,7 @@ object API_TRANSLATE {
     val fandom_viceroy_remove_text = Translate("Убрать наместника этого фэндома?")
     val fandom_loading_in_profess = Translate("Фэндом еще не загружен")
     val fandom_remove_error_already = Translate("Фэндом уже удаляется другим пользователем")
+    val fandom_language_choose = Translate("Выбрать язык фэндома")
 
     val chats_empty = Translate("У вас пока нет чатов")
     val chats_loading = Translate("Загрузка ваших чатов")
@@ -1890,6 +1909,7 @@ object API_TRANSLATE {
     val notification_karma_stickers_pack = Translate("%s %s ваш набор стикеров на %s")
     val notification_karma_quest = Translate("%s %s ваш квест на %s")
     val notification_profile_follows_add = Translate("%s %s на вас")
+    val notification_profile_follows_remove = Translate("%s %s на вас")
     val notification_comments_answer = Translate("%s %s на ваш комментарий%s")
     val notification_reaction_comment = Translate("%s %s на ваш комментарий%s")
     val notification_reaction_message = Translate("%s %s на ваше сообщение%s")
@@ -2103,6 +2123,8 @@ object API_TRANSLATE {
     val effect_error_time = Translate("Нельзя наложить эффект в прошлое")
     val effect_toast_cant_change_animation = Translate("Вы не можете этого сделать")
     val effect_remove = Translate("Снять эффект")
+
+    val administration_blocks_vahter = Translate("Наложить проклятие вахтёра на модератора")
 
     val box_with_fireworks = Translate("Коробка с фейерверками")
     val box_with_summer = Translate("Коробка с летом")

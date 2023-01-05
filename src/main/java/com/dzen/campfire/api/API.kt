@@ -11,15 +11,16 @@ import com.dzen.campfire.api.models.project.StoryQuest
 import com.dzen.campfire.api.tools.client.ApiClient
 import com.dzen.campfire.api.tools.client.TokenProvider
 import com.sup.dev.java.tools.ToolsText
+import java.util.*
 
 class API(
-    projectKey: String,
-    tokenProvider: TokenProvider,
-    host: String,
-    portHttps: Int,
-    portCertificate: Int,
-    saver: (String, String?) -> Unit,
-    loader: (String) -> String?
+        projectKey: String,
+        tokenProvider: TokenProvider,
+        host: String,
+        portHttps: Int,
+        portCertificate: Int,
+        saver: (String, String?) -> Unit,
+        loader: (String) -> String?
 ) : ApiClient(projectKey, tokenProvider, host, portHttps, portCertificate, saver, loader) {
 
     companion object {
@@ -83,46 +84,46 @@ class API(
         val LINK_QUEST = Link("quest")
 
         val LINKS_ARRAY = arrayOf(
-            LINK_POST,
-            LINK_CHAT,
-            LINK_CONF,
-            LINK_FANDOM,
-            LINK_PROFILE_ID,
-            LINK_MODERATION,
-            LINK_STICKER,
-            LINK_STICKERS_PACK,
-            LINK_EVENT,
-            LINK_TAG,
-            LINK_WIKI_FANDOM,
-            LINK_WIKI_SECTION,
-            LINK_WIKI_ARTICLE,
-            LINK_RUBRIC,
-            LINK_FANDOM_CHAT,
-            LINK_ACTIVITY,
-            LINK_BOX_WITH_FIREWORKS,
-            LINK_BOX_WITH_SUMMER,
-            LINK_BOX_WITH_AUTUMN,
-            LINK_BOX_WITH_WINTER,
-            LINK_BOX_WITH_CRASH,
-            LINK_BOX_WITH_BOMB,
-            LINK_BOX_WITH_SNOW,
-            LINK_BOX_WITH_MINIGAME,
-            LINK_BOX_WITH_BOX,
-            LINK_BOX_WITH_MAGIC,
-            LINK_BOX_WITH_MAGIC_SCREEN,
-            LINK_BOX_WITH_MAGIC_X2,
-            LINK_BOX_WITH_MAGIC_SCREEN_X2,
-            LINK_BOX_WITH_GOOSE,
-            LINK_BOX_WITH_CONFETTI,
-            LINK_RULES_USER,
-            LINK_TRANSLATES,
-            LINK_RULES_MODER,
-            LINK_RULES_GALLERY,
-            LINK_CREATORS,
-            LINK_ABOUT,
-            LINK_DONATE,
-            LINK_DONATE_MAKE,
-            LINK_QUEST,
+                LINK_POST,
+                LINK_CHAT,
+                LINK_CONF,
+                LINK_FANDOM,
+                LINK_PROFILE_ID,
+                LINK_MODERATION,
+                LINK_STICKER,
+                LINK_STICKERS_PACK,
+                LINK_EVENT,
+                LINK_TAG,
+                LINK_WIKI_FANDOM,
+                LINK_WIKI_SECTION,
+                LINK_WIKI_ARTICLE,
+                LINK_RUBRIC,
+                LINK_FANDOM_CHAT,
+                LINK_ACTIVITY,
+                LINK_BOX_WITH_FIREWORKS,
+                LINK_BOX_WITH_SUMMER,
+                LINK_BOX_WITH_AUTUMN,
+                LINK_BOX_WITH_WINTER,
+                LINK_BOX_WITH_CRASH,
+                LINK_BOX_WITH_BOMB,
+                LINK_BOX_WITH_SNOW,
+                LINK_BOX_WITH_MINIGAME,
+                LINK_BOX_WITH_BOX,
+                LINK_BOX_WITH_MAGIC,
+                LINK_BOX_WITH_MAGIC_SCREEN,
+                LINK_BOX_WITH_MAGIC_X2,
+                LINK_BOX_WITH_MAGIC_SCREEN_X2,
+                LINK_BOX_WITH_GOOSE,
+                LINK_BOX_WITH_CONFETTI,
+                LINK_RULES_USER,
+                LINK_TRANSLATES,
+                LINK_RULES_MODER,
+                LINK_RULES_GALLERY,
+                LINK_CREATORS,
+                LINK_ABOUT,
+                LINK_DONATE,
+                LINK_DONATE_MAKE,
+                LINK_QUEST,
         )
 
         val LINK_TAG_PROFILE_NAME = "profile"
@@ -141,10 +142,13 @@ class API(
         val ERROR_RELAY_NEXT_REJECTED = "ERROR_RELAY_NEXT_REJECTED"
         val ERROR_RELAY_NEXT_NOT_ALLOWED = "ERROR_RELAY_NEXT_NOT_ALLOWED"
 
-        val ENGLISH = ToolsText.LATIS_S + ToolsText.LATIS_S.toUpperCase() + ToolsText.NUMBERS_S + ToolsText.TEXT_CHARS_s + ToolsText.SPEC
+        val ENGLISH =
+            ToolsText.LATIS_S + ToolsText.LATIS_S.uppercase(Locale.getDefault()) + ToolsText.NUMBERS_S + ToolsText.TEXT_CHARS_s + ToolsText.SPEC
 
-        val LOGIN_SPLITTER= " - "
+        val LOGIN_SPLITTER = " - "
         val LOGIN_EMAIL_PREFIX = "Email"
+        val LOGIN_EMAIL2_PREFIX = "Email2"
+        val LOGIN_GOOGLE_PREFIX = "GoogleAlt"
 
         val ACCOUNT_IMG_SIDE = 256
         val ACCOUNT_IMG_SIDE_GIF = 64
@@ -427,22 +431,22 @@ class API(
         val QUEST_STORY_FUTURE = StoryQuest(1)
 
         val QUEST_STORY_ORDER_ARRAY = arrayOf(
-            QUEST_STORY_START,
-            QUEST_STORY_KARMA,
-            QUEST_STORY_ACHI_SCREEN,
-            QUEST_STORY_CHAT,
-            QUEST_STORY_FANDOM,
-            QUEST_STORY_PROFILE,
-            QUEST_STORY_COMMENTS,
-            QUEST_STORY_FILTERS,
-            QUEST_STORY_BOOKMARKS,
-            QUEST_STORY_BOOKMARKS_SCREEN,
-            QUEST_STORY_DRAFT,
-            QUEST_STORY_RATINGS,
-            QUEST_STORY_STICKERS,
-            QUEST_STORY_POST,
-            QUEST_STORY_FINISH,
-            QUEST_STORY_FUTURE
+                QUEST_STORY_START,
+                QUEST_STORY_KARMA,
+                QUEST_STORY_ACHI_SCREEN,
+                QUEST_STORY_CHAT,
+                QUEST_STORY_FANDOM,
+                QUEST_STORY_PROFILE,
+                QUEST_STORY_COMMENTS,
+                QUEST_STORY_FILTERS,
+                QUEST_STORY_BOOKMARKS,
+                QUEST_STORY_BOOKMARKS_SCREEN,
+                QUEST_STORY_DRAFT,
+                QUEST_STORY_RATINGS,
+                QUEST_STORY_STICKERS,
+                QUEST_STORY_POST,
+                QUEST_STORY_FINISH,
+                QUEST_STORY_FUTURE
         )
 
         init {
@@ -872,7 +876,7 @@ class API(
         val PAGES_SOURCE_TYPE_POST = 1L
         val PAGES_SOURCE_TYPE_WIKI = 2L
 
-        val POST_MAX_PAGES_COUNT = 50
+        val POST_MAX_PAGES_COUNT = 100
 
         //
         //  Notifications
@@ -939,6 +943,7 @@ class API(
         val NOTIF_FANDOM_REMOVE_CANCEL = 62L
         val NOTIF_ACCOUNT_ADMIN_VOTE_CANCELED_FOR_ADMIN = 63L
         val NOTIF_ACCOUNT_ADMIN_VOTE_CANCELED_FOR_USER = 64L
+        val NOTIF_ACCOUNT_FOLLOWS_REMOVE = 66L
 
         //
         //  Quests
@@ -1040,13 +1045,13 @@ class API(
         //
 
         val REACTIONS = arrayOf(
-            API_RESOURCES.EMOJI_1,
-            API_RESOURCES.EMOJI_2,
-            API_RESOURCES.EMOJI_3,
-            API_RESOURCES.EMOJI_4,
-            API_RESOURCES.EMOJI_5,
-            API_RESOURCES.EMOJI_6,
-            API_RESOURCES.EMOJI_7
+                API_RESOURCES.EMOJI_1,
+                API_RESOURCES.EMOJI_2,
+                API_RESOURCES.EMOJI_3,
+                API_RESOURCES.EMOJI_4,
+                API_RESOURCES.EMOJI_5,
+                API_RESOURCES.EMOJI_6,
+                API_RESOURCES.EMOJI_7
         )
 
         //
@@ -1082,7 +1087,7 @@ class API(
         fun selector(p: Language): String = p.name
 
         fun getLanguage(code: String): Language {
-            for (i in LANGUAGES) if (i.code == code.toLowerCase()) return i
+            for (i in LANGUAGES) if (i.code == code.lowercase(Locale.getDefault())) return i
             return LANGUAGES[0]
         }
 

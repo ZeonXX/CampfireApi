@@ -25,6 +25,7 @@ open class RAccountsGetProfile(var accountId: Long, var accountName: String) : R
         var status = ""
         var note = ""
         var isFollow = false
+        var followsYou = false
         var followsCount = 0L
         var followersCount = 0L
         var age = 0L
@@ -51,6 +52,7 @@ open class RAccountsGetProfile(var accountId: Long, var accountName: String) : R
                     titleImageId: Long,
                     titleImageGifId: Long,
                     isFollow: Boolean,
+                    followsYou: Boolean,
                     followsCount: Long,
                     followersCount: Long,
                     status: String,
@@ -74,6 +76,7 @@ open class RAccountsGetProfile(var accountId: Long, var accountName: String) : R
             this.titleImageId = titleImageId
             this.titleImageGifId = titleImageGifId
             this.isFollow = isFollow
+            this.followsYou = followsYou
             this.followsCount = followsCount
             this.followersCount = followersCount
             this.status = status
@@ -99,6 +102,7 @@ open class RAccountsGetProfile(var accountId: Long, var accountName: String) : R
             titleImageId = json.m(inp, "titleImageId", titleImageId)
             titleImageGifId = json.m(inp, "titleImageGifId", titleImageGifId)
             isFollow = json.m(inp, "isFollow", isFollow)
+            followsYou = json.m(inp, "followsYou", followsYou)
             followsCount = json.m(inp, "followsCount", followsCount)
             followersCount = json.m(inp, "followersCount", followersCount)
             status = json.m(inp, "status", status)

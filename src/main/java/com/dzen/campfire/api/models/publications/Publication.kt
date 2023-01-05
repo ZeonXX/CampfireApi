@@ -48,6 +48,7 @@ abstract class Publication : JsonPolimorf {
     var tag_7 = 0L
     var tag_s_1 = ""
     var reactions:Array<Reaction> = emptyArray()
+    var blacklisted = false
 
     //
     //  Getters
@@ -96,6 +97,7 @@ abstract class Publication : JsonPolimorf {
         tag_6 = json.m(inp, "tag_6", tag_6)
         tag_7 = json.m(inp, "tag_7", tag_7)
         tag_s_1 = json.m(inp, "tag_s_1", tag_s_1)
+        blacklisted = json.m(inp, "blacklisted", blacklisted)
         jsonDB = json.mNull(inp, "jsonDB", jsonDB, Json::class)
 
         //  Обратная совместимость

@@ -2,6 +2,7 @@ package com.dzen.campfire.api.models.publications.post
 
 import com.dzen.campfire.api.API
 import com.dzen.campfire.api.tools.client.Request
+import com.dzen.campfire.api.tools.server.IControllerResources
 import com.sup.dev.java.libs.json.Json
 
 class PageLinkImage : Page() {
@@ -32,6 +33,10 @@ class PageLinkImage : Page() {
 
     override fun addInsertData(request: Request<*>) {
         request.addDataOutput(insertBytes)
+    }
+
+    override fun duplicateResources(res: IControllerResources, unitId: Long) {
+        if (imageId > 0) imageId = res.put(res.get(imageId), unitId)
     }
 
     override fun restoreInsertData(request: Request<*>, offset: Int): Int {

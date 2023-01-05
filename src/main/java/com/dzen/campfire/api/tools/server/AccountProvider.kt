@@ -1,10 +1,11 @@
 package com.dzen.campfire.api.tools.server
 
 import com.dzen.campfire.api.tools.ApiAccount
+import com.dzen.campfire.api.tools.client.ApiClient
 import com.sup.dev.java.classes.collections.Cash
 import com.sup.dev.java.classes.items.Item2
-import com.dzen.campfire.api.tools.client.ApiClient
 import com.sup.dev.java.tools.ToolsMath
+import java.security.SecureRandom
 
 abstract class AccountProvider {
 
@@ -94,8 +95,9 @@ abstract class AccountProvider {
 
     private fun createToken(account: ApiAccount): String {
         var token = "" + account.id + "_"
+        val random = SecureRandom()
         for (i in token.length until ApiClient.TOKEN_REFRESH_SIZE)
-            token += ApiClient.TOKEN_CHARS[ToolsMath.randomInt(0, ApiClient.TOKEN_CHARS.length - 1)]
+            token += ApiClient.TOKEN_CHARS[ToolsMath.randomInt(0, ApiClient.TOKEN_CHARS.length - 1, random)]
         return token
     }
 
