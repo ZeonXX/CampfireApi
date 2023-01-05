@@ -1,5 +1,10 @@
 package com.dzen.campfire.api
 
+import com.dzen.campfire.api.models.Link
+import com.dzen.campfire.api.models.quests.QuestPart
+import com.dzen.campfire.api.models.quests.QuestPartAction
+import com.dzen.campfire.api.models.quests.QuestPartCondition
+import com.dzen.campfire.api.models.quests.QuestPartText
 import com.dzen.campfire.api.models.translate.Translate
 import java.util.*
 
@@ -172,6 +177,7 @@ object API_TRANSLATE {
     val app_d = Translate("д.")
     val app_description = Translate("Описаниe")
     val app_add = Translate("Добавить")
+    val app_added = Translate("Добавлено")
     val app_status = Translate("Статус")
     val app_subscription = Translate("Подписка")
     val app_subscribe = Translate("Подписаться")
@@ -530,6 +536,7 @@ object API_TRANSLATE {
     val achi_74 = Translate("Добавьте ссылку в ваш фэндом.")
     val achi_75 = Translate("Добавьте изображения в галерею вашего фэндома.")
     val achi_76 = Translate("Добавьте описание к вашему фэндому.")
+    val achi_77 = Translate("Заработайте карму на квесте.")
 
     val profile_subtitle_text_1 = Translate("Пользователь Campfire")
     val profile_subtitle_text_2 = Translate("Лучший пользователь Campfire")
@@ -1035,6 +1042,14 @@ object API_TRANSLATE {
     val rules_users_9 = Translate("В RP фэндомах могут быть установлены  дополнительные правила.\nОбязательные требования:\n1. Фэндом должен быть закрыт.\n2. Правила должны быть закреплены в ленте фэндома.\n3. Правила не могут противоречить правилам Campfire.\n4.Блокировать пользователя можно только в этом фэндоме.\n5. Названии фэндома обязательно должно начинаться с \"RP\".")
     val rules_users_9_correct = Translate("- Пользователь нарушил правила фэндома, которые были заданы не по требованиям к таким правилам.")
     val rules_users_9_incorrect = Translate("- Пользователь вышел из роли, хотя это запрещено правилами фэндома.")
+    val rules_users_10 = Translate("Запрещено провоцировать преследования, например, раскрывая чью-то личную или конфиденциальную информацию.")
+    val rules_users_10_title = Translate("Личная информация")
+    val rules_users_10_correct = Translate("- Пользователь упомянул в разговоре соц. сеть другого пользователя, о которой он сам публично упоминал")
+    val rules_users_10_incorrect = Translate("- Приятель пользователя начал публиковать его личную информацию без согласия\n- Пользователь обманом заставил другого пользователя раскрыть свои данные")
+    val rules_users_11 = Translate("В разделе квестов правила выше умножаются на 10, а также применяются дополнительные правила:\n1. Все квесты должны рассказывать какую-то историю или показывать механики, которые можно реализовать с помощью квестов\n2. Квесты с большим количеством грамматических ошибок не разрешены\n3. Нельзя публиковать квесты с демонстрацией механик, которые уже много раз демонстрировались\n4. В квестах с историей должна быть как минимум одна развилка")
+    val rules_users_11_title = Translate("Квесты")
+    val rules_users_11_correct = Translate("- Пользователь создал квест, который является дополнением к существующему рассказу\n- Пользователь создал квест, который является фанфиком по видеоигре")
+    val rules_users_11_incorrect = Translate("- Пользователь создал квест, который рассказывает про его сохранение в видеоигре")
     val rules_moderators_info = Translate("Пожалуйста прочтите все правила для модераторов, чтобы использовать свои привилегии на благо сообщества. При нарушении правил модерации, аккаунт будет заблокирован на длительный срок и возможно лишен права модерировать приложение в будущем. Администраторы могут видеть удаленные публикации, и принять меры, если модератор нарушил правила.")
     val rules_moderators_1 = Translate("Не будьте слишком строгими. Помните что у нас не тоталитарный режим, не удаляйте публикации и не блокируйте пользователей за каждую мелочь.")
     val rules_moderators_2 = Translate("Нельзя использовать привилегии модератора без причины или по личным желаниям модератора. Например нельзя удалять публикации за то что модератору не нравится изображенный на ней персонаж.")
@@ -1313,7 +1328,7 @@ object API_TRANSLATE {
     val post_create_polling_hint = Translate("Текст варианта")
     val post_create_images_empty = Translate("Добавьте несколько картинок")
     val post_create_notify_followers = Translate("Уведомить своих подписчиков")
-    val post_create_objects_label = Translate("Поддерживаются ссылки на пользователя, пост, чат, форум, фэндом, набор стикеров, комментарии.")
+    val post_create_objects_label = Translate("Поддерживаются ссылки на пользователя, пост, чат, форум, фэндом, набор стикеров, комментарии и квесты.", true)
     val post_create_pending = Translate("Отложенная публикация")
     val post_create_pending_error = Translate("Нельзя публиковать в прошлое")
     val post_create_closed = Translate("Закрытая публикация")
@@ -1505,6 +1520,7 @@ object API_TRANSLATE {
     val lvl_app_access = Translate("Возможность пользоваться приложением")
     val lvl_app_status = Translate("Возможность изменять статус профиля")
     val lvl_app_mention = Translate("Возможность упоминать других пользователей")
+    val lvl_create_quests = Translate("Возможность создавать свои квесты")
     val lvl_ads_less = Translate("Вдвое меньше рекламы")
     val lvl_app_profile_image = Translate("Возможность изменить фоновую картинку в профиле")
     val lvl_moderate_block = Translate("Модератор. Возможность блокировать публикации в фэндоме")
@@ -1534,6 +1550,7 @@ object API_TRANSLATE {
     val lvl_admin_fandom_image = Translate("Возможность менять аватар фэндома")
     val lvl_admin_fandom_rename = Translate("Возможность переименовывать фэндом")
     val lvl_admin_fandom_genres = Translate("Возможность изменять жанры фэндома")
+    val lvl_admin_quest_moderate = Translate("Модерировать квесты")
     val lvl_admin_fandom_category = Translate("Возможность изменять категорию фэндома")
     val lvl_ads_ban = Translate("Банхаммер. Возможность банить других пользователей")
     val lvl_post_fandom_change = Translate("Доступ к перемещению любых постов между фэндомами")
@@ -1873,6 +1890,7 @@ object API_TRANSLATE {
     val notifications_fandom_viceroy_remove = Translate("%s %s вас права наместника фэндома %s")
     val notifications_important_publication = Translate("В фэндоме %s появилась важная публикация")
     val notifications_moderation_to_drafts = Translate("Модератор %s %s ваш пост%s в черновики")
+    val notifications_moderation_to_drafts_quest = Translate("Модератор %s %s ваш квест %s в черновики")
     val notifications_moderation_multilingual_not = Translate("Модератор %s %s ваш пост не мультиязычным")
     val notifications_moderation_post_close = Translate("Модератор %s %s ваш пост")
     val notifications_moderation_post_close_no = Translate("Модератор %s %s ваш пост")
@@ -1889,6 +1907,7 @@ object API_TRANSLATE {
     val notification_moderation_karma = Translate("%s %s вашу модерацию на %s")
     val notification_karma_review = Translate("%s %s ваш отзыв на %s")
     val notification_karma_stickers_pack = Translate("%s %s ваш набор стикеров на %s")
+    val notification_karma_quest = Translate("%s %s ваш квест на %s")
     val notification_profile_follows_add = Translate("%s %s на вас")
     val notification_profile_follows_remove = Translate("%s %s на вас")
     val notification_comments_answer = Translate("%s %s на ваш комментарий%s")
@@ -2000,6 +2019,7 @@ object API_TRANSLATE {
     val moderation_text_importance_mark = Translate("%s пост как важный.")
     val moderation_text_importance_unmark = Translate("%s метку важности с публикации")
     val moderation_text_to_drafts = Translate("%s пост пользователя %s в черновики")
+    val moderation_text_to_drafts_quest = Translate("%s квест пользователя %s в черновики")
     val moderation_text_multilingual_not = Translate("%s пост пользователя %s не мультиязычным")
     val moderation_text_post_tags = Translate("%s теги %s.")
     val moderation_text_chat_create = Translate("%s чат %s.")
@@ -2103,6 +2123,256 @@ object API_TRANSLATE {
     val effect_remove = Translate("Снять эффект")
 
     val administration_blocks_vahter = Translate("Наложить проклятие вахтёра на модератора")
+
+    val box_with_fireworks = Translate("Коробка с фейерверками")
+    val box_with_summer = Translate("Коробка с летом")
+    val box_with_autumn = Translate("Коробка с осенью")
+    val box_with_winter = Translate("Коробка с зимой")
+    val box_with_crash = Translate("Коробка с крашем")
+    val box_with_bomb = Translate("Коробка с бомбой")
+    val box_with_snow = Translate("Коробка со снегом")
+    val box_with_box = Translate("Коробка с коробкой")
+    val box_with_magic = Translate("Коробка с магией")
+    val box_with_magic_x2 = Translate("Коробка с двойной магией")
+    val box_with_goose = Translate("Коробка с гусем")
+    val box_with_confetti = Translate("Коробка с конфетти")
+    val box_unknown = Translate("Неизвестная коробка")
+    fun fromBox(link: Link): Translate = when (link) {
+        API.LINK_BOX_WITH_FIREWORKS -> box_with_fireworks
+        API.LINK_BOX_WITH_SUMMER -> box_with_summer
+        API.LINK_BOX_WITH_AUTUMN -> box_with_autumn
+        API.LINK_BOX_WITH_WINTER -> box_with_winter
+        API.LINK_BOX_WITH_CRASH -> box_with_crash
+        API.LINK_BOX_WITH_BOMB -> box_with_bomb
+        API.LINK_BOX_WITH_SNOW -> box_with_snow
+        API.LINK_BOX_WITH_BOX -> box_with_box
+        API.LINK_BOX_WITH_MAGIC -> box_with_magic
+        API.LINK_BOX_WITH_MAGIC_X2 -> box_with_magic_x2
+        API.LINK_BOX_WITH_GOOSE -> box_with_goose
+        API.LINK_BOX_WITH_CONFETTI -> box_with_confetti
+        else -> box_unknown
+    }
+
+    val quest = Translate("Квест")
+    val quests = Translate("Квесты β")
+    val quests_play = Translate("Начать")
+    val quests_continue = Translate("Продолжить")
+    val quests_clear = Translate("Очистить прогресс")
+    val quests_clear_q = Translate("Вы уверены, что хотите сбросить прогресс прохождения?")
+    val quests_cat_new = Translate("Новые")
+    val quests_drafts = Translate("Черновики квестов")
+    val quests_empty = Translate("Нет квестов")
+    val quests_end = Translate("Конец")
+    val quests_end_d = Translate("Это конец квеста. Спасибо за прохождение!")
+    val quests_play_again = Translate("Играть с начала")
+    val quests_debug = Translate("Отладка")
+    val quests_debug_change_value = Translate("Изменить значение %s")
+    val quests_debug_secret = Translate("Секретные числа")
+    val quests_debug_index = Translate("Положение в квесте")
+    val quests_remove_q = Translate("Удалить этот квест? Его нельзя будет вернуть обратно.")
+    val quests_loading = Translate("Загрузка ваших квестов...")
+    val quests_new = Translate("Новый квест")
+    val quests_title = Translate("Название")
+    val quests_error_save = Translate("Не удалось сохранить прогресс")
+    val quests_edit_details = Translate("Редактирование деталей")
+    val quests_edit_error_name = Translate("Слишком длинное или короткое название")
+    val quests_edit_error_description = Translate("Слишком длинное описание")
+    val quests_edit_error_not_draft = Translate("Этот квест уже опубликован")
+    val quests_variables = Translate("Переменные")
+    val quests_variable = Translate("Переменная")
+    val quests_variable_new = Translate("Новая переменная")
+    val quests_variable_name = Translate("Название переменной")
+    val quests_variable_type = Translate("Тип переменной")
+    val quests_variable_string = Translate("Строка")
+    val quests_variable_number = Translate("Число")
+    val quests_variable_bool = Translate("Да/нет")
+    val quests_variable_unknown = Translate("Неизвестный тип")
+    fun forQuestType(type: Long): Translate =
+        when (type) {
+            API.QUEST_TYPE_TEXT -> quests_variable_string
+            API.QUEST_TYPE_NUMBER -> quests_variable_number
+            API.QUEST_TYPE_BOOL -> quests_variable_bool
+            else -> quests_variable_unknown
+        }
+    val quests_variable_too_many = Translate("Слишком много переменных")
+    val quests_variable_too_long = Translate("Название переменной слишком длинное")
+    val quests_variable_remove_q = Translate("Удалить переменную?")
+    val quests_contents = Translate("Содержание")
+    val quests_part_text = Translate("Экран")
+    val quests_part_condition = Translate("Ответвление")
+    val quests_part_action = Translate("Присвоение переменной")
+    val quests_part_unknown = Translate("Неизвестный тип")
+    fun fromQuestPart(part: QuestPart): Translate = when (part) {
+        is QuestPartText -> quests_part_text
+        is QuestPartCondition -> quests_part_condition
+        is QuestPartAction -> quests_part_action
+        else -> quests_part_unknown
+    }
+    val quests_part_title = Translate("%s: %s")
+    val quests_part_unknown_desc = Translate("Эта часть квеста из новой версии Campfire. Пора обновиться!")
+    val quests_part_text_input = Translate("Поле")
+    val quests_effect = Translate("Эффект")
+    val quests_effect_box = Translate("Коробка")
+    val quests_effect_box_reset = Translate("Сброс всех коробок")
+    val quests_effect_vibrate = Translate("Вибрация")
+    val quests_effect_unknown = Translate("Неизвестный эффект")
+    val quests_effect_box_s = Translate("Коробка: %s")
+    val quests_effect_vibrate_s = Translate("Вибрация %s * %d мс")
+    val quests_placeholder_error = Translate("<ошибка>")
+    val quests_edit_error_upload = Translate("Что-то не так с этой частью квеста.")
+    val quests_edit_dev_name = Translate("Пометка в редакторе (необязательно)")
+    val quests_edit_text_title = Translate("Заголовок экрана (необязательно)")
+    val quests_edit_text_content = Translate("Содержание")
+    val quests_edit_text_inputs = Translate("Поля для ввода")
+    val quests_edit_text_buttons = Translate("Кнопки")
+    val quests_edit_text_effects = Translate("Эффекты")
+    val quests_edit_text_input_subtitle = Translate("Тип: %s  Переменная: %s")
+    val quests_edit_text_input_hint = Translate("Название поля")
+    val quests_edit_text_input_type = Translate("Тип поля")
+    val quests_edit_text_input_default = Translate("Значение по умолчанию")
+    val quests_edit_text_input_error_1 = Translate("Неизвестный тип поля")
+    val quests_edit_text_input_error_2 = Translate("Слишком длинное название")
+    val quests_edit_text_input_error_3 = Translate("Значение по умолчанию не число")
+    val quests_edit_text_input_error_4 = Translate("Переменная не выбрана")
+    val quests_edit_text_input_error_5 = Translate("Тип поля и переменной не совпадают")
+    val quests_edit_text_input_remove_q = Translate("Удалить поле?")
+    val quests_edit_text_content_hint = Translate("Введите текст")
+    val quests_edit_text_button = Translate("Кнопка") // https://instead-games.ru/game.php?ID=271
+    val quests_edit_text_button_text = Translate("Текст кнопки")
+    val quests_edit_text_button_color = Translate("Цвет кнопки")
+    val quests_edit_text_button_color_default = Translate("Стандартный")
+    val quests_edit_text_button_color_red = Translate("Красный")
+    val quests_edit_text_button_color_orange = Translate("Оранжевый")
+    val quests_edit_text_button_color_yellow = Translate("Жёлтый")
+    val quests_edit_text_button_color_green = Translate("Зелёный")
+    val quests_edit_text_button_color_aqua = Translate("Голубой")
+    val quests_edit_text_button_color_blue = Translate("Синий")
+    val quests_edit_text_button_color_purple = Translate("Фиолетовый")
+    val quests_edit_text_button_color_pink = Translate("Розовый")
+    val quests_edit_text_button_color_white = Translate("Белый")
+    fun fromQuestColor(idx: Long): Translate = when (idx) {
+        API.QUEST_BUTTON_COLOR_DEFAULT -> quests_edit_text_button_color_default
+        API.QUEST_BUTTON_COLOR_RED -> quests_edit_text_button_color_red
+        API.QUEST_BUTTON_COLOR_ORANGE -> quests_edit_text_button_color_orange
+        API.QUEST_BUTTON_COLOR_YELLOW -> quests_edit_text_button_color_yellow
+        API.QUEST_BUTTON_COLOR_GREEN -> quests_edit_text_button_color_green
+        API.QUEST_BUTTON_COLOR_AQUA -> quests_edit_text_button_color_aqua
+        API.QUEST_BUTTON_COLOR_BLUE -> quests_edit_text_button_color_blue
+        API.QUEST_BUTTON_COLOR_PURPLE -> quests_edit_text_button_color_purple
+        API.QUEST_BUTTON_COLOR_PINK -> quests_edit_text_button_color_pink
+        API.QUEST_BUTTON_COLOR_WHITE -> quests_edit_text_button_color_white
+        else -> quests_edit_text_button_color_default
+    }
+    val quests_no_dev_name = Translate("Без названия")
+    val quests_destination = Translate("Место назначения")
+    val quests_edit_text_button_finish_quest = Translate("Закончить квест")
+    val quests_edit_text_button_next_part = Translate("Следующая часть квеста")
+    val quests_edit_text_button_error_1 = Translate("Слишком короткий или длинный текст кнопки")
+    val quests_edit_text_button_error_2 = Translate("Неверное место назначания")
+    val quests_edit_text_button_jump_to = Translate("Переход в %s")
+    val quests_edit_text_button_remove_q = Translate("Удалить кнопку?")
+    val quests_edit_text_effect_title = Translate("Тип спец. эффекта")
+    val quests_edit_text_effect_box = Translate("Коробка")
+    val quests_edit_text_effect_vibrate_times = Translate("Количество вибраций: %s")
+    val quests_edit_text_effect_vibrate_length = Translate("Длина вибраций: %d мс")
+    val quests_edit_text_effect_vibrate_delay_start = Translate("Задержка в начале: %d мс")
+    val quests_edit_text_effect_vibrate_delay_between = Translate("Задержка между каждой вибрацией: %d мс")
+    val quests_edit_text_effect_error_1 = Translate("Слишком маленькая задержка между вибрациями. Минимум %d мс")
+    val quests_edit_text_effect_error_2 = Translate("Нельзя добавить два эффекта вибрации сразу")
+    val quests_edit_text_effect_error_3 = Translate("Слишком много эффектов")
+    val quests_edit_text_effect_remove_q = Translate("Удалить эффект?")
+    val quests_edit_text_pic = Translate("Картника")
+    val quests_edit_text_error_1 = Translate("Тупик. Добавьте кнопку.")
+    val quests_edit_text_error_2 = Translate("Пустой экран. Добавьте текст.")
+    val quests_literal = Translate("Ввести значение")
+    val quests_edit_cond_left_value = Translate("Значение слева")
+    val quests_edit_cond_op = Translate("Операция")
+    val quests_edit_cond_right_value = Translate("Значение справа")
+    val quests_edit_cond_value = Translate("Значение")
+    val quests_edit_cond_jump = Translate("Место назначения")
+    val quests_edit_cond_true_jump = Translate("Если истина")
+    val quests_edit_cond_false_jump = Translate("Если ложь")
+    val quests_edit_cond_less = Translate("(<) Меньше")
+    val quests_edit_cond_leq = Translate("(≤) Меньше или равно")
+    val quests_edit_cond_eq = Translate("(=) Равно")
+    val quests_edit_cond_neq = Translate("(≠) Не равно")
+    val quests_edit_cond_geq = Translate("(≥) Больше или равно")
+    val quests_edit_cond_greater = Translate("(>) Больше")
+    val quests_edit_cond_less_r = Translate("<")
+    val quests_edit_cond_leq_r = Translate("≤")
+    val quests_edit_cond_eq_r = Translate("=")
+    val quests_edit_cond_neq_r = Translate("≠")
+    val quests_edit_cond_geq_r = Translate("≥")
+    val quests_edit_cond_greater_r = Translate(">")
+    val quests_edit_cond_true = Translate("(x) Истина")
+    val quests_edit_cond_false = Translate("(!x) Ложь")
+    val quests_edit_cond_error_1 = Translate("Оба значения не могут быть константами")
+    val quests_edit_cond_error_2 = Translate("Типы обеих переменных должны совпадать")
+    val quests_edit_cond_error_3 = Translate("Надо выбрать место назначения обеих путей")
+    val quests_edit_cond_if = Translate("Если %s %s %s")
+    val quests_edit_cond_then = Translate("То перейти в %s")
+    val quests_edit_cond_else = Translate("Иначе перейти в %s")
+    val quests_edit_cond_true_r = Translate("истина")
+    val quests_edit_cond_false_r = Translate("ложь")
+    val quests_enter_const = Translate("[Ввести константу]")
+    val quests_edit_action_action = Translate("Действие")
+    val quests_edit_action_unknown = Translate("Неизвестное действие")
+    val quests_edit_action_jump = Translate("Переход в %s")
+    val quests_edit_action_random_fn = Translate("рандом(от = %s, до = %s)")
+    val quests_edit_action_random_fn0 = Translate("рандом()")
+    val quests_edit_action_set_literal = Translate("[переменная] = [значение]")
+    val quests_edit_action_set_random = Translate("[переменная] = рандом(от = [значение], до = [значение])")
+    val quests_edit_action_set_another = Translate("[переменная 1] = [переменная 2]")
+    val quests_edit_action_add_literal = Translate("[переменная] = [переменная] + [значение]")
+    val quests_edit_action_set_arandom = Translate("[переменная 1] = рандом(от = [переменная 2], до = [переменная 3])")
+    val quests_edit_action_add_another = Translate("[переменная 1] = [переменная 1] + [переменная 2]")
+    val quests_edit_action_sub_another = Translate("[переменная 1] = [переменная 1] - [переменная 2]")
+    val quests_edit_action_multiply = Translate("[переменная 1] = [переменная 1] * [переменная 2]")
+    val quests_edit_action_divide = Translate("[переменная 1] = [переменная 1] / [переменная 2]")
+    val quests_edit_action_bit_and = Translate("[переменная 1] = [переменная 1] & [переменная 2]")
+    val quests_edit_action_bit_or = Translate("[переменная 1] = [переменная 1] | [переменная 2]")
+    val quests_edit_action_value = Translate("Значение")
+    val quests_edit_action_random_min = Translate("Минимальное значение (включительно)")
+    val quests_edit_action_random_max = Translate("Максимальное значение (включительно)")
+    val quests_edit_action_another_var = Translate("Другая переменная")
+    val quests_edit_action_mul = Translate("Множитель")
+    val quests_edit_action_div = Translate("Делитель")
+    val quests_edit_action_error_1 = Translate("Первое значение должно быть меньше второго")
+    val quests_edit_action_error_2 = Translate("Типы переменных не совпадают")
+    val quests_edit_action_error_3 = Translate("Все переменные должны быть числами")
+    val quests_edit_error_1 = Translate("Переменной для поля \"%s\" не существует")
+    val quests_edit_error_2 = Translate("Кнопка \"%s\" ведёт в несуществующую часть квеста")
+    val quests_edit_error_3 = Translate("Переменной в значении слева не существует")
+    val quests_edit_error_4 = Translate("Переменной в значении справа не существует")
+    val quests_edit_error_5 = Translate("Истинного пути не существует")
+    val quests_edit_error_6 = Translate("Ложного пути не существует")
+    val quests_edit_error_7 = Translate("Одной из переменных не существует")
+    val quests_edit_error_8 = Translate("Первой частью квеста должен быть экран")
+    val quests_edit_error_9 = Translate("Дорога поломана")
+    val quests_edit_error_10 = Translate("Квест пустой. Доброе утро.")
+    val quests_edit_error_11 = Translate(
+        "Одна из частей квеста не прошла финальную проверку. Проверьте, что " +
+        "указатели во всех частях существуют, и что ни одна переменная не была " +
+        "потеряна."
+    )
+    val quests_edit_error_12 = Translate("У квеста нет описания")
+    val quests_edit_checking = Translate("Проверяем отсутствующие переменные и проводим инспекцию дорог...")
+    val quests_edit_errors = Translate("Ошибки")
+	val quests_error_depth = Translate("Похоже, этот квест ушёл в бесконечный цикл.")
+    val quests_error_uninit = Translate(
+        "Произошла ошибка во время выполнения квеста. Скорее всего, " +
+        "где-то используется неинициализированная переменная"
+    )
+    val quests_no_drafts = Translate("Вы ещё не сохраняли черновиков")
+    val quests_draft_name = Translate("Название черновика")
+    val quests_draft_enter = Translate("Другое название")
+    val quests_publish_q = Translate(
+        "Вы уверены, что хотите опубликовать квест? Квесты — серьёзный бизнес, " +
+        "и отсутствие качества тут редко терпится."
+    )
+    val quests_publish_q_absolutely = Translate("Опубликовать")
+    val quests_publish_q_not_yet = Translate("Не надо")
+    val quests_mod_clear_reports_q = Translate("Удалить все жалобы на этот квест?")
 
     val post_page_code_languages = hashMapOf(
             "c" to "C", "cs" to "C#", "java" to "Java", "bash" to "Bash", "python" to "Python",

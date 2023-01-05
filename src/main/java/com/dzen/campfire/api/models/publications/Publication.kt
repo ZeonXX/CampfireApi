@@ -13,6 +13,7 @@ import com.dzen.campfire.api.models.publications.post.PublicationPost
 import com.dzen.campfire.api.models.publications.stickers.PublicationSticker
 import com.dzen.campfire.api.models.publications.stickers.PublicationStickersPack
 import com.dzen.campfire.api.models.publications.tags.PublicationTag
+import com.dzen.campfire.api.models.quests.QuestDetails
 import com.sup.dev.java.libs.eventBus.EventBus
 import com.sup.dev.java.libs.json.Json
 import com.sup.dev.java.libs.json.JsonParsable
@@ -172,6 +173,7 @@ abstract class Publication : JsonPolimorf {
                 API.PUBLICATION_TYPE_EVENT_FANDOM -> PublicationEventFandom()
                 API.PUBLICATION_TYPE_STICKERS_PACK -> PublicationStickersPack()
                 API.PUBLICATION_TYPE_STICKER -> PublicationSticker()
+                API.PUBLICATION_TYPE_QUEST -> QuestDetails()
                 else -> PublicationUnknown()
             }
         }

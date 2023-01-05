@@ -39,7 +39,7 @@ class LinkParsed(
         }
     }
 
-    fun isValid() = isLinkToAccount() || isLinkToPost() || isLinkToChat() || isLinkToFandom() || isLinkToStickersPack()|| isLinkToComment()
+    fun isValid() = isLinkToAccount() || isLinkToPost() || isLinkToChat() || isLinkToFandom() || isLinkToStickersPack() || isLinkToComment() || isLinkToQuest()
 
     fun isLinkToAccount(): Boolean {
         if (link == API.LINK_PROFILE_ID.asLink()) return params.size == 1
@@ -63,6 +63,13 @@ class LinkParsed(
         if (link == API.LINK_MODERATION.link) return params.size == 2
         if (link == API.LINK_STICKERS_PACK.asLink()) return params.size == 2
         if (link == API.LINK_STICKERS_PACK.link) return params.size == 2
+        if (link == API.LINK_QUEST.link) return params.size == 2
+        return false
+    }
+
+    fun isLinkToQuest(): Boolean {
+        if (link == API.LINK_QUEST.asLink()) return params.size == 1
+        if (link == API.LINK_QUEST.link) return params.size == 1
         return false
     }
 

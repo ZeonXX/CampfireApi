@@ -120,6 +120,7 @@ abstract class ApiEventAdmin : JsonPolimorf {
                 API.PUBLICATION_EVENT_ADMIN_TRANSLATE_REJECTED -> ApiEventAdminTranslateRejected()
                 API.PUBLICATION_EVENT_ADMIN_POST_REMOVE_MEDIA -> ApiEventAdminPostRemoveMedia()
                 API.PUBLICATION_EVENT_ADMIN_ADMIN_VOTE_CANCELED -> ApiEventAdminAdminVoteCanceled()
+                API.PUBLICATION_EVENT_ADMIN_QUEST_TO_DRAFTS -> ApiEventAdminQuestToDrafts()
                 else -> ApiEventAdminUnknown()
             }
 

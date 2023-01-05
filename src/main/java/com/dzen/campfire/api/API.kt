@@ -28,11 +28,10 @@ class API(
         val PORT_HTTPS = 4026
         val PORT_HTTP = 4028
         val PORT_CERTIFICATE = 4027
-        val PORT_STREAM = 4200
         val IP = "46.254.16.245"
         val DOMEN = "http://campfiresayzen.net/r/r.php?a="
         val DOMEN_OLD = "http://sayzen.ru/r/r.php?a="
-        val VERSION = "1.292"
+        val VERSION = "1.3"
         val SUPPORTED_VERSION = "0.82b"
 
         val PROJECT_KEY_CAMPFIRE = "Campfire"
@@ -82,6 +81,7 @@ class API(
         val LINK_RUBRIC = Link("rubric")
         val LINK_FANDOM_CHAT = Link("fandomchat")
         val LINK_ACTIVITY = Link("activity")
+        val LINK_QUEST = Link("quest")
 
         val LINKS_ARRAY = arrayOf(
                 LINK_POST,
@@ -122,7 +122,8 @@ class API(
                 LINK_CREATORS,
                 LINK_ABOUT,
                 LINK_DONATE,
-                LINK_DONATE_MAKE
+                LINK_DONATE_MAKE,
+                LINK_QUEST,
         )
 
         val LINK_TAG_PROFILE_NAME = "profile"
@@ -256,6 +257,7 @@ class API(
         val LVL_CAN_CHANGE_AVATAR_GIF = LvlInfoUser(250L, 0L)
         val LVL_CAN_PIN_POST = LvlInfoUser(260L, 0L)
         val LVL_CREATE_STICKERS = LvlInfoUser(300L, 0L)
+        val LVL_CREATE_QUESTS = LvlInfoUser(340L, 0L)
         //  Moderator
         val LVL_MODERATOR_BLOCK = LvlInfoModeration(400L, 300)
         val LVL_MODERATOR_TO_DRAFTS = LvlInfoModeration(410L, 320)
@@ -282,6 +284,7 @@ class API(
         val LVL_ADMIN_FANDOM_NAME = LvlInfoAdmin(725L, 900)
         val LVL_ADMIN_FANDOM_AVATAR = LvlInfoAdmin(730L, 950)
         val LVL_ADMIN_FANDOM_PARAMS = LvlInfoAdmin(750L, 1000)
+        val LVL_QUEST_MODERATOR = LvlInfoAdmin(770L, 1050)
         val LVL_ADMIN_FANDOM_CATEGORY = LvlInfoAdmin(790L, 1080)
         val LVL_ADMIN_BAN = LvlInfoAdmin(800L, 1100)
         val LVL_ADMIN_POST_CHANGE_FANDOM = LvlInfoAdmin(820L, 1150)
@@ -389,10 +392,11 @@ class API(
         val ACHI_VICEROY_LINK = AchievementInfo(74, 1, 1)
         val ACHI_VICEROY_IMAGES = AchievementInfo(75, 1, 1)
         val ACHI_VICEROY_DESCRIPTION = AchievementInfo(76, 1, 1)
+        val ACHI_QUEST_KARMA = AchievementInfo(77, 15, 7000, 14000, 25000, 37000)
 
         val ACHI_PACK_1 = arrayOf(ACHI_RULES_USER, ACHI_LOGIN, ACHI_CHAT, ACHI_CHAT_SUBSCRIBE, ACHI_COMMENT, ACHI_ANSWER, ACHI_RATE, ACHI_CHANGE_PUBLICATION, ACHI_CHANGE_COMMENT, ACHI_FIRST_POST, ACHI_SUBSCRIBE, ACHI_TAGS_SEARCH, ACHI_LANGUAGE, ACHI_TITLE_IMAGE, ACHI_RELAY_RACE_FIRST_POST, ACHI_RELAY_RACE_FIRST_NEXT_MEMBER)
         val ACHI_PACK_2 = arrayOf(ACHI_APP_SHARE, ACHI_CONTENT_SHARE, ACHI_ADD_RECRUITER, ACHI_REFERRALS_COUNT, ACHI_FOLLOWERS)
-        val ACHI_PACK_3 = arrayOf(ACHI_POSTS_COUNT, ACHI_COMMENTS_COUNT, ACHI_POST_KARMA, ACHI_COMMENTS_KARMA, ACHI_STICKERS_KARMA, ACHI_KARMA_COUNT, ACHI_KARMA_30, ACHI_UP_RATES, ACHI_UP_RATES_OVER_DOWN, ACHI_RELAY_RACE_POSTS_COUNT, ACHI_RELAY_RACE_MY_RACE_POSTS_COUNT)
+        val ACHI_PACK_3 = arrayOf(ACHI_POSTS_COUNT, ACHI_COMMENTS_COUNT, ACHI_POST_KARMA, ACHI_COMMENTS_KARMA, ACHI_STICKERS_KARMA, ACHI_KARMA_COUNT, ACHI_KARMA_30, ACHI_UP_RATES, ACHI_UP_RATES_OVER_DOWN, ACHI_RELAY_RACE_POSTS_COUNT, ACHI_RELAY_RACE_MY_RACE_POSTS_COUNT, ACHI_QUEST_KARMA)
         val ACHI_PACK_4 = arrayOf(ACHI_CREATE_TAG, ACHI_RULES_MODERATOR, ACHI_MODER_CHANGE_POST_TAGS, ACHI_MAKE_MODER, ACHI_CREATE_CHAT, ACHI_REVIEW_MODER_ACTION, ACHI_ACCEPT_FANDOM, ACHI_MODERATOR_COUNT, ACHI_MODERATOR_ACTION_KARMA, ACHI_RELAY_RACE_FIRST_CREATE)
         val ACHI_PACK_5 = arrayOf(ACHI_RATES_COUNT, ACHI_ENTERS, ACHI_QUESTS, ACHI_FANDOMS, ACHI_FIREWORKS)
         val ACHI_PACK_6 = arrayOf(ACHI_VICEROY_ASSIGN, ACHI_VICEROY_POSTS_COUNT, ACHI_VICEROY_WIKI_COUNT, ACHI_VICEROY_KARMA_COUNT, ACHI_VICEROY_SUBSCRIBERS_COUNT, ACHI_VICEROY_LINK, ACHI_VICEROY_IMAGES, ACHI_VICEROY_DESCRIPTION)
@@ -505,6 +509,7 @@ class API(
         val PUBLICATION_TYPE_EVENT_MODER = 17L
         val PUBLICATION_TYPE_EVENT_ADMIN = 18L
         val PUBLICATION_TYPE_EVENT_FANDOM = 19L
+        val PUBLICATION_TYPE_QUEST = 21L
         val PUBLICATION_TYPE_UNKNOWN = 20L
 
         val PUBLICATION_IMPORTANT_IMPORTANT = -1L
@@ -627,6 +632,7 @@ class API(
         val PUBLICATION_EVENT_ADMIN_TRANSLATE_REJECTED = 207L
         val PUBLICATION_EVENT_ADMIN_POST_REMOVE_MEDIA = 208L
         val PUBLICATION_EVENT_ADMIN_ADMIN_VOTE_CANCELED = 209L
+        val PUBLICATION_EVENT_ADMIN_QUEST_TO_DRAFTS = 210L
 
         val ADMIN_VOTE_UNKNOWN = 1L
         val ADMIN_VOTE_ACCOUNT_RECOUNT_ACHI = 2L
@@ -738,6 +744,7 @@ class API(
         val COLLISION_ACCOUNT_STICKERPACKS = 30023L
         val COLLISION_ACCOUNT_STICKERS = 30024L
         val COLLISION_ACCOUNT_PROJECT_INIT = 30025L
+        val COLLISION_ACCOUNT_QUESTS_KARMA = 30026L
         val COLLISION_PROJECT_AB_PARAMS = 40000L
         val COLLISION_PROJECT_KEY = 40001L
         val COLLISION_PROJECT_MINIGAME_HUMANS = 40002L
@@ -938,6 +945,105 @@ class API(
         val NOTIF_ACCOUNT_ADMIN_VOTE_CANCELED_FOR_USER = 64L
         val NOTIF_ACCOUNT_FOLLOWS_REMOVE = 66L
 
+        //
+        //  Quests
+        //
+
+        const val QUEST_TITLE_MIN_L = 2
+        const val QUEST_TITLE_MAX_L = 100
+        const val QUEST_DESCRIPTION_MAX_L = 2000
+        const val QUEST_VARIABLES_MAX = 100
+        const val QUEST_VARIABLE_MAX_NAME_L = 200
+        const val QUEST_VARIABLE_MAX_VALUE_L = 200
+        const val QUEST_PARTS_MAX = 250
+        const val QUEST_DEV_LABEL_MAX_L = 100
+        const val QUEST_MAX_DEPTH = 200
+
+        const val QUEST_TEXT_TITLE_MAX_L = 200
+        const val QUEST_TEXT_TEXT_MAX_L = 20000
+        const val QUEST_TEXT_INPUTS_MAX = 5
+        const val QUEST_TEXT_BUTTONS_MAX = 10
+
+        const val QUEST_IMAGE_W = 800
+        const val QUEST_IMAGE_H = 400
+        const val QUEST_IMAGE_WEIGHT = 1024 * 256
+
+        const val QUEST_INPUT_HINT_MAX_L = 100
+
+        const val QUEST_BUTTON_LABEL_MIN_L = 1
+        const val QUEST_BUTTON_LABEL_MAX_L = 50
+
+        const val QUEST_TYPE_TEXT = 1L
+        const val QUEST_TYPE_NUMBER = 2L
+        const val QUEST_TYPE_BOOL = 3L
+
+        const val QUEST_BUTTON_COLOR_DEFAULT = 1L
+        const val QUEST_BUTTON_COLOR_RED = 2L
+        const val QUEST_BUTTON_COLOR_ORANGE = 3L
+        const val QUEST_BUTTON_COLOR_YELLOW = 4L
+        const val QUEST_BUTTON_COLOR_GREEN = 5L
+        const val QUEST_BUTTON_COLOR_AQUA = 6L
+        const val QUEST_BUTTON_COLOR_BLUE = 7L
+        const val QUEST_BUTTON_COLOR_PURPLE = 8L
+        const val QUEST_BUTTON_COLOR_PINK = 9L
+        const val QUEST_BUTTON_COLOR_WHITE = 10L
+        // put new colors into the array **in the same order**
+        // and do not skip numbers for const values
+        val QUEST_BUTTON_COLORS = arrayOf(
+            QUEST_BUTTON_COLOR_DEFAULT, QUEST_BUTTON_COLOR_RED, QUEST_BUTTON_COLOR_ORANGE,
+            QUEST_BUTTON_COLOR_YELLOW, QUEST_BUTTON_COLOR_GREEN, QUEST_BUTTON_COLOR_AQUA,
+            QUEST_BUTTON_COLOR_BLUE, QUEST_BUTTON_COLOR_PURPLE, QUEST_BUTTON_COLOR_PINK,
+            QUEST_BUTTON_COLOR_WHITE
+        )
+
+        const val QUEST_EFFECT_MAX_L = 5L
+
+        const val QUEST_EFFECT_TYPE_BOX = 1L
+        const val QUEST_EFFECT_TYPE_RESET_BOX = 2L
+        const val QUEST_EFFECT_TYPE_VIBRATE = 3L
+        const val QUEST_EFFECT_TYPE_UNKNOWN = 100L
+
+        const val QUEST_EFFECT_VIBRATE_COUNT_MAX = 5L
+        const val QUEST_EFFECT_VIBRATE_LENGTH_MAX = 1000L
+        const val QUEST_EFFECT_VIBRATE_DELAY_START_MAX = 5000L
+        const val QUEST_EFFECT_VIBRATE_DELAY_BETWEEN_MIN = 50L
+        const val QUEST_EFFECT_VIBRATE_DELAY_BETWEEN_INF_MIN = 200L
+        const val QUEST_EFFECT_VIBRATE_DELAY_BETWEEN_MAX = 5000L
+
+        const val QUEST_CONDITION_VALUE_LITERAL_LONG = 1L
+        const val QUEST_CONDITION_VALUE_LITERAL_TEXT = 2L
+        const val QUEST_CONDITION_VALUE_LITERAL_BOOL = 3L
+        const val QUEST_CONDITION_VALUE_VAR = 4L
+
+        const val QUEST_CONDITION_LESS = 1L     // <
+        const val QUEST_CONDITION_LEQ = 2L      // <=
+        const val QUEST_CONDITION_EQ = 3L       // ==
+        const val QUEST_CONDITION_NEQ = 4L      // !=
+        const val QUEST_CONDITION_GEQ = 5L      // >=
+        const val QUEST_CONDITION_GREATER = 6L  // >
+
+        // explanations are in QuestPartAction.kt
+        const val QUEST_ACTION_SET_LITERAL = 1L
+        const val QUEST_ACTION_SET_RANDOM  = 2L
+        const val QUEST_ACTION_SET_ANOTHER = 3L
+        const val QUEST_ACTION_ADD_LITERAL = 4L
+        const val QUEST_ACTION_ADD_ANOTHER = 5L
+        const val QUEST_ACTION_SUB_ANOTHER = 11L
+        const val QUEST_ACTION_SET_ARANDOM = 6L
+        const val QUEST_ACTION_MULTIPLY    = 7L
+        const val QUEST_ACTION_DIVIDE      = 8L
+        const val QUEST_ACTION_BIT_AND     = 9L
+        const val QUEST_ACTION_BIT_OR      = 10L
+
+        const val QUEST_PART_TYPE_TEXT = 1L
+        const val QUEST_PART_TYPE_CONDITION = 2L
+        const val QUEST_PART_TYPE_ACTION = 3L
+        const val QUEST_PART_TYPE_UNKNOWN = 100L
+
+        //
+        //  Reactions
+        //
+
         val REACTIONS = arrayOf(
                 API_RESOURCES.EMOJI_1,
                 API_RESOURCES.EMOJI_2,
@@ -947,6 +1053,7 @@ class API(
                 API_RESOURCES.EMOJI_6,
                 API_RESOURCES.EMOJI_7
         )
+
         //
         //  Language
         //

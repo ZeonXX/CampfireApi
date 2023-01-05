@@ -105,6 +105,7 @@ object API_RESOURCES {
     val IMAGE_BACKGROUND_28 = 836245L    //  Доска с мелом
     val IMAGE_BACKGROUND_29 = 836246L    //  Библиотекорь
     val IMAGE_BACKGROUND_30 = 1410848L    //  Даёт перо (нет переводов)
+    val IMAGE_BACKGROUND_31 = 1455339L   //  В доспехах с бицухой
 
     //  Background Level
     val IMAGE_BACKGROUND_LEVEL_1 = 419905L
@@ -318,6 +319,7 @@ object API_RESOURCES {
             IMAGE_BACKGROUND_28,
             IMAGE_BACKGROUND_29,
             IMAGE_BACKGROUND_30,
+            IMAGE_BACKGROUND_31,
     )
 
     val ARRAY_BACKGROUND_LEVEL = arrayOf(
