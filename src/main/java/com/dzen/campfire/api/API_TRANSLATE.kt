@@ -2063,8 +2063,6 @@ object API_TRANSLATE {
     val about_creators_turbo_subtitle = Translate("Разработчик редирект страницы.")
     val about_creators_zymixx = Translate("Максим Холин (@ZYMixx)")
     val about_creators_zymixx_subtitle = Translate("Контент менеджер.")
-    val about_creators_sit = Translate("Тимофей \"Сит\" (@sit)")
-    val about_creators_sit_subtitle = Translate("Контрибьютор, разработчик квестов и других штук.")
 
     val pages_count_one = Translate("страница")
     val pages_count_few = Translate("страницы")
