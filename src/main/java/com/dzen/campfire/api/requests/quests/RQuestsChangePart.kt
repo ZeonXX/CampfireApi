@@ -6,6 +6,15 @@ import com.dzen.campfire.api.tools.client.Request
 import com.sup.dev.java.libs.json.Json
 
 open class RQuestsChangePart(var partId: Long, var part: QuestPart) : Request<RQuestsChangePart.Response>() {
+    init {
+        part.addInsertData(this)
+    }
+
+    override fun updateDataOutput() {
+        val iter = dataOutput.iterator()
+        part.restoreInsertData(iter)
+    }
+
     override fun jsonSub(inp: Boolean, json: Json) {
         partId = json.m(inp, "partId", partId)
         part = json.m(inp, "part", part)
